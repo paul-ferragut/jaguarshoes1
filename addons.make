@@ -1,2 +1,10 @@
+ofxAppUtils
+ofxAssimpModelLoader
+ofxDetectDisplays
+ofxGui
+ofxMSAInteractiveObject
+ofxMtlMapping2D
 ofxSunCalc
+ofxUI
+ofxXmlSettings
 ofxYahooWeather
