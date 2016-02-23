@@ -4,6 +4,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	int london = 26346526;
+		weather.setup(london, 'c');
+		weather.refresh();
 }
 
 //--------------------------------------------------------------
@@ -18,6 +21,13 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+	if (key == '1') {
+	
+	weather.resetWOEID(26346526);
+		ofLogNotice("WOEID = london");
+		cout << weather.getTemperature() << endl;
+		cout << weather.getHumidity() << endl;
+	}
 
 }
 
