@@ -45,3 +45,19 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.vs/jaguarshoes1/v14/.suo
+bin/assimp.dll
+obj/Debug/vc140.pdb
+*.obj
+*.tlog
+*.dll
+*.lib
+*.exe
+bin/jaguarshoes1_debug.exp
+*.ilk
+bin/jaguarshoes1_debug.pdb
+*.log
+obj/Debug/icon.res
+*.exp
+*.pdb
+obj/Release/icon.res

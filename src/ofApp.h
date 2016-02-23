@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxSunCalc.h"
 #include "ofxYahooWeather.h"
+#include "ofxSunCalc.h"
 
 
 class ofApp : public ofBaseApp{
@@ -26,6 +27,22 @@ class ofApp : public ofBaseApp{
 
 		ofxYahooWeather weather;
 		int londonWOEID;
+
+
+		ofxSunCalc sun_calc;
+		SunCalcDayInfo todayInfo;
+
+		string min_info_str;
+		string max_info_str;
+		string pos_str;
+		string date_str;
+		string latlon_str;
+
+		vector<ofFbo> timelines;
+		vector<string> labels;
+
+		float lat;
+		float lon;
 
 
 
