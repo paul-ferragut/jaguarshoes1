@@ -61,3 +61,5 @@ obj/Debug/icon.res
 *.exp
 *.pdb
 obj/Release/icon.res
+*.opensdf
+obj/Release/jaguarshoes1.vcxprojResolveAssemblyReference.cache

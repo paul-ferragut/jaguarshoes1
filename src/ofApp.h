@@ -4,7 +4,7 @@
 #include "ofxSunCalc.h"
 #include "ofxYahooWeather.h"
 #include "ofxSunCalc.h"
-
+//test
 
 class ofApp : public ofBaseApp{
 
