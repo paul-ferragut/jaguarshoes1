@@ -13,8 +13,11 @@
 		<ClCompile Include="src\ofApp.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\addons\ofxWeatherBug\src\ofxWeatherBug.cpp">
-			<Filter>addons\ofxWeatherBug\src</Filter>
+		<ClCompile Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.cpp">
+			<Filter>addons\ofxSunCalc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.cpp">
+			<Filter>addons\ofxYahooWeather\src</Filter>
 		</ClCompile>
 	</ItemGroup>
 	<ItemGroup>
@@ -24,11 +27,17 @@
 		<Filter Include="addons">
 			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
 		</Filter>
-		<Filter Include="addons\ofxWeatherBug">
-			<UniqueIdentifier>{C569FE18-91CF-CEF3-55AD-11AB}</UniqueIdentifier>
+		<Filter Include="addons\ofxSunCalc">
+			<UniqueIdentifier>{13A77F0F-5B17-1BF1-1EDE-96CD}</UniqueIdentifier>
 		</Filter>
-		<Filter Include="addons\ofxWeatherBug\src">
-			<UniqueIdentifier>{F7AB98FA-DFC9-E018-5D7F-1700}</UniqueIdentifier>
+		<Filter Include="addons\ofxSunCalc\src">
+			<UniqueIdentifier>{9DF9CE7F-0BF9-814E-35FF-C610}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxYahooWeather">
+			<UniqueIdentifier>{1ACE898D-A2DE-E1BC-1421-8591}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxYahooWeather\src">
+			<UniqueIdentifier>{4216F2B4-533F-5EE1-7DB7-213C}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -38,8 +47,11 @@
 		<ClInclude Include="src\ofApp.h">
 			<Filter>src</Filter>
 		</ClInclude>
-		<ClInclude Include="..\..\..\addons\ofxWeatherBug\src\ofxWeatherBug.h">
-			<Filter>addons\ofxWeatherBug\src</Filter>
+		<ClInclude Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.h">
+			<Filter>addons\ofxSunCalc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.h">
+			<Filter>addons\ofxYahooWeather\src</Filter>
 		</ClInclude>
 	</ItemGroup>
 	<ItemGroup>
