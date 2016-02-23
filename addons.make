@@ -1,1 +1,2 @@
-ofxWeatherBug
+ofxSunCalc
+ofxYahooWeather
