@@ -48,7 +48,6 @@ Temporary Items
 .vs/jaguarshoes1/v14/.suo
 bin/assimp.dll
 obj/Debug/vc140.pdb
-*.obj
 *.tlog
 *.dll
 *.lib
@@ -62,6 +61,7 @@ obj/Debug/icon.res
 *.pdb
 obj/Release/icon.res
 *.opensdf
+obj/
 obj/Release/jaguarshoes1.vcxprojResolveAssemblyReference.cache
 *.sdf
 jaguarshoes1.sdf
