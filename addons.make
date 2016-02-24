@@ -1,2 +1,5 @@
+ofxAssimpModelLoader
 ofxSunCalc
+ofxUI
+ofxXmlSettings
 ofxYahooWeather

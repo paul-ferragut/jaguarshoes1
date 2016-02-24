@@ -4,6 +4,7 @@
 #include "ofxSunCalc.h"
 #include "ofxYahooWeather.h"
 #include "ofxSunCalc.h"
+#include "ofxAssimpModelLoader.h"
 //test
 //test
 
@@ -48,6 +49,9 @@ class ofApp : public ofBaseApp{
 		float lat;
 		float lon;
 
+
+		ofxAssimpModelLoader modelStructure;
+		
 
 
 		
