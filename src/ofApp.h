@@ -5,6 +5,7 @@
 #include "ofxYahooWeather.h"
 #include "ofxSunCalc.h"
 #include "ofxAssimpModelLoader.h"
+#include "ofxUI.h"
 //test
 //test
 
@@ -29,6 +30,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void exit();
 
 		ofxYahooWeather weather;
 		int londonWOEID;
@@ -51,8 +53,28 @@ class ofApp : public ofBaseApp{
 
 
 		ofxAssimpModelLoader modelStructure;
+		ofxAssimpModelLoader modelFoliage;
+
+		ofEasyCam camEasy;
+		ofCamera camStatic;
 		
 
+		void setGUI();
+		void guiEvent(ofxUIEventArgs &e);
+		ofxUISuperCanvas *gui;
 
-		
+		bool showWeather;
+
+		ofVec3f positionCamera;
+		ofVec3f rotationCamera;
+		float modelFoliageScale;
+		float cameraFov;
+
+		ofColor bg1;
+		ofColor bg2;
+
+		ofShader texture;
+		ofShader post;
+
+		ofImage image;
 };
