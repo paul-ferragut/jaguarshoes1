@@ -184,6 +184,27 @@ void ofApp::draw(){
 
 
 	
+	fbo.begin()
+
+	fbo.end();
+	shaderPost.begin();
+
+	ofSetColor(255, 255, 255);
+	validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
+
+	shaderPost.begin();
+	shaderPost.setUniform1f("elapsedTime", time*slowerTime);
+	shaderPost.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shaderPost.setUniform1f("alpha", ofMap(opacityPost, 0, 255, 0.0, 1.0, true));
+	for (int i = 0;i < UF_NUM;i++) {
+		shaderPost.setUniform1f("val" + ofToString(i + 1), uniformFloatShaderPost[i]);
+	}
+
+	shaderPost.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
+	ofSetColor(255, 255, 255, 255);
+	ofRect(0, 0, ofGetWidth(), ofGetHeight());
+	fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+	shaderPost.end();
 
 
 }

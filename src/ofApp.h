@@ -77,4 +77,5 @@ class ofApp : public ofBaseApp{
 		ofShader post;
 
 		ofImage image;
+
 };
