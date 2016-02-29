@@ -71,19 +71,39 @@ void ofApp::setup(){
 
 		image.load("2.png");
 
-		modelFoliage.loadModel("3d/leavesTest.obj");
+		modelFoliage1.loadModel("3d/plantpart1b.obj");
+		modelFoliage2.loadModel("3d/plantpart2b.obj");
 		modelStructure.loadModel("3d/wallStudio.obj");
+
+		fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+		shader.load("shaders/POST");
+
+
+
+		soundStream.printDeviceList();
+		int bufferSize = 256;
+		left.assign(bufferSize, 0.0);
+		right.assign(bufferSize, 0.0);
+		volHistory.assign(400, 0.0);
+		bufferCounter = 0;
+		drawCounter = 0;
+		smoothedVol = 0.0;
+		scaledVol = 0.0;
+		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+
 		setGUI();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	//lets scale the vol up to a 0-1 range 
+	scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
+	//cout << "scaled vol" << scaledVol<<endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	ofClear(255);
 	
 		Poco::LocalDateTime now; //(2015,5,29,17,38);
 
@@ -112,7 +132,7 @@ void ofApp::draw(){
 		ofColor background = nightBG.lerp(dayBG, sun_brightness);
 		ofColor foreground = nightFG.lerp(dayFG, sun_brightness);
 
-		ofBackgroundGradient(foreground, background);
+	//	ofBackgroundGradient(foreground, background);
 	if (showWeather) {
 		ofDrawBitmapStringHighlight(date_str, 15, 20, ofColor::paleGoldenRod, ofColor::black);
 
@@ -152,59 +172,98 @@ void ofApp::draw(){
 			ty += timelines[i].getHeight() + 25;
 		}
 	}
-
 	ofEnableAlphaBlending();
-	ofEnableDepthTest();
+	//
+
 	ofSetColor(255, 255, 255);
-	camEasy.begin();
-	modelStructure.drawVertices();
-	camEasy.end();
 
+//	fbo.begin();
 
-	camStatic.setPosition(positionCamera);
+	ofBackground(0, 0, 0);
+
+//	camEasy.begin();
+//	modelStructure.drawVertices();
+//	camEasy.end();
+
+	cam.setTranslation2D(ofVec2f(positionCamera.x, positionCamera.y));
+//	cam.setOrientation(rotationCamera);
+
+	if (bUseEasyCam) {
+		easyCam.begin();
+	}
+	else {
+		cam.begin();
+	}
+ofEnableDepthTest();
+	//camStatic.enableOrtho();
+	//camStatic.setPosition(positionCamera);
 	//camStatic.setOrientation(rotationCamera);
-	camStatic.setFov(cameraFov);
 	
-	camStatic.begin();
-	ofPushMatrix();
-	ofRotateX(rotationCamera.x);
-	ofRotateY(rotationCamera.y);
-	ofRotateZ(rotationCamera.z);
-	ofScale(0.5,0.5,0.5);
-	modelFoliage.drawFaces();
-	ofPopMatrix();
-	camStatic.end();
+	//camStatic.setFov(cameraFov);
+	
+	//camStatic.begin();
+	//ofPushMatrix();	
+	//ofTranslate(positionCamera);
+	//ofScale(modelFoliageScale, modelFoliageScale, modelFoliageScale);
+
+		//ofTranslate(-modelFoliage1.getSceneCenter().x / 2, -modelFoliage1.getSceneCenter().y / 2);//* 0.3528 * 0.3528
+
+	//ofRotateX(rotationCamera.x);
+	//ofRotateY(rotationCamera.y);
+	//ofRotateZ(rotationCamera.z);
+
+	//	ofTranslate(modelFoliage1.getSceneCenter().x / 2 , modelFoliage1.getSceneCenter().y / 2 );//* 0.3528* 0.3528	
+	modelFoliage1.drawFaces();
+	modelFoliage2.drawFaces();
+	//ofPopMatrix();
+	//camStatic.end();
+	//ofDisableDepthTest();
+
+
+	ofDrawGrid(20, 10);
 	ofDisableDepthTest();
-	ofEnableBlendMode(OF_BLENDMODE_ADD);
-	ofPushMatrix();
-	ofScale(modelFoliageScale,modelFoliageScale,modelFoliageScale);
-	image.draw(0,0);
-	ofPopMatrix();
-	ofDisableAlphaBlending();
-
-
-	
-	fbo.begin()
-
-	fbo.end();
-	shaderPost.begin();
-
-	ofSetColor(255, 255, 255);
-	validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
-
-	shaderPost.begin();
-	shaderPost.setUniform1f("elapsedTime", time*slowerTime);
-	shaderPost.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
-	shaderPost.setUniform1f("alpha", ofMap(opacityPost, 0, 255, 0.0, 1.0, true));
-	for (int i = 0;i < UF_NUM;i++) {
-		shaderPost.setUniform1f("val" + ofToString(i + 1), uniformFloatShaderPost[i]);
+	if (bUseEasyCam) {
+		easyCam.end();
+	}
+	else {
+		cam.end();
 	}
 
-	shaderPost.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
+	ofPushMatrix();
+	//ofScale(modelFoliageScale,modelFoliageScale,modelFoliageScale);
+	//ofEnableBlendMode(OF_BLENDMODE_ADD);
+	image.draw(0,0);
+	//ofDisableBlendMode();
+	ofPopMatrix();
+	
+
+//	fbo.end();
+
+	shader.begin();
+
+	ofSetColor(255, 255, 255);
+	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
+
+	shader.begin();
+	shader.setUniform1f("elapsedTime", ofGetElapsedTimef());
+	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shader.setUniform1f("alpha", opacityShader);
+	
+	uniformFloatShader[2] = scaledVol;
+	uniformFloatShader[3] = scaledVol;
+
+	for (int i = 0;i < VAR_SHADER;i++) {
+		shader.setUniform1f("val" + ofToString(i + 1), uniformFloatShader[i]);
+	}
+
+
+
+
+	shader.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
 	ofSetColor(255, 255, 255, 255);
-	ofRect(0, 0, ofGetWidth(), ofGetHeight());
-	fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
-	shaderPost.end();
+	//fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+//	
+	shader.end();
 
 
 }
@@ -218,6 +277,43 @@ void ofApp::keyPressed(int key){
 		cout << weather.getTemperature() << endl;
 		cout << weather.getHumidity() << endl;
 	}
+
+
+	if (key == ' ') {
+
+		if (bUseEasyCam) {
+			easyCam.disableMouseInput();
+			cam.enableMouseInput();
+		}
+		else {
+			easyCam.enableMouseInput();
+			cam.disableMouseInput();
+		}
+
+		bUseEasyCam ^= true;
+	}
+	if (key == 'a') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_LEFT);
+	}
+	else if (key == 's') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_FRONT);
+	}
+	else if (key == 'd') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_RIGHT);
+	}
+	else if (key == 'w') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_TOP);
+	}
+	else if (key == 'q') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
+	}
+	else if (key == 'x') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_BOTTOM);
+	}
+	else if (key == 'z') {
+		cam.setLookAt(ofx2DCam::OFX2DCAM_BACK);
+	}
+
 
 }
 
@@ -287,9 +383,9 @@ void ofApp::setGUI() {
 	gui->addSpacer();
 	gui->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
 
-	gui->addSlider("positionCamera x",  -2000, 2000, &positionCamera.x);
-	gui->addSlider("positionCamera y",  -2000, 2000, &positionCamera.y);
-	gui->addSlider("positionCamera z",  -20000, 20000,&positionCamera.z);
+	gui->addSlider("positionCamera x",  -1000, 1000, &positionCamera.x);
+	gui->addSlider("positionCamera y",  -1000, 1000, &positionCamera.y);
+	gui->addSlider("positionCamera z",  -5000, 5000,&positionCamera.z);
 
 	gui->addSlider("rotation x", -180, 180, &rotationCamera.x);
 	gui->addSlider("rotation y", -180, 180, &rotationCamera.y);
@@ -298,6 +394,13 @@ void ofApp::setGUI() {
 	gui->addSlider("fov", 0, 100, &cameraFov);
 
 	gui->addSlider("scale", 0.01, 10, &modelFoliageScale);
+
+	opacityShader = 1.0;
+	gui->addSlider("alpha shader",0.0, 1.0, &opacityShader);
+
+	for (int i = 0;i < VAR_SHADER;i++) {
+		gui->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
+	}
 
 
 	gui->addToggle("show weather", &showWeather);
@@ -343,4 +446,36 @@ void ofApp::setGUI() {
 	ofAddListener(gui->newGUIEvent, this, &ofApp::guiEvent);
 
 	gui->loadSettings("settings.xml");
+}
+
+
+//--------------------------------------------------------------
+void ofApp::audioIn(float * input, int bufferSize, int nChannels) {
+
+	float curVol = 0.0;
+
+	// samples are "interleaved"
+	int numCounted = 0;
+
+	//lets go through each sample and calculate the root mean square which is a rough way to calculate volume	
+	for (int i = 0; i < bufferSize; i++) {
+		left[i] = input[i * 2] * 0.5;
+		right[i] = input[i * 2 + 1] * 0.5;
+
+		curVol += left[i] * left[i];
+		curVol += right[i] * right[i];
+		numCounted += 2;
+	}
+
+	//this is how we get the mean of rms :) 
+	curVol /= (float)numCounted;
+
+	// this is how we get the root of rms :) 
+	curVol = sqrt(curVol);
+
+	smoothedVol *= 0.93;
+	smoothedVol += 0.07 * curVol;
+
+	bufferCounter++;
+
 }

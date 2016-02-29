@@ -6,9 +6,10 @@
 #include "ofxSunCalc.h"
 #include "ofxAssimpModelLoader.h"
 #include "ofxUI.h"
+#include "ofx2DCam.h"
 //test
 //test
-
+#define VAR_SHADER 6
 //local change
 
 
@@ -32,6 +33,17 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		void exit();
 
+		void audioIn(float * input, int bufferSize, int nChannels);
+		float smoothedVol;
+		float scaledVol;
+		int 	bufferCounter;
+		int 	drawCounter;
+		vector <float> left;
+		vector <float> right;
+		vector <float> volHistory;
+		ofSoundStream soundStream;
+
+
 		ofxYahooWeather weather;
 		int londonWOEID;
 
@@ -53,10 +65,14 @@ class ofApp : public ofBaseApp{
 
 
 		ofxAssimpModelLoader modelStructure;
-		ofxAssimpModelLoader modelFoliage;
+		ofxAssimpModelLoader modelFoliage1;
+		ofxAssimpModelLoader modelFoliage2;
 
-		ofEasyCam camEasy;
-		ofCamera camStatic;
+		//ofEasyCam camEasy;
+		//ofCamera camStatic;
+		ofx2DCam cam;
+		ofEasyCam easyCam;
+		bool bUseEasyCam;
 		
 
 		void setGUI();
@@ -77,5 +93,12 @@ class ofApp : public ofBaseApp{
 		ofShader post;
 
 		ofImage image;
+
+		ofFbo fbo;
+
+		ofShader shader;
+
+		float uniformFloatShader[VAR_SHADER];
+		float opacityShader;
 
 };

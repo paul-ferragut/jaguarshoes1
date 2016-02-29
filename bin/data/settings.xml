@@ -2,48 +2,83 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>0.000000000</XPosition>
-    <YPosition>0.000000000</YPosition>
+    <XPosition>1173.000000000</XPosition>
+    <YPosition>203.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera x</Name>
-    <Value>167.487625122</Value>
+    <Value>4.926085472</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera y</Name>
-    <Value>128.078704834</Value>
+    <Value>960.591064453</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera z</Name>
-    <Value>17832.513671875</Value>
+    <Value>-714.285644531</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>rotation x</Name>
-    <Value>90.000000000</Value>
+    <Value>91.330055237</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>rotation y</Name>
-    <Value>0.000000000</Value>
+    <Value>-180.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>rotation z</Name>
-    <Value>180.000000000</Value>
+    <Value>-0.886695385</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>fov</Name>
-    <Value>1.000000000</Value>
+    <Value>17.241378784</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>scale</Name>
-    <Value>0.452906400</Value>
+    <Value>1.929261088</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>alpha shader</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val1</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val2</Name>
+    <Value>0.172276303</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val3</Name>
+    <Value>0.033506576</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val4</Name>
+    <Value>0.033506576</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val5</Name>
+    <Value>0.280788183</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val6</Name>
+    <Value>0.305418730</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

@@ -1,3 +1,4 @@
+ofx2DCam
 ofxAssimpModelLoader
 ofxSunCalc
 ofxUI
