@@ -8,17 +8,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera x</Name>
-    <Value>4.926085472</Value>
+    <Value>-1000.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera y</Name>
-    <Value>960.591064453</Value>
+    <Value>448.275817871</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionCamera z</Name>
-    <Value>-714.285644531</Value>
+    <Value>1502.463256836</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -33,7 +33,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>rotation z</Name>
-    <Value>-0.886695385</Value>
+    <Value>9.753692627</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -63,12 +63,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>val3</Name>
-    <Value>0.033506576</Value>
+    <Value>0.052150525</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>val4</Name>
-    <Value>0.033506576</Value>
+    <Value>0.052150525</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

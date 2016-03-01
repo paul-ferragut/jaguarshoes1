@@ -90,7 +90,7 @@ void ofApp::setup(){
 		smoothedVol = 0.0;
 		scaledVol = 0.0;
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
-
+		ofBackground(0, 0, 0);
 		setGUI();
 }
 
@@ -104,7 +104,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofClear(255);
-	
+	ofBackground(0, 0, 0);
 		Poco::LocalDateTime now; //(2015,5,29,17,38);
 
 		if (ofGetKeyPressed(OF_KEY_ALT)) {
@@ -174,70 +174,37 @@ void ofApp::draw(){
 	}
 	ofEnableAlphaBlending();
 	//
-
+	
+	
+	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
+	cam.setScale(2.0);
+	//cam.setOrientation(rotationCamera);
 	ofSetColor(255, 255, 255);
 
-//	fbo.begin();
+	fbo.begin();
 
-	ofBackground(0, 0, 0);
 
-//	camEasy.begin();
-//	modelStructure.drawVertices();
-//	camEasy.end();
 
-	cam.setTranslation2D(ofVec2f(positionCamera.x, positionCamera.y));
-//	cam.setOrientation(rotationCamera);
-
-	if (bUseEasyCam) {
-		easyCam.begin();
-	}
-	else {
-		cam.begin();
-	}
-ofEnableDepthTest();
-	//camStatic.enableOrtho();
-	//camStatic.setPosition(positionCamera);
-	//camStatic.setOrientation(rotationCamera);
-	
-	//camStatic.setFov(cameraFov);
-	
-	//camStatic.begin();
-	//ofPushMatrix();	
-	//ofTranslate(positionCamera);
-	//ofScale(modelFoliageScale, modelFoliageScale, modelFoliageScale);
-
-		//ofTranslate(-modelFoliage1.getSceneCenter().x / 2, -modelFoliage1.getSceneCenter().y / 2);//* 0.3528 * 0.3528
-
-	//ofRotateX(rotationCamera.x);
-	//ofRotateY(rotationCamera.y);
-	//ofRotateZ(rotationCamera.z);
-
-	//	ofTranslate(modelFoliage1.getSceneCenter().x / 2 , modelFoliage1.getSceneCenter().y / 2 );//* 0.3528* 0.3528	
+	cam.begin();
+	//ofEnableDepthTest();
+	ofSetColor(0, 255, 255, 255);
 	modelFoliage1.drawFaces();
 	modelFoliage2.drawFaces();
-	//ofPopMatrix();
-	//camStatic.end();
-	//ofDisableDepthTest();
-
 
 	ofDrawGrid(20, 10);
-	ofDisableDepthTest();
-	if (bUseEasyCam) {
-		easyCam.end();
-	}
-	else {
-		cam.end();
-	}
+	//ofDisableDepthTest();
 
+	cam.end();
+
+	
 	ofPushMatrix();
-	//ofScale(modelFoliageScale,modelFoliageScale,modelFoliageScale);
-	//ofEnableBlendMode(OF_BLENDMODE_ADD);
+	ofEnableBlendMode(OF_BLENDMODE_ADD);
+	ofSetColor(255, 255, 255, 255);
 	image.draw(0,0);
-	//ofDisableBlendMode();
+	ofDisableBlendMode();
 	ofPopMatrix();
 	
-
-//	fbo.end();
+	fbo.end();
 
 	shader.begin();
 
@@ -260,9 +227,9 @@ ofEnableDepthTest();
 
 
 	shader.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
-	ofSetColor(255, 255, 255, 255);
-	//fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
-//	
+	ofSetColor(255, 255, 255);
+	ofDisableAlphaBlending();
+	fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
 	shader.end();
 
 
