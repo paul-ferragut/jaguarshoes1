@@ -7,10 +7,38 @@
 #include "ofxAssimpModelLoader.h"
 #include "ofxUI.h"
 #include "ofx2DCam.h"
+#include "ofxPostProcessing.h"
+#include "ofxVboParticles.h"
 //test
 //test
 #define VAR_SHADER 6
+#define COLOR_IN_PALETTE 5
 //local change
+
+struct colorPalette {
+	
+	float r[COLOR_IN_PALETTE], g[COLOR_IN_PALETTE], b[COLOR_IN_PALETTE];
+	float rFloat[COLOR_IN_PALETTE], gFloat[COLOR_IN_PALETTE], bFloat[COLOR_IN_PALETTE];
+
+
+	ofColor getCol(int i) {
+		return ofColor(r[i], g[i], b[i]);
+	}
+	void convertToFloatCol() {
+		for (int i = 0;i < COLOR_IN_PALETTE;i++) {
+			rFloat[i] = ofMap(r[i], 0, 255, 0.0, 1.0);
+			gFloat[i] = ofMap(g[i], 0, 255, 0.0, 1.0);
+			bFloat[i] = ofMap(b[i], 0, 255, 0.0, 1.0);
+		}
+	}
+
+	void setCol(ofColor col,int i) {
+		r[i]=col.r;
+		g[i]=col.g;
+		b[i]=col.b;
+	}
+
+};
 
 
 class ofApp : public ofBaseApp{
@@ -26,6 +54,11 @@ class ofApp : public ofBaseApp{
 		void drawOverlayImage();
 		bool drawOverlayImageB;
 
+		void drawUnderneathShadows();
+		bool drawUnderneathShadowsB;
+		
+		bool useLight;
+
 		void drawUnderneath();
 		bool drawUnderneathB;
 		bool useTextureB;
@@ -37,14 +70,17 @@ class ofApp : public ofBaseApp{
 
 		void drawBackground();
 		bool drawBackgroundB;
-		float bgRed1, bgGreen1, bgBlue1;
-		float bgRed2, bgGreen2, bgBlue2;
-	
+		colorPalette colorP;
 		
-		void drawPostBegin();
-		void drawPostEnd();
+		void drawPostFlatBegin();
+		void drawPostFlatEnd();
 
-		bool usePostShaderB;
+		void drawPost3dBegin();
+		void drawPost3dEnd();
+
+		bool usePostFlatShaderB;
+		bool usePost3dShaderB;
+
 		bool usePostWithSoundB;
 
 
@@ -100,12 +136,14 @@ class ofApp : public ofBaseApp{
 		//ofCamera camStatic;
 		ofx2DCam cam;
 		ofEasyCam easyCam;
+		//ofCamera camTest;
 		bool bUseEasyCam;
 		
 
 		void setGUI();
 		void guiEvent(ofxUIEventArgs &e);
-		ofxUISuperCanvas *gui;
+		ofxUISuperCanvas *gui1;
+		ofxUISuperCanvas *gui2;
 
 		bool showWeather;
 
@@ -116,13 +154,27 @@ class ofApp : public ofBaseApp{
 
 
 		ofShader texture;
+		int resolutionWidthTexture;
+		int resolutionHeightTexture;
+		float fluidity[3];
+		float timeMotion;
+		float scaleTexture;
+
 		ofShader post;
 
 		ofImage image;
 
 		ofFbo fbo;
 
-		ofShader shader;
+		ofShader shaderPost;
+		ofShader shaderTexture;
+
+
+		ofxPostProcessing postProcessing;
+		ofLight light;
+		ofVec3f lightPosition;
+		bool lightRotateAutoB;
+		ofMaterial material;
 
 		float uniformFloatShader[VAR_SHADER];
 		float opacityShader;

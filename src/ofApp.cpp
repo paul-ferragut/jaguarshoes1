@@ -76,7 +76,10 @@ void ofApp::setup(){
 		modelStructure.loadModel("3d/wallStudio.obj");
 
 		fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
-		shader.load("shaders/POST");
+		shaderPost.load("shaders/POST");
+		shaderTexture.load("shaders/noise");
+		resolutionWidthTexture = 800;
+		resolutionHeightTexture = 800;
 
 
 
@@ -93,15 +96,57 @@ void ofApp::setup(){
 		ofBackground(0, 0, 0);
 
 		cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
+		cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
+		cam.setScale(2.0);
+		cam.disableMouseInput();
+		/*
+		camTest.enableOrtho();
+		camTest.setLensOffset(ofVec2f(0, 0));
+		camTest.setupOffAxisViewPortal(ofVec3f(0,0,0), ofVec3f(0, ofGetHeight(), 0), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
+		camTest.setFarClip (2000);
+		camTest.setNearClip(-1000);
+		camTest.setScale(2.0, 2.0, -1);
+		camTest.setAspectRatio(1.333333);
+		camTest.setForceAspectRatio(false);
+		camTest.setOrientation(ofVec3f(90, -180, 0));
+		camTest.setPosition(0.0, image.getHeight(),0);
+		ofMatrix4x4 TM = ofMatrix4x4(1, 0, 0, 0,
+			0, 0, 1, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 1);
+		camTest.setTransformMatrix(TM);
+		*/
+	
+		
+
+		ofSetCoordHandedness(OF_RIGHT_HANDED);
+		// Setup post-processing chain
+		postProcessing.init(ofGetWidth(), ofGetHeight(),false);
+		//postProcessing.setFlip(false);
+		
+		postProcessing.createPass<FxaaPass>()->setEnabled(false);
+		postProcessing.createPass<BloomPass>()->setEnabled(false);
+		postProcessing.createPass<DofPass>()->setEnabled(false);
+		postProcessing.createPass<KaleidoscopePass>()->setEnabled(false);
+		postProcessing.createPass<NoiseWarpPass>()->setEnabled(false);
+		postProcessing.createPass<PixelatePass>()->setEnabled(false);
+		postProcessing.createPass<EdgePass>()->setEnabled(false);
+		postProcessing.createPass<VerticalTiltShifPass>()->setEnabled(false);
+		postProcessing.createPass<GodRaysPass>()->setEnabled(true);
+		light.setPosition(1000, 1000, 2000);
 
 		setGUI();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
 	//lets scale the vol up to a 0-1 range 
 	scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
 	//cout << "scaled vol" << scaledVol<<endl;
+	//camTest.setForceAspectRatio(true);
+	//camTest.setLensOffset(ofVec2f(0, 0));
+	//camTest.setupOffAxisViewPortal(ofVec3f(0, 0, 0), ofVec3f(0, ofGetHeight(), 0), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
 }
 
 //--------------------------------------------------------------
@@ -111,13 +156,22 @@ void ofApp::draw(){
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
 
-	if (usePostShaderB) {
-		fbo.begin();
-	}
-
 	if (drawBackgroundB) {
 		drawBackground();
 	}
+	//POST FLAT
+	if (usePostFlatShaderB) {
+		fbo.begin();
+	}//POST FLAT
+
+
+	//POST 3D
+	if (usePost3dShaderB) {
+		drawPost3dBegin();
+	}//POST 3D
+
+
+
 
 	if (drawBackgroundStructureB) {
 		
@@ -128,19 +182,27 @@ void ofApp::draw(){
 	if (drawUnderneathB){
 
 		drawUnderneath();
-
 	}
+
+
 
 	if (drawOverlayImageB) {
 		drawOverlayImage();
 	}
-	if (usePostShaderB) {
-		fbo.end();
-		drawPostBegin();
-		fbo.draw(0,0);
-		drawPostEnd();
-	}
+	//POST 3D
+	if (usePost3dShaderB) {
+		drawPost3dEnd();
+	}//POST 3D
 
+
+	//POST FLAT
+	if (usePostFlatShaderB) {
+		fbo.end();
+		drawPostFlatBegin();
+		fbo.draw(0,0);
+		drawPostFlatEnd();
+	}//POST FLAT
+	
 
 	if (drawWeatherDebugB) {
 
@@ -169,77 +231,46 @@ void ofApp::drawOverlayImage() {
 void ofApp::drawUnderneath() {
 
 
-	shader.load("shaders/noise");
 
-	currentColorNum = MIN_COLOR;
 
-	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
-	cam.setScale(2.0);
 	cam.begin();
+	//camTest.begin();
+
 	//ofEnableDepthTest();
-	ofSetColor(0, 255, 255, 255);
+	ofSetColor(255, 255, 255, 255);
+
+	//ofDrawGrid(20, 10);
+	//ofDisableDepthTest();
+
+	if (useTextureB) {
+		shaderTexture.begin();
+		shaderTexture.setUniform1f("fluidity1", ofMap(fluidity[0], 0, 1, 0.001f, 5));
+		shaderTexture.setUniform1f("fluidity2", ofMap(fluidity[1], 0, 1, 0.001f, 1));
+		shaderTexture.setUniform1i("fluidity3", (int)ofMap(fluidity[2],0,1,1,12));
+		shaderTexture.setUniform1f("scaleWidth", ofMap(scaleTexture,0, 1, 1, 800));//(float)resolutionWidthTexture
+		shaderTexture.setUniform1f("scaleHeight", ofMap(scaleTexture, 0, 1, 1, 800));//(float)resolutionHeightTexture
+
+		shaderTexture.setUniform1f("time", ofGetElapsedTimeMillis() *timeMotion *0.0001);
+		int shaderTextureColNumUsed = 2;
+		shaderTexture.setUniform1f("colorRange", shaderTextureColNumUsed);//1.0/
+																  //cout << (float)1.0 / currentColorNum << "current color num" << endl;
+
+		colorP.convertToFloatCol();
+		shaderTexture.setUniform1fv("red", &colorP.rFloat[2], shaderTextureColNumUsed);//ofMap(,0,255,0.0,1.0)
+		shaderTexture.setUniform1fv("green", &colorP.gFloat[2], shaderTextureColNumUsed);//ofMap(, 0, 255, 0.0, 1.0)
+		shaderTexture.setUniform1fv("blue", &colorP.bFloat[2], shaderTextureColNumUsed); //start at 
+	}
+
+
+
 	modelFoliage1.drawFaces();
 	modelFoliage2.drawFaces();
-	ofDrawGrid(20, 10);
-	//ofDisableDepthTest();
+
+	if (useTextureB) {
+	shaderTexture.end();
+	}
 	cam.end();
-
-	shader.begin();
-	shader.setUniform1f("fluidity1", fluidityVal[0].getValue());
-	shader.setUniform1f("fluidity2", fluidityVal[1].getValue());
-	shader.setUniform1i("fluidity3", fluidityVal[2].getValue());
-	shader.setUniform1f("scaleWidth", scaleVal.getValue());
-	shader.setUniform1f("scaleHeight", scaleVal.getValue());
-	if (freezeTime) {
-		shader.setUniform1f("time", time);
-	}
-	else {
-		time = ofGetFrameNum();
-		shader.setUniform1f("time", time *timeMotionVal.getValue());
-	}
-	shader.setUniform1f("colorRange", (float)currentColorNum);//1.0/
-															  //cout << (float)1.0 / currentColorNum << "current color num" << endl;
-	for (float i = 0;i < 1.0;i += 0.2) {
-		//	cout << "range test 1 i"<<i*10<<"  "<< i * 1 / currentColorNum <<endl;
-		//	cout << "range test 2 i" << i * 10 << "  " <<  i *currentColorNum / 1 << endl;
-		//	cout <<  endl;
-	}
-
-
-	for (int i = 0;i < currentColorNum;i++) {
-		red[i] = rVal[i].getPercent();
-		green[i] = gVal[i].getPercent();
-		blue[i] = bVal[i].getPercent();
-		//cout << "red" << red[i] <<" i"<<i <<endl;	
-	}
-
-	shader.setUniform1fv("red", &red[0], MAX_COLOR);//ofMap(,0,255,0.0,1.0)
-	shader.setUniform1fv("green", &green[0], MAX_COLOR);//ofMap(, 0, 255, 0.0, 1.0)
-	shader.setUniform1fv("blue", &blue[0], MAX_COLOR);
-
-
-
-
-
-	//shader.setUniformTexture( "gradient", tex, 1 );
-	//cout << "tex.getWidth()" << tex.getWidth() << endl;
-	//shader.setUniform1f("gradientWidth", tex.getWidth()); //* 10
-	/*
-	shader.setUniform1f("colorBlendingGradientX", colorBlendingGradientX);
-	shader.setUniform1f("colorBlendingGradientY", colorBlendingGradientY);
-	shader.setUniform1f("addBlurSurface1", addBlurSurface1);
-	shader.setUniform1f("addBlurSurface2", addBlurSurface2);
-	shader.setUniform1f("addInnerSurface1", addInnerSurface1);
-	shader.setUniform1f("addInnerSurface2", addInnerSurface2);
-	shader.setUniform1f("moveContrast", moveContrast);
-	shader.setUniform1f("fillThreshold", fillThreshold);
-	*/
-	//ofDrawRectangle((ofGetWidth() - (widthScarf)) / 2,0,widthScarf,heightScarf);
-	ofDrawRectangle(0, 0, widthScarf, heightScarf);
-
-	shader.end();
-
-
+	//camTest.end();
 
 }
 
@@ -255,42 +286,82 @@ void ofApp::drawBackgroundStructure() {
 //--------------------------------------------------------------
 void ofApp::drawBackground() {
 
-	ofBackgroundGradient(ofColor(bgRed1, bgGreen1,bgBlue1), ofColor(bgRed2, bgGreen2, bgBlue2), OF_GRADIENT_LINEAR);
+	ofBackgroundGradient(colorP.getCol(0), colorP.getCol(1), OF_GRADIENT_LINEAR);
 
 }
 
 //--------------------------------------------------------------
-void ofApp::drawPostBegin() {
-	shader.begin();
+void ofApp::drawPost3dBegin() {
+
+
+	glPushAttrib(GL_ENABLE_BIT);
+
+	// setup gl state
+//	glEnable(GL_DEPTH_TEST);
+//	glEnable(GL_CULL_FACE);
+	light.enable();
+	// begin scene to post process easyCam
+	postProcessing.begin();
+
+	
+
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawPost3dEnd() {
+
+	//shaderPost.end();
+	// set gl state back to original
+	postProcessing.end();
+	glPopAttrib();
+
+	// draw help
+	ofSetColor(0, 255, 255);
+	ofDrawBitmapString("Number keys toggle effects, mouse rotates scene", 10, 20);
+	for (unsigned i = 0; i < postProcessing.size(); ++i)
+	{
+		if (postProcessing[i]->getEnabled()) ofSetColor(0, 255, 255);
+		else ofSetColor(255, 0, 0);
+		ostringstream oss;
+		oss << i << ": " << postProcessing[i]->getName() << (postProcessing[i]->getEnabled() ? " (on)" : " (off)");
+		ofDrawBitmapString(oss.str(), 10, 20 * (i + 2));
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::drawPostFlatBegin() {
+
+
+
+	shaderPost.begin();
 
 	ofSetColor(255, 255, 255);
 	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
-	shader.begin();
-	shader.setUniform1f("elapsedTime", ofGetElapsedTimef());
-	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
-	shader.setUniform1f("alpha", opacityShader);
+	shaderPost.begin();
+	shaderPost.setUniform1f("elapsedTime", ofGetElapsedTimeMillis());
+	shaderPost.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shaderPost.setUniform1f("alpha", opacityShader);
 
 	if (usePostWithSoundB) {
-	
-		uniformFloatShader[2] = scaledVol;
-		uniformFloatShader[3] = scaledVol;
+
+	uniformFloatShader[2] = scaledVol;
+	uniformFloatShader[3] = scaledVol;
 
 	}
 
 	for (int i = 0;i < VAR_SHADER;i++) {
-		shader.setUniform1f("val" + ofToString(i + 1), uniformFloatShader[i]);
+	shaderPost.setUniform1f("val" + ofToString(i + 1), uniformFloatShader[i]);
 	}
-	shader.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
+	shaderPost.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
 	ofSetColor(255, 255, 255);
 	ofDisableAlphaBlending();
-	//fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+	
 }
 
 //--------------------------------------------------------------
-void ofApp::drawPostEnd() {
-
-	shader.end();
-
+void ofApp::drawPostFlatEnd() {
+	shaderPost.end();
 }
 
 //--------------------------------------------------------------
@@ -416,12 +487,14 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	unsigned idx = key - '0';
+	if (idx < postProcessing.size()) postProcessing[idx]->setEnabled(!postProcessing[idx]->getEnabled());
 }
 
 //--------------------------------------------------------------
 void ofApp::exit() {
-	gui->saveSettings("settings.xml");
+	gui1->saveSettings("settings1.xml");
+	gui2->saveSettings("settings2.xml");
 }
 
 //--------------------------------------------------------------
@@ -474,76 +547,96 @@ void ofApp::guiEvent(ofxUIEventArgs &e) {
 
 }
 
+
 //--------------------------------------------------------------
 void ofApp::setGUI() {
-	gui = new ofxUISuperCanvas("JAGUARSHOES Test 3");
-	gui->addSpacer();
-	gui->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
-
-	gui->addSlider("positionCamera x",  -1000, 1000, &positionCamera.x);
-	gui->addSlider("positionCamera y",  -1000, 1000, &positionCamera.y);
-	gui->addSlider("positionCamera z",  -5000, 5000,&positionCamera.z);
-
-	gui->addSlider("rotation x", -180, 180, &rotationCamera.x);
-	gui->addSlider("rotation y", -180, 180, &rotationCamera.y);
-	gui->addSlider("rotation z", -180, 180, &rotationCamera.z);
-
-	gui->addSlider("fov", 0, 100, &cameraFov);
-
-	gui->addSlider("scale", 0.01, 10, &modelFoliageScale);
-
-	opacityShader = 1.0;
-	gui->addSlider("alpha shader",0.0, 1.0, &opacityShader);
+	gui1 = new ofxUISuperCanvas("JAGUARSHOES");
+	gui1->addSpacer();
+	gui1->addFPS();
+	gui1->addFPSSlider("FPS");
+	gui1->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
+	/*
+	gui1->addSlider("positionCamera x",  -1000, 1000, &positionCamera.x);
+	gui1->addSlider("positionCamera y",  -1000, 1000, &positionCamera.y);
+	gui1->addSlider("positionCamera z",  -5000, 5000,&positionCamera.z);
+	gui1->addSlider("rotation x", -180, 180, &rotationCamera.x);
+	gui1->addSlider("rotation y", -180, 180, &rotationCamera.y);
+	gui1->addSlider("rotation z", -180, 180, &rotationCamera.z);
+	gui1->addSlider("fov", 0, 100, &cameraFov);
+	gui1->addSlider("scale", 0.01, 10, &modelFoliageScale);
+	*/
+	//opacityShader = 1.0;
+	gui1->addSlider("alpha shader",0.0, 1.0, &opacityShader);
 
 	for (int i = 0;i < VAR_SHADER;i++) {
-		gui->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
+		gui1->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
 	}
 
 	//gui->addToggle("show weather", &showWeather);
 
 
-	gui->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
+	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
 
 
-	gui->addToggle("drawOveralyImageB", &drawOverlayImageB);
+	gui1->addToggle("drawOveralyImageB", &drawOverlayImageB);
 
 
-	gui->addToggle("drawUnderneathB", &drawUnderneathB);
-	gui->addToggle("useTextureB", &useTextureB);
-	gui->addToggle("useLightsB", &useLightsB);
+	gui1->addToggle("drawUnderneathB", &drawUnderneathB);
+	gui1->addToggle("useTextureB", &useTextureB);
+
+	gui1->addSlider("fluidity 1", 0, 1.0, &fluidity[0]);
+	gui1->addSlider("fluidity 2", 0, 1.0, &fluidity[1]);
+	gui1->addSlider("fluidity 3", 0, 1.0, &fluidity[2]);
+	gui1->addSlider("time", 0, 1.0, &timeMotion);
+	gui1->addSlider("scale texture", 0, 1.0, &scaleTexture);
+
+	gui1->addToggle("useLightsB", &useLightsB);
 
 
 
-	gui->addToggle("drawBackgroundStructureB", &drawBackgroundStructureB);
-	gui->addToggle("structureToDustB", &structureToDustB);
+	gui1->addToggle("drawBackgroundStructureB", &drawBackgroundStructureB);
+	gui1->addToggle("structureToDustB", &structureToDustB);
 
 
-	gui->addToggle("drawBackgroundB", &drawBackgroundB);
-	gui->addSlider("bg r 1", 0, 255, &bgRed1);
-	gui->addSlider("bg g 1", 0, 255, &bgGreen1);
-	gui->addSlider("bg b 1", 0, 255, &bgBlue1);
-
-	gui->addSlider("bg r 2", 0, 255, &bgRed2);
-	gui->addSlider("bg g 2", 0, 255, &bgGreen2);
-	gui->addSlider("bg b 2", 0, 255, &bgBlue2);
-
-	//void drawBackground();
-	//ofColor bg1;
-	//ofColor bg2;
-
-
-	gui->addToggle("usePostShaderB", &usePostShaderB);
-	gui->addToggle("usePostWithSoundB", &usePostWithSoundB);
+	gui1->addToggle("drawBackgroundB", &drawBackgroundB);
 
 
 
 
-	gui->autoSizeToFitWidgets();
-	ofAddListener(gui->newGUIEvent, this, &ofApp::guiEvent);
 
-	gui->loadSettings("settings.xml");
 
-	gui->setPosition(0, 0);
+	gui1->addToggle("usePostFlatShaderB", &usePostFlatShaderB);
+	gui1->addToggle("usePost3dShaderB", &usePost3dShaderB);
+	gui1->addToggle("usePostWithSoundB", &usePostWithSoundB);
+
+
+
+
+	gui1->autoSizeToFitWidgets();
+	ofAddListener(gui1->newGUIEvent, this, &ofApp::guiEvent);
+
+	gui1->loadSettings("settings1.xml");
+
+	gui1->setPosition(0, 0);
+
+
+	gui2 = new ofxUISuperCanvas("COLORS");
+	gui2->addSpacer();
+	gui2->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
+	for (int i = 0;i < COLOR_IN_PALETTE;i++) {
+		gui2->addSlider("red " + ofToString(i), 0, 255, &colorP.r[i]);
+		gui2->addSlider("green " + ofToString(i), 0, 255, &colorP.g[i]);
+		gui2->addSlider("blue " + ofToString(i), 0, 255, &colorP.b[i]);
+		gui2->addSpacer();
+	}
+	gui2->autoSizeToFitWidgets();
+	ofAddListener(gui2->newGUIEvent, this, &ofApp::guiEvent);
+
+	gui2->loadSettings("settings2.xml");
+
+	gui2->setPosition(gui1->getGlobalCanvasWidth(), 0);
+
+
 }
 
 

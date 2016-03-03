@@ -1,6 +1,8 @@
 ofx2DCam
 ofxAssimpModelLoader
+ofxPostProcessing
 ofxSunCalc
 ofxUI
+ofxVboParticles
 ofxXmlSettings
 ofxYahooWeather
