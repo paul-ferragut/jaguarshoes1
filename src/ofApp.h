@@ -20,6 +20,34 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 
+		void drawWeatherDebug();
+		bool drawWeatherDebugB;
+
+		void drawOverlayImage();
+		bool drawOverlayImageB;
+
+		void drawUnderneath();
+		bool drawUnderneathB;
+		bool useTextureB;
+		bool useLightsB;
+
+		void drawBackgroundStructure();
+		bool drawBackgroundStructureB;
+		bool structureToDustB;
+
+		void drawBackground();
+		bool drawBackgroundB;
+		float bgRed1, bgGreen1, bgBlue1;
+		float bgRed2, bgGreen2, bgBlue2;
+	
+		
+		void drawPostBegin();
+		void drawPostEnd();
+
+		bool usePostShaderB;
+		bool usePostWithSoundB;
+
+
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
@@ -86,8 +114,6 @@ class ofApp : public ofBaseApp{
 		float modelFoliageScale;
 		float cameraFov;
 
-		ofColor bg1;
-		ofColor bg2;
 
 		ofShader texture;
 		ofShader post;

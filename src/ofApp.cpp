@@ -91,6 +91,9 @@ void ofApp::setup(){
 		scaledVol = 0.0;
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
 		ofBackground(0, 0, 0);
+
+		cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
+
 		setGUI();
 }
 
@@ -104,33 +107,221 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofClear(255);
-	ofBackground(0, 0, 0);
-		Poco::LocalDateTime now; //(2015,5,29,17,38);
+	
+	ofEnableAlphaBlending();
+	ofSetColor(255, 255, 255);
 
-		if (ofGetKeyPressed(OF_KEY_ALT)) {
-			// auto step the time of day to proof changes
-			int total_min = fabs(sin(ofGetElapsedTimef()*.05)) * 1440; // 1440 == mins per day  60 * 24
-			int hr = floor(total_min / 60.0);
-			int mn = total_min - (hr * 60); //now.minute();
-			now.assign(now.year(), now.month(), now.day(), hr, mn);
-		}
+	if (usePostShaderB) {
+		fbo.begin();
+	}
 
-		float sun_brightness = ofxSunCalc::getSunBrightness(todayInfo, now);
+	if (drawBackgroundB) {
+		drawBackground();
+	}
 
-		if (ofGetKeyPressed(OF_KEY_COMMAND)) {
-			sun_brightness = fabs(sin(ofGetElapsedTimef()*.1));
-		}
+	if (drawBackgroundStructureB) {
+		
+		drawBackgroundStructure();
 
-		// draw background gradient based on sun_brightness
+	}
+	
+	if (drawUnderneathB){
 
-		ofColor nightBG(ofColor::black);
-		ofColor nightFG(64);
+		drawUnderneath();
 
-		ofColor dayBG(ofColor::skyBlue);
-		ofColor dayFG(ofColor::paleGoldenRod);
+	}
 
-		ofColor background = nightBG.lerp(dayBG, sun_brightness);
-		ofColor foreground = nightFG.lerp(dayFG, sun_brightness);
+	if (drawOverlayImageB) {
+		drawOverlayImage();
+	}
+	if (usePostShaderB) {
+		fbo.end();
+		drawPostBegin();
+		fbo.draw(0,0);
+		drawPostEnd();
+	}
+
+
+	if (drawWeatherDebugB) {
+
+		drawWeatherDebug();
+
+	}
+
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawOverlayImage() {
+
+	ofPushStyle();
+	ofPushMatrix();
+	ofEnableBlendMode(OF_BLENDMODE_ADD);
+	ofSetColor(255, 255, 255, 255);
+	image.draw(0, 0);
+	ofDisableBlendMode();
+	ofPopMatrix();
+	ofPopStyle();
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawUnderneath() {
+
+
+	shader.load("shaders/noise");
+
+	currentColorNum = MIN_COLOR;
+
+	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
+	cam.setScale(2.0);
+	cam.begin();
+	//ofEnableDepthTest();
+	ofSetColor(0, 255, 255, 255);
+	modelFoliage1.drawFaces();
+	modelFoliage2.drawFaces();
+	ofDrawGrid(20, 10);
+	//ofDisableDepthTest();
+	cam.end();
+
+	shader.begin();
+	shader.setUniform1f("fluidity1", fluidityVal[0].getValue());
+	shader.setUniform1f("fluidity2", fluidityVal[1].getValue());
+	shader.setUniform1i("fluidity3", fluidityVal[2].getValue());
+	shader.setUniform1f("scaleWidth", scaleVal.getValue());
+	shader.setUniform1f("scaleHeight", scaleVal.getValue());
+	if (freezeTime) {
+		shader.setUniform1f("time", time);
+	}
+	else {
+		time = ofGetFrameNum();
+		shader.setUniform1f("time", time *timeMotionVal.getValue());
+	}
+	shader.setUniform1f("colorRange", (float)currentColorNum);//1.0/
+															  //cout << (float)1.0 / currentColorNum << "current color num" << endl;
+	for (float i = 0;i < 1.0;i += 0.2) {
+		//	cout << "range test 1 i"<<i*10<<"  "<< i * 1 / currentColorNum <<endl;
+		//	cout << "range test 2 i" << i * 10 << "  " <<  i *currentColorNum / 1 << endl;
+		//	cout <<  endl;
+	}
+
+
+	for (int i = 0;i < currentColorNum;i++) {
+		red[i] = rVal[i].getPercent();
+		green[i] = gVal[i].getPercent();
+		blue[i] = bVal[i].getPercent();
+		//cout << "red" << red[i] <<" i"<<i <<endl;	
+	}
+
+	shader.setUniform1fv("red", &red[0], MAX_COLOR);//ofMap(,0,255,0.0,1.0)
+	shader.setUniform1fv("green", &green[0], MAX_COLOR);//ofMap(, 0, 255, 0.0, 1.0)
+	shader.setUniform1fv("blue", &blue[0], MAX_COLOR);
+
+
+
+
+
+	//shader.setUniformTexture( "gradient", tex, 1 );
+	//cout << "tex.getWidth()" << tex.getWidth() << endl;
+	//shader.setUniform1f("gradientWidth", tex.getWidth()); //* 10
+	/*
+	shader.setUniform1f("colorBlendingGradientX", colorBlendingGradientX);
+	shader.setUniform1f("colorBlendingGradientY", colorBlendingGradientY);
+	shader.setUniform1f("addBlurSurface1", addBlurSurface1);
+	shader.setUniform1f("addBlurSurface2", addBlurSurface2);
+	shader.setUniform1f("addInnerSurface1", addInnerSurface1);
+	shader.setUniform1f("addInnerSurface2", addInnerSurface2);
+	shader.setUniform1f("moveContrast", moveContrast);
+	shader.setUniform1f("fillThreshold", fillThreshold);
+	*/
+	//ofDrawRectangle((ofGetWidth() - (widthScarf)) / 2,0,widthScarf,heightScarf);
+	ofDrawRectangle(0, 0, widthScarf, heightScarf);
+
+	shader.end();
+
+
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawBackgroundStructure() {
+
+	easyCam.begin();
+	modelStructure.drawVertices();
+	easyCam.end();
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawBackground() {
+
+	ofBackgroundGradient(ofColor(bgRed1, bgGreen1,bgBlue1), ofColor(bgRed2, bgGreen2, bgBlue2), OF_GRADIENT_LINEAR);
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawPostBegin() {
+	shader.begin();
+
+	ofSetColor(255, 255, 255);
+	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
+	shader.begin();
+	shader.setUniform1f("elapsedTime", ofGetElapsedTimef());
+	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shader.setUniform1f("alpha", opacityShader);
+
+	if (usePostWithSoundB) {
+	
+		uniformFloatShader[2] = scaledVol;
+		uniformFloatShader[3] = scaledVol;
+
+	}
+
+	for (int i = 0;i < VAR_SHADER;i++) {
+		shader.setUniform1f("val" + ofToString(i + 1), uniformFloatShader[i]);
+	}
+	shader.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
+	ofSetColor(255, 255, 255);
+	ofDisableAlphaBlending();
+	//fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+}
+
+//--------------------------------------------------------------
+void ofApp::drawPostEnd() {
+
+	shader.end();
+
+}
+
+//--------------------------------------------------------------
+void ofApp::drawWeatherDebug() {
+
+	Poco::LocalDateTime now; //(2015,5,29,17,38);
+
+	if (ofGetKeyPressed(OF_KEY_ALT)) {
+		// auto step the time of day to proof changes
+		int total_min = fabs(sin(ofGetElapsedTimef()*.05)) * 1440; // 1440 == mins per day  60 * 24
+		int hr = floor(total_min / 60.0);
+		int mn = total_min - (hr * 60); //now.minute();
+		now.assign(now.year(), now.month(), now.day(), hr, mn);
+	}
+
+	float sun_brightness = ofxSunCalc::getSunBrightness(todayInfo, now);
+
+	if (ofGetKeyPressed(OF_KEY_COMMAND)) {
+		sun_brightness = fabs(sin(ofGetElapsedTimef()*.1));
+	}
+
+	// draw background gradient based on sun_brightness
+
+	ofColor nightBG(ofColor::black);
+	ofColor nightFG(64);
+
+	ofColor dayBG(ofColor::skyBlue);
+	ofColor dayFG(ofColor::paleGoldenRod);
+
+	ofColor background = nightBG.lerp(dayBG, sun_brightness);
+	ofColor foreground = nightFG.lerp(dayFG, sun_brightness);
 
 	//	ofBackgroundGradient(foreground, background);
 	if (showWeather) {
@@ -172,67 +363,6 @@ void ofApp::draw(){
 			ty += timelines[i].getHeight() + 25;
 		}
 	}
-	ofEnableAlphaBlending();
-	//
-	
-	
-	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
-	cam.setScale(2.0);
-	//cam.setOrientation(rotationCamera);
-	ofSetColor(255, 255, 255);
-
-	fbo.begin();
-
-
-
-	cam.begin();
-	//ofEnableDepthTest();
-	ofSetColor(0, 255, 255, 255);
-	modelFoliage1.drawFaces();
-	modelFoliage2.drawFaces();
-
-	ofDrawGrid(20, 10);
-	//ofDisableDepthTest();
-
-	cam.end();
-
-	
-	ofPushMatrix();
-	ofEnableBlendMode(OF_BLENDMODE_ADD);
-	ofSetColor(255, 255, 255, 255);
-	image.draw(0,0);
-	ofDisableBlendMode();
-	ofPopMatrix();
-	
-	fbo.end();
-
-	shader.begin();
-
-	ofSetColor(255, 255, 255);
-	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
-
-	shader.begin();
-	shader.setUniform1f("elapsedTime", ofGetElapsedTimef());
-	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
-	shader.setUniform1f("alpha", opacityShader);
-	
-	uniformFloatShader[2] = scaledVol;
-	uniformFloatShader[3] = scaledVol;
-
-	for (int i = 0;i < VAR_SHADER;i++) {
-		shader.setUniform1f("val" + ofToString(i + 1), uniformFloatShader[i]);
-	}
-
-
-
-
-	shader.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
-	ofSetColor(255, 255, 255);
-	ofDisableAlphaBlending();
-	fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
-	shader.end();
-
-
 }
 
 //--------------------------------------------------------------
@@ -369,50 +499,51 @@ void ofApp::setGUI() {
 		gui->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
 	}
 
+	//gui->addToggle("show weather", &showWeather);
 
-	gui->addToggle("show weather", &showWeather);
-	/*
-	gui->addSpacer();
-	gui1->addSlider("RED", 0.0, 255.0, &red)->setTriggerType(OFX_UI_TRIGGER_ALL);
-	gui1->addSlider("GREEN", 0.0, 255.0, &green)->setTriggerType(OFX_UI_TRIGGER_BEGIN | OFX_UI_TRIGGER_CHANGE | OFX_UI_TRIGGER_END);
-	gui1->addSlider("BLUE", 0.0, 255.0, &blue)->setTriggerType(OFX_UI_TRIGGER_BEGIN | OFX_UI_TRIGGER_CHANGE);
 
-	gui1->addSpacer();
-	gui1->addLabel("V SLIDERS");
-	gui1->addSlider("0", 0.0, 255.0, 150, 17, 160);
-	gui1->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-	gui1->addSlider("1", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("2", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("3", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("4", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("5", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("6", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("7", 0.0, 255.0, 150, 17, 160);
-	gui1->addSlider("8", 0.0, 255.0, 150, 17, 160);
-	gui1->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	gui->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
 
-	gui1->addSpacer();
-	gui1->addRadio("RADIO HORIZONTAL", names, OFX_UI_ORIENTATION_HORIZONTAL);
-	gui1->addRadio("RADIO VERTICAL", names, OFX_UI_ORIENTATION_VERTICAL);
 
-	gui1->addSpacer();
-	gui1->setWidgetFontSize(OFX_UI_FONT_SMALL);
-	gui1->addButton("BUTTON", false);
-	gui1->addToggle("TOGGLE", false);
+	gui->addToggle("drawOveralyImageB", &drawOverlayImageB);
 
-	gui1->addSpacer();
-	gui1->addLabel("RANGE SLIDER");
-	gui1->addRangeSlider("RSLIDER", 0.0, 255.0, 50.0, 100.0);
 
-	string textString = "This widget is a text area widget. Use this when you need to display a paragraph of text. It takes care of formatting the text to fit the block.";
-	gui1->addSpacer();
+	gui->addToggle("drawUnderneathB", &drawUnderneathB);
+	gui->addToggle("useTextureB", &useTextureB);
+	gui->addToggle("useLightsB", &useLightsB);
 
-	gui1->addTextArea("textarea", textString, OFX_UI_FONT_SMALL);
-	*/
+
+
+	gui->addToggle("drawBackgroundStructureB", &drawBackgroundStructureB);
+	gui->addToggle("structureToDustB", &structureToDustB);
+
+
+	gui->addToggle("drawBackgroundB", &drawBackgroundB);
+	gui->addSlider("bg r 1", 0, 255, &bgRed1);
+	gui->addSlider("bg g 1", 0, 255, &bgGreen1);
+	gui->addSlider("bg b 1", 0, 255, &bgBlue1);
+
+	gui->addSlider("bg r 2", 0, 255, &bgRed2);
+	gui->addSlider("bg g 2", 0, 255, &bgGreen2);
+	gui->addSlider("bg b 2", 0, 255, &bgBlue2);
+
+	//void drawBackground();
+	//ofColor bg1;
+	//ofColor bg2;
+
+
+	gui->addToggle("usePostShaderB", &usePostShaderB);
+	gui->addToggle("usePostWithSoundB", &usePostWithSoundB);
+
+
+
+
 	gui->autoSizeToFitWidgets();
 	ofAddListener(gui->newGUIEvent, this, &ofApp::guiEvent);
 
 	gui->loadSettings("settings.xml");
+
+	gui->setPosition(0, 0);
 }
 
 

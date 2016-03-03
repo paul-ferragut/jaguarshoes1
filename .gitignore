@@ -65,3 +65,4 @@ obj/
 obj/Release/jaguarshoes1.vcxprojResolveAssemblyReference.cache
 *.sdf
 jaguarshoes1.sdf
+*.bak

@@ -2,8 +2,8 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>1173.000000000</XPosition>
-    <YPosition>203.000000000</YPosition>
+    <XPosition>1283.000000000</XPosition>
+    <YPosition>-46.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>4</Kind>
@@ -58,17 +58,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>val2</Name>
-    <Value>0.172276303</Value>
+    <Value>0.236453205</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>val3</Name>
-    <Value>0.052150525</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>val4</Name>
-    <Value>0.052150525</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -82,6 +82,81 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>show weather</Name>
+    <Name>drawWeatherDebugB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawOveralyImageB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawUnderneathB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useTextureB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useLightsB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawBackgroundStructureB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>structureToDustB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawBackgroundB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg r 1</Name>
+    <Value>211.034484863</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg g 1</Name>
+    <Value>131.896545410</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg b 1</Name>
+    <Value>22.610836029</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg r 2</Name>
+    <Value>41.453201294</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg g 2</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bg b 2</Name>
+    <Value>104.261085510</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>usePostShaderB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>usePostWithSoundB</Name>
     <Value>0</Value>
 </Widget>
