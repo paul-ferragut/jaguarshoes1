@@ -13,7 +13,7 @@ void ofApp::setup(){
 
 
 
-		ofSetWindowTitle("ofxSunCalc Example");
+		ofSetWindowTitle("Jaguarshoes");
 
 		ofSetFrameRate(30);
 
@@ -74,8 +74,10 @@ void ofApp::setup(){
 		modelFoliage1.loadModel("3d/plantpart1c.obj");
 		modelFoliage2.loadModel("3d/plantpart2c.obj");
 		modelStructure.loadModel("3d/wallStudio.obj");
-		cout << "HOW MANY VERT" << modelStructure.getMesh(0).getNumVertices() << endl;
-		//vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
+		//cout << "HOW MANY VERT" << modelStructure.getMesh(0).getNumVertices() << endl;
+		vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
+		
+	
 		/*
 		for (int i = 0; i < modelStructure.getMesh(0).getNumVertices(); i++) {
 			ofVec3f position = ofVec3f(modelStructure.getMesh(0).getVertex(i));
@@ -94,6 +96,7 @@ void ofApp::setup(){
 		fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
 		shaderPost.load("shaders/POST");
 		shaderTexture.load("shaders/noise");
+		shaderGodrays.load("shaders/godray");
 		resolutionWidthTexture = 800;
 		resolutionHeightTexture = 800;
 
@@ -134,7 +137,7 @@ void ofApp::setup(){
 		*/
 	
 		
-
+		/*
 		ofSetCoordHandedness(OF_RIGHT_HANDED);
 		// Setup post-processing chain
 		postProcessing.init(ofGetWidth(), ofGetHeight(),false);
@@ -150,10 +153,17 @@ void ofApp::setup(){
 		postProcessing.createPass<VerticalTiltShifPass>()->setEnabled(false);
 		postProcessing.createPass<GodRaysPass>()->setEnabled(true);
 		//light.setPosition(1000, 1000, 2000);
-
+		*/
 		material.setShininess(120);
 		// the light highlight of the material //
 		material.setSpecularColor(ofColor(255, 255, 255, 255));
+
+
+		ofBackground(50);
+
+		// ----
+		_mapping = new ofxMtlMapping2D();
+		_mapping->init(ofGetWidth(), ofGetHeight(), "mapping/xml/shapes.xml", "mapping/controls/mapping.xml");
 
 		setGUI();
 }
@@ -169,20 +179,26 @@ void ofApp::update(){
 	//camTest.setupOffAxisViewPortal(ofVec3f(0, 0, 0), ofVec3f(0, ofGetHeight(), 0), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
 
 	if (structureToDustB) {
-		//vboParticles->update();
+		vboParticles->update();
 	}
+
+	_mapping->update();
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	//ofBackground(0);
+
+	_mapping->bind();
+
 	ofClear(255);
 	
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
 
 	//POST FLAT
-	if (usePostFlatShaderB) {
+	if (usePostFlatShaderB||usePost3dShaderB) {
 		fbo.begin();
 	}//POST FLAT
 
@@ -191,48 +207,68 @@ void ofApp::draw(){
 		drawBackground();
 	}
 	//POST 3D
-	if (usePost3dShaderB) {
-		drawPost3dBegin();
-	}//POST 3D
+	//if (usePost3dShaderB) {
+	//	drawPost3dBegin();
+	//}//POST 3D
 
 
 	bool useLight = false;
 	for (int i = 0;i < NUM_LIGHT;i++) {
 		if(lights[i].useLight) useLight = true ;//If we use at least one light
 	}
-	if (useLight) { drawLightBegin(); }
 
+	if (drawUnderneathShadowsB) {
+		drawUnderneathShadows();
+	}
 
 	if (drawBackgroundStructureB) {
 		drawBackgroundStructure();
 	}
-	
+	if (useLight) { drawLightBegin(); }
+
+
+
+	cam.setScale(drawingScale*2);
+	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()*drawingScale));
 	if (drawUnderneathB){
 		drawUnderneath();
 	}
 
 	if (useLight) { drawLightEnd(); }
 
+	ofPushMatrix();
+	ofScale(drawingScale, drawingScale, drawingScale);
 	if (drawOverlayImageB) {
 		drawOverlayImage();
 	}
-
+	ofPopMatrix();
 	//POST 3D
-	if (usePost3dShaderB) {
-		drawPost3dEnd();
-	}//POST 3D
+	//if (usePost3dShaderB) {
+	//	drawPost3dEnd();
+	//}//POST 3D
 
 	//POST FLAT
-	if (usePostFlatShaderB) {
+	if (usePostFlatShaderB || usePost3dShaderB) {
 		fbo.end();
-		drawPostFlatBegin();
+		if (usePostFlatShaderB) { drawPostFlatBegin(); }
+		if (usePost3dShaderB) { drawPost3dBegin(); }
 		fbo.draw(0,0);
-		drawPostFlatEnd();
+		if (usePostFlatShaderB) { drawPostFlatEnd(); }
+		if (usePost3dShaderB) { drawPost3dEnd(); }
 	}//POST FLAT
 	
+	_mapping->unbind();
+
+
+	//-------- mapping of the towers/shapes
+	_mapping->draw();
+
 	if (drawWeatherDebugB) {
 		drawWeatherDebug();
 	}
+
+
+
 }
 
 //--------------------------------------------------------------
@@ -248,7 +284,17 @@ void ofApp::drawOverlayImage() {
 	ofPopStyle();
 
 }
-
+void ofApp::drawUnderneathShadows() {
+	cam.begin();
+		ofEnableAlphaBlending();
+		ofSetColor(0, 0, 0, 40);
+		ofPushMatrix();
+		ofTranslate(shadowOffset);
+		modelFoliage1.drawFaces();
+		modelFoliage2.drawFaces();
+		ofPopMatrix();
+	cam.end();
+}
 //--------------------------------------------------------------
 void ofApp::drawUnderneath() {
 
@@ -261,15 +307,7 @@ void ofApp::drawUnderneath() {
 	//ofDrawGrid(20, 10);
 	//ofDisableDepthTest();
 
-	if (useDirectShadowB) {	
-		ofEnableAlphaBlending();
-		ofSetColor(0, 0, 0, 40);
-		ofPushMatrix();
-		ofTranslate(shadowOffset);
-		modelFoliage1.drawFaces();
-		modelFoliage2.drawFaces();
-		ofPopMatrix();
-	}
+
 
 	ofSetColor(255, 255, 255, 255);
 	if (useTextureB) {
@@ -292,13 +330,19 @@ void ofApp::drawUnderneath() {
 	}
 
 
-
+	
 	modelFoliage1.drawFaces();
-	modelFoliage2.drawFaces();
+
+	
+
 
 	if (useTextureB) {
 	shaderTexture.end();
 	}
+	modelFoliage2.drawFaces();
+
+
+
 	cam.end();
 	//camTest.end();
 
@@ -308,8 +352,36 @@ void ofApp::drawUnderneath() {
 void ofApp::drawBackgroundStructure() {
 
 	easyCam.begin();
-	modelStructure.drawVertices();
-	//vboParticles->draw();
+
+	if (structureToDustB == false) {
+	//modelStructure.getMesh(0).drawVertices();
+	}
+	
+	//modelStructure.getMesh(0).drawFaces();
+
+	
+	int increment = 10;
+	if(vboParticles->numParticles < modelStructure.getMesh(0).getNumVertices()- increment){
+		int lastParticleNum = vboParticles->numParticles;
+
+		for (int i = 0; i <increment; i++) {
+			int positionIndex = i + lastParticleNum;
+		ofVec3f position = ofVec3f(modelStructure.getMesh(0).getVertex(positionIndex));
+		ofVec3f velocity = ofVec3f(ofRandom(-6, 6), ofRandom(-6, 6), ofRandom(-6, 6));
+		ofColor color;
+		color.set(255, 255, 255);
+
+		// add a particle
+		vboParticles->addParticle(position, velocity, color);
+
+		//mesh.addVertex(vboParticles->positions[i]);
+		}
+		for (int i = 0;i < increment / 3;i++) {
+		
+		}
+	}
+	//mesh.drawFaces();
+	vboParticles->draw();
 	easyCam.end();
 
 }
@@ -323,7 +395,7 @@ void ofApp::drawBackground() {
 
 //--------------------------------------------------------------
 void ofApp::drawPost3dBegin() {
-
+	/*
 	glPushAttrib(GL_ENABLE_BIT);
 	// setup gl state
 	glEnable(GL_DEPTH_TEST);
@@ -331,14 +403,24 @@ void ofApp::drawPost3dBegin() {
 //	light.enable();
 	// begin scene to post process easyCam
 	postProcessing.begin();
+	*/
+
+	shaderGodrays.begin();
+	ofSetColor(255, 255, 255);
+	shaderGodrays.setUniformTexture("otex", fbo.getTextureReference(), 0);
+	shaderGodrays.setUniformTexture("rtex", fbo.getTextureReference(), 1);
+	shaderGodrays.setUniform2f("lightPositionOnScreen", lights[0].light.getPosition().x, lights[0].light.getPosition().y);
+	shaderGodrays.setUniform1f("lightDirDOTviewDir", lights[0].light.getPosition().z*0.01);//TO DO CHANGE THIS AS TEMP
 
 }
 
 //--------------------------------------------------------------
 void ofApp::drawPost3dEnd() {
 
+	shaderGodrays.end();
 	//shaderPost.end();
 	// set gl state back to original
+	/*
 	postProcessing.end();
 	glPopAttrib();
 
@@ -352,7 +434,7 @@ void ofApp::drawPost3dEnd() {
 		ostringstream oss;
 		oss << i << ": " << postProcessing[i]->getName() << (postProcessing[i]->getEnabled() ? " (on)" : " (off)");
 		ofDrawBitmapString(oss.str(), 10, 20 * (i + 2));
-	}
+	}*/
 }
 
 //--------------------------------------------------------------
@@ -361,7 +443,7 @@ void ofApp::drawPostFlatBegin() {
 	shaderPost.begin();
 	ofSetColor(255, 255, 255);
 	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
-	shaderPost.begin();
+	//shaderPost.begin();
 	shaderPost.setUniform1f("elapsedTime", ofGetElapsedTimeMillis()*0.0005);
 	shaderPost.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
 	shaderPost.setUniform1f("alpha", opacityShader);
@@ -386,7 +468,7 @@ void ofApp::drawPostFlatEnd() {
 void ofApp::drawLightBegin() {
 	ofEnableLighting();
 	material.begin();
-	cout << "light" << endl;
+	//cout << "light" << endl;
 	lights[0].light.setDiffuseColor(colorP.getCol(0));
 	lights[1].light.setDiffuseColor(colorP.getCol(1));
 
@@ -454,7 +536,7 @@ void ofApp::drawWeatherDebug() {
 	ofColor foreground = nightFG.lerp(dayFG, sun_brightness);
 
 	//	ofBackgroundGradient(foreground, background);
-	if (showWeather) {
+	if (drawWeatherDebugB) {
 		ofDrawBitmapStringHighlight(date_str, 15, 20, ofColor::paleGoldenRod, ofColor::black);
 
 		ofDrawBitmapStringHighlight(min_info_str, 15, 45, ofColor::salmon, ofColor::white);
@@ -546,8 +628,15 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	unsigned idx = key - '0';
-	if (idx < postProcessing.size()) postProcessing[idx]->setEnabled(!postProcessing[idx]->getEnabled());
+	//unsigned idx = key - '0';
+//	if (idx < postProcessing.size()) postProcessing[idx]->setEnabled(!postProcessing[idx]->getEnabled());
+
+
+	if (key = 'h'){
+		gui1->toggleVisible();
+		gui2->toggleVisible();
+		gui3->toggleVisible();
+	}
 }
 
 //--------------------------------------------------------------
@@ -610,10 +699,11 @@ void ofApp::guiEvent(ofxUIEventArgs &e) {
 
 //--------------------------------------------------------------
 void ofApp::setGUI() {
-	gui1 = new ofxUISuperCanvas("JAGUARSHOES");
+	gui1 = new ofxUISuperCanvas("MAIN");
 	gui1->addSpacer();
 	gui1->addFPS();
 	gui1->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
+	gui1->addLabel("'m' to show mapping", OFX_UI_FONT_SMALL);
 	/*
 	gui1->addSlider("positionCamera x",  -1000, 1000, &positionCamera.x);
 	gui1->addSlider("positionCamera y",  -1000, 1000, &positionCamera.y);
@@ -625,6 +715,7 @@ void ofApp::setGUI() {
 	gui1->addSlider("scale", 0.01, 10, &modelFoliageScale);
 	*/
 	//opacityShader = 1.0;
+	gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
 
 	//gui->addToggle("show weather", &showWeather);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
@@ -633,33 +724,36 @@ void ofApp::setGUI() {
 	gui1->addSpacer();
 	gui1->addToggle("drawUnderneathB", &drawUnderneathB);
 	gui1->addSpacer();
+	gui1->addLabel("Texture", OFX_UI_FONT_SMALL);
 	gui1->addToggle("useTextureB", &useTextureB);
-
 	gui1->addSlider("fluidity 1", 0, 1.0, &fluidity[0]);
 	gui1->addSlider("fluidity 2", 0, 1.0, &fluidity[1]);
 	gui1->addSlider("fluidity 3", 0, 1.0, &fluidity[2]);
 	gui1->addSlider("time", 0, 1.0, &timeMotion);
 	gui1->addSlider("scale texture", 0, 1.0, &scaleTexture);
 	gui1->addSpacer();
-	gui1->addToggle("useDirectShadowB", &useDirectShadowB);
+	gui1->addLabel("Shadow", OFX_UI_FONT_SMALL);
+	gui1->addToggle("useDirectShadowB", &drawUnderneathShadowsB);
 	gui1->addSlider("shadow offset x", -1000, 1000, &shadowOffset.x);
 	gui1->addSlider("shadow offset y", -1000, 1000, &shadowOffset.y);
 	gui1->addSlider("shadow offset z", -1000, 1000, &shadowOffset.z);
 
 
-
-
+	gui1->addSpacer();
+	gui1->addLabel("Structure", OFX_UI_FONT_SMALL);
 	gui1->addToggle("drawBackgroundStructureB", &drawBackgroundStructureB);
 	gui1->addToggle("structureToDustB", &structureToDustB);
 
-
+	gui1->addSpacer();
+	gui1->addLabel("Background", OFX_UI_FONT_SMALL);
 	gui1->addToggle("drawBackgroundB", &drawBackgroundB);
 
 
 
 
 
-
+	gui1->addSpacer();
+	gui1->addLabel("Distortions", OFX_UI_FONT_SMALL);
 	gui1->addToggle("usePostFlatShaderB", &usePostFlatShaderB);
 	gui1->addSlider("alpha shader", 0.0, 1.0, &opacityShader);
 
@@ -679,13 +773,14 @@ void ofApp::setGUI() {
 
 	gui1->loadSettings("settings1.xml");
 
-	gui1->setPosition(0, 0);
+	gui1->setPosition(ofGetWidth()- gui1->getGlobalCanvasWidth(), 0);
 
 
 	gui2 = new ofxUISuperCanvas("COLORS");
 	gui2->addSpacer();
 	//gui2->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
 	for (int i = 0;i < COLOR_IN_PALETTE;i++) {
+		gui2->addLabel("Color " + ofToString(i), OFX_UI_FONT_SMALL);
 		gui2->addSlider("red " + ofToString(i), 0, 255, &colorP.r[i]);
 		gui2->addSlider("green " + ofToString(i), 0, 255, &colorP.g[i]);
 		gui2->addSlider("blue " + ofToString(i), 0, 255, &colorP.b[i]);
@@ -696,7 +791,7 @@ void ofApp::setGUI() {
 
 	gui2->loadSettings("settings2.xml");
 
-	gui2->setPosition(gui1->getGlobalCanvasWidth(), 0);
+	gui2->setPosition(ofGetWidth() - (gui1->getGlobalCanvasWidth()*2), 0);
 
 	//
 	gui3 = new ofxUISuperCanvas("LIGHT");
@@ -719,9 +814,9 @@ void ofApp::setGUI() {
 	gui3->autoSizeToFitWidgets();
 	ofAddListener(gui3->newGUIEvent, this, &ofApp::guiEvent);
 
-	gui3->loadSettings("setting3.xml");
+	gui3->loadSettings("settings3.xml");
 
-	gui3->setPosition(gui1->getGlobalCanvasWidth()+gui2->getGlobalCanvasWidth(), 0);
+	gui3->setPosition(ofGetWidth() - (gui1->getGlobalCanvasWidth() * 3), 0);
 
 
 }

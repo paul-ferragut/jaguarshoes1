@@ -7,8 +7,9 @@
 #include "ofxAssimpModelLoader.h"
 #include "ofxUI.h"
 #include "ofx2DCam.h"
-#include "ofxPostProcessing.h"
+//#include "ofxPostProcessing.h"
 #include "ofxVboParticles.h"
+#include "ofxMtlMapping2D.h"
 //test
 //test
 #define VAR_SHADER 6
@@ -58,48 +59,6 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 
-		void drawWeatherDebug();
-		bool drawWeatherDebugB;
-
-		void drawOverlayImage();
-		bool drawOverlayImageB;
-
-		void drawUnderneathShadows();
-		bool drawUnderneathShadowsB;
-		
-		void drawLightBegin();
-		void drawLightEnd();
-		bool drawLightDebugB;
-		lightStruct lights[NUM_LIGHT];
-
-		void drawUnderneath();
-		bool drawUnderneathB;
-		bool useTextureB;
-		bool useDirectShadowB;
-		ofVec3f shadowOffset;
-
-		void drawBackgroundStructure();
-		bool drawBackgroundStructureB;
-		bool structureToDustB;
-		ofxVboParticles *vboParticles;
-
-
-		void drawBackground();
-		bool drawBackgroundB;
-		colorPalette colorP;
-		
-		void drawPostFlatBegin();
-		void drawPostFlatEnd();
-
-		void drawPost3dBegin();
-		void drawPost3dEnd();
-
-		bool usePostFlatShaderB;
-		bool usePost3dShaderB;
-
-		bool usePostWithSoundB;
-
-
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
@@ -113,6 +72,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		void exit();
 
+
+		//<--  AUDIO
 		void audioIn(float * input, int bufferSize, int nChannels);
 		float smoothedVol;
 		float scaledVol;
@@ -122,78 +83,131 @@ class ofApp : public ofBaseApp{
 		vector <float> right;
 		vector <float> volHistory;
 		ofSoundStream soundStream;
+		//AUDIO -->
 
-
+		//<--  WEATHER
 		ofxYahooWeather weather;
 		int londonWOEID;
+		// WEATHER -->
 
-
+		//<--  SUN
 		ofxSunCalc sun_calc;
 		SunCalcDayInfo todayInfo;
-
 		string min_info_str;
 		string max_info_str;
 		string pos_str;
 		string date_str;
 		string latlon_str;
-
 		vector<ofFbo> timelines;
 		vector<string> labels;
-
 		float lat;
 		float lon;
-
+		void drawWeatherDebug();
+		bool drawWeatherDebugB;
+		//SUN -->
 
 		ofxAssimpModelLoader modelStructure;
 		ofxAssimpModelLoader modelFoliage1;
 		ofxAssimpModelLoader modelFoliage2;
 
-		//ofEasyCam camEasy;
-		//ofCamera camStatic;
+		//<-- CAM
 		ofx2DCam cam;
 		ofEasyCam easyCam;
-		//ofCamera camTest;
-		bool bUseEasyCam;
-		
+		bool bUseEasyCam;		
+		ofVec3f positionCamera;
+		ofVec3f rotationCamera;
+		float modelFoliageScale;
+		float cameraFov;
+		//CAM -->
 
+		//<-- GUI
 		void setGUI();
 		void guiEvent(ofxUIEventArgs &e);
 		ofxUISuperCanvas *gui1;
 		ofxUISuperCanvas *gui2;
 		ofxUISuperCanvas *gui3;
-
-		bool showWeather;
-
-		ofVec3f positionCamera;
-		ofVec3f rotationCamera;
-		float modelFoliageScale;
-		float cameraFov;
+		// GUI -->
 
 
-		ofShader texture;
+
+		
+
+		ofFbo fbo;
+
+
+		float drawingScale;
+
+
+		void drawOverlayImage();
+		bool drawOverlayImageB;
+		ofImage image;
+
+
+		void drawLightBegin();
+		void drawLightEnd();
+		bool drawLightDebugB;
+		lightStruct lights[NUM_LIGHT];
+		ofMaterial material;
+
+		//<-- LEAVES
+		void drawUnderneath();
+		bool drawUnderneathB;
+		//TEXTURES
+		bool useTextureB;
+		ofShader shaderTexture;
 		int resolutionWidthTexture;
 		int resolutionHeightTexture;
 		float fluidity[3];
 		float timeMotion;
 		float scaleTexture;
+		//SHADOWS		
+		void drawUnderneathShadows();
+		bool drawUnderneathShadowsB;
+		//bool useDirectShadowB;
+		ofVec3f shadowOffset;
+		//LEAVES -->
 
-		ofShader post;
+		//<-- STRUCTURES
+		void drawBackgroundStructure();
+		bool drawBackgroundStructureB;
+		bool structureToDustB;
+		ofxVboParticles *vboParticles;
+		ofMesh mesh;
+		//STRUCTURES -->
 
-		ofImage image;
+		//<-- BG 
+		void drawBackground();
+		bool drawBackgroundB;
+		//BG -->
 
-		ofFbo fbo;
+		colorPalette colorP;
 
+		//<-- DISTORTIONS
+		void drawPostFlatBegin();
+		void drawPostFlatEnd();
 		ofShader shaderPost;
-		ofShader shaderTexture;
-
-
-		ofxPostProcessing postProcessing;
-		//ofLight light;
-		//ofVec3f lightPosition;
-		
-		ofMaterial material;
-
 		float uniformFloatShader[VAR_SHADER];
 		float opacityShader;
+		bool usePostFlatShaderB;
+		bool usePostWithSoundB;
+		// DISTORTIONS -->
 
+		//GODRAYS
+		void drawPost3dBegin();
+		void drawPost3dEnd();
+		bool usePost3dShaderB;
+		ofShader shaderGodrays;
+
+
+
+		
+
+		
+
+
+
+
+
+		   private:
+			   ofxMtlMapping2D* _mapping;
 };

@@ -2,63 +2,63 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>211.000000000</XPosition>
+    <XPosition>1486.000000000</XPosition>
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>4</Kind>
     <Name>red 0</Name>
-    <Value>31.403942108</Value>
+    <Value>26.379310608</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 0</Name>
-    <Value>0.000000000</Value>
+    <Value>227.364532471</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 0</Name>
-    <Value>27.635469437</Value>
+    <Value>5.024630547</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 1</Name>
-    <Value>16.330049515</Value>
+    <Value>224.852218628</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 1</Name>
-    <Value>18.842365265</Value>
+    <Value>46.477832794</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 1</Name>
-    <Value>20.098522186</Value>
+    <Value>65.320198059</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 2</Name>
-    <Value>20.098522186</Value>
+    <Value>151.995071411</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 2</Name>
-    <Value>25.123151779</Value>
+    <Value>128.128082275</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 2</Name>
-    <Value>74.113296509</Value>
+    <Value>227.364532471</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 3</Name>
-    <Value>71.600990295</Value>
+    <Value>224.852218628</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 3</Name>
-    <Value>66.576354980</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

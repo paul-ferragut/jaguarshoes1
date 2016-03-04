@@ -95,7 +95,7 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 		</ClCompile>
 		<Link>
@@ -114,7 +114,7 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
 		</ClCompile>
@@ -133,7 +133,7 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
 		</ClCompile>
@@ -155,7 +155,7 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 		</ClCompile>
 		<Link>
@@ -178,6 +178,19 @@
 		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.cpp" />
@@ -299,6 +312,23 @@
 		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector2.h" />
 		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector3.h" />
 		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\version.h" />
+		<ClInclude Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DMode.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapeType.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\homography\homography.h" />
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\mtlUtils.h" />
 		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.h" />
 		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.h" />
 		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.h" />

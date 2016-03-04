@@ -1,5 +1,7 @@
 ofx2DCam
 ofxAssimpModelLoader
+ofxMSAInteractiveObject
+ofxMtlMapping2D
 ofxPostProcessing
 ofxSunCalc
 ofxUI

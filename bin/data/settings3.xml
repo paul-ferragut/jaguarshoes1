@@ -2,7 +2,7 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>422.000000000</XPosition>
+    <XPosition>1275.000000000</XPosition>
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
@@ -13,17 +13,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 x</Name>
-    <Value>0.000000000</Value>
+    <Value>384.236328125</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 y</Name>
-    <Value>0.000000000</Value>
+    <Value>758.620727539</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 z</Name>
-    <Value>0.000000000</Value>
+    <Value>226.600891113</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -33,7 +33,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>light rot0 y</Name>
-    <Value>0.000000000</Value>
+    <Value>31.034488678</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -43,22 +43,22 @@
 <Widget>
     <Kind>2</Kind>
     <Name>use light1</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos1 x</Name>
-    <Value>0.000000000</Value>
+    <Value>778.325073242</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos1 y</Name>
-    <Value>0.000000000</Value>
+    <Value>187.192199707</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos1 z</Name>
-    <Value>0.000000000</Value>
+    <Value>128.078704834</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -78,5 +78,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>drawLightDebugB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>

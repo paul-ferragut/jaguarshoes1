@@ -28,6 +28,45 @@
 		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp">
 			<Filter>addons\ofxAssimpModelLoader\src</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp">
+			<Filter>addons\ofxMSAInteractiveObject\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\controls</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.cpp">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.cpp">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\settings</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.cpp">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClCompile>
 		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.cpp">
 			<Filter>addons\ofxPostProcessing\src</Filter>
 		</ClCompile>
@@ -291,6 +330,33 @@
 		<Filter Include="addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler">
 			<UniqueIdentifier>{A0C31C2E-6C01-8850-3B72-C818}</UniqueIdentifier>
 		</Filter>
+		<Filter Include="addons\ofxMSAInteractiveObject">
+			<UniqueIdentifier>{7F7A88A6-F023-28F9-9A1E-C773}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMSAInteractiveObject\src">
+			<UniqueIdentifier>{267164F9-41DE-EEA9-6F4A-21A9}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D">
+			<UniqueIdentifier>{5C35F1B7-7D59-468F-E82C-D079}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src">
+			<UniqueIdentifier>{52C99249-E7A9-3965-A5F3-31AC}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src\controls">
+			<UniqueIdentifier>{5E74269A-FCEB-975A-DDAE-30EE}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src\settings">
+			<UniqueIdentifier>{A5F98738-2CDB-CF63-BC30-CB33}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src\shapes">
+			<UniqueIdentifier>{D41A7332-0C6E-66F1-0328-9783}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src\utils">
+			<UniqueIdentifier>{63A48FA2-C643-3B20-41F8-1F17}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMtlMapping2D\src\utils\homography">
+			<UniqueIdentifier>{DDD8A69C-9A72-FEF8-6C1D-B1DE}</UniqueIdentifier>
+		</Filter>
 		<Filter Include="addons\ofxPostProcessing">
 			<UniqueIdentifier>{AB514210-24FF-87A6-AE4B-9AE5}</UniqueIdentifier>
 		</Filter>
@@ -463,6 +529,57 @@
 		</ClInclude>
 		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\version.h">
 			<Filter>addons\ofxAssimpModelLoader\libs\assimp\include\assimp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h">
+			<Filter>addons\ofxMSAInteractiveObject\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.h">
+			<Filter>addons\ofxMtlMapping2D\src\controls</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.h">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DMode.h">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.h">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapeType.h">
+			<Filter>addons\ofxMtlMapping2D\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.h">
+			<Filter>addons\ofxMtlMapping2D\src\settings</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.h">
+			<Filter>addons\ofxMtlMapping2D\src\shapes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\homography\homography.h">
+			<Filter>addons\ofxMtlMapping2D\src\utils\homography</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\mtlUtils.h">
+			<Filter>addons\ofxMtlMapping2D\src\utils</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.h">
 			<Filter>addons\ofxPostProcessing\src</Filter>
