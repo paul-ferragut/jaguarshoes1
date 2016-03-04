@@ -6,48 +6,13 @@
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
-    <Kind>4</Kind>
-    <Name>alpha shader</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val1</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val2</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val3</Name>
-    <Value>0.132468238</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val4</Name>
-    <Value>0.132468238</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val5</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val6</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
     <Kind>2</Kind>
     <Name>drawWeatherDebugB</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>drawOveralyImageB</Name>
+    <Name>drawOverlayImageB</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
@@ -63,22 +28,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>fluidity 1</Name>
-    <Value>0.251231521</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>fluidity 2</Name>
-    <Value>0.443349749</Value>
+    <Value>0.270935953</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>fluidity 3</Name>
-    <Value>0.201970443</Value>
+    <Value>0.177339897</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>time</Name>
-    <Value>0.310344815</Value>
+    <Value>0.403940886</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -87,8 +52,23 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>useLightsB</Name>
-    <Value>0</Value>
+    <Name>useDirectShadowB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow offset x</Name>
+    <Value>-24.630546570</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow offset y</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow offset z</Name>
+    <Value>24.630546570</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -98,7 +78,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>structureToDustB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -111,12 +91,47 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>2</Kind>
-    <Name>usePost3dShaderB</Name>
-    <Value>1</Value>
+    <Kind>4</Kind>
+    <Name>alpha shader</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val1</Name>
+    <Value>0.162561581</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val2</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val3</Name>
+    <Value>0.054187194</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val4</Name>
+    <Value>0.172413796</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val5</Name>
+    <Value>0.078817733</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>val6</Name>
+    <Value>0.103448279</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>usePostWithSoundB</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>usePost3dShaderB</Name>
+    <Value>1</Value>
 </Widget>

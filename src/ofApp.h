@@ -13,6 +13,7 @@
 //test
 #define VAR_SHADER 6
 #define COLOR_IN_PALETTE 5
+#define NUM_LIGHT 2
 //local change
 
 struct colorPalette {
@@ -40,6 +41,15 @@ struct colorPalette {
 
 };
 
+struct lightStruct{
+
+	ofLight light;
+	ofVec3f position;
+	ofVec3f orientation;
+	bool useLight;
+
+};
+
 
 class ofApp : public ofBaseApp{
 
@@ -57,16 +67,22 @@ class ofApp : public ofBaseApp{
 		void drawUnderneathShadows();
 		bool drawUnderneathShadowsB;
 		
-		bool useLight;
+		void drawLightBegin();
+		void drawLightEnd();
+		bool drawLightDebugB;
+		lightStruct lights[NUM_LIGHT];
 
 		void drawUnderneath();
 		bool drawUnderneathB;
 		bool useTextureB;
-		bool useLightsB;
+		bool useDirectShadowB;
+		ofVec3f shadowOffset;
 
 		void drawBackgroundStructure();
 		bool drawBackgroundStructureB;
 		bool structureToDustB;
+		ofxVboParticles *vboParticles;
+
 
 		void drawBackground();
 		bool drawBackgroundB;
@@ -144,6 +160,7 @@ class ofApp : public ofBaseApp{
 		void guiEvent(ofxUIEventArgs &e);
 		ofxUISuperCanvas *gui1;
 		ofxUISuperCanvas *gui2;
+		ofxUISuperCanvas *gui3;
 
 		bool showWeather;
 
@@ -171,9 +188,9 @@ class ofApp : public ofBaseApp{
 
 
 		ofxPostProcessing postProcessing;
-		ofLight light;
-		ofVec3f lightPosition;
-		bool lightRotateAutoB;
+		//ofLight light;
+		//ofVec3f lightPosition;
+		
 		ofMaterial material;
 
 		float uniformFloatShader[VAR_SHADER];

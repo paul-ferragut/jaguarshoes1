@@ -8,37 +8,37 @@
 <Widget>
     <Kind>4</Kind>
     <Name>red 0</Name>
-    <Value>28.891626358</Value>
+    <Value>31.403942108</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 0</Name>
-    <Value>69.088668823</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>blue 0</Name>
-    <Value>255.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>red 1</Name>
-    <Value>124.359603882</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>green 1</Name>
-    <Value>144.458129883</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>blue 1</Name>
     <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>blue 0</Name>
+    <Value>27.635469437</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>red 1</Name>
+    <Value>16.330049515</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>green 1</Name>
+    <Value>18.842365265</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>blue 1</Name>
+    <Value>20.098522186</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>red 2</Name>
-    <Value>32.660099030</Value>
+    <Value>20.098522186</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -48,12 +48,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>blue 2</Name>
-    <Value>177.118225098</Value>
+    <Value>74.113296509</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 3</Name>
-    <Value>0.000000000</Value>
+    <Value>71.600990295</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
