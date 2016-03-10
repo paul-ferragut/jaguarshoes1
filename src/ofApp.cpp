@@ -256,10 +256,14 @@ void ofApp::draw(){
 		if (usePostFlatShaderB) { drawPostFlatEnd(); }
 		if (usePost3dShaderB) { drawPost3dEnd(); }
 	}//POST FLAT
-	
+
+	if (drawDebugGridB) {
+		_mapping->grid();
+	}
+	_mapping->blend(_mapping->getMaskShapes());
 	_mapping->unbind();
 
-
+	
 	//-------- mapping of the towers/shapes
 	_mapping->draw();
 
@@ -763,7 +767,10 @@ void ofApp::setGUI() {
 	gui1->addToggle("usePostWithSoundB", &usePostWithSoundB);
 
 	gui1->addToggle("usePost3dShaderB", &usePost3dShaderB);
-
+	
+	gui1->addSpacer();
+	gui1->addLabel("Mapping", OFX_UI_FONT_SMALL);
+	gui1->addToggle("drawDebugGridB",&drawDebugGridB);
 
 
 

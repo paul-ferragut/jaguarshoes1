@@ -93,7 +93,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>usePostFlatShaderB</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -113,12 +113,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>val3</Name>
-    <Value>1.000000000</Value>
+    <Value>0.023832303</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>val4</Name>
-    <Value>1.000000000</Value>
+    <Value>0.023832303</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -139,4 +139,9 @@
     <Kind>2</Kind>
     <Name>usePost3dShaderB</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawDebugGridB</Name>
+    <Value>1</Value>
 </Widget>

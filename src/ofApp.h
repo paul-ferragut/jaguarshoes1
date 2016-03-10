@@ -203,11 +203,8 @@ class ofApp : public ofBaseApp{
 		
 
 		
-
-
-
-
-
+		//MAPPING
+		bool drawDebugGridB;
 		   private:
 			   ofxMtlMapping2D* _mapping;
 };

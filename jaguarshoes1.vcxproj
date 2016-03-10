@@ -1,432 +1,434 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|x64">
-			<Configuration>Debug</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|x64">
-			<Configuration>Release</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Globals">
-		<ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
-		<Keyword>Win32Proj</Keyword>
-		<RootNamespace>jaguarshoes1</RootNamespace>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-		<ConfigurationType>Application</ConfigurationType>
-		<CharacterSet>Unicode</CharacterSet>
-		<PlatformToolset>v140</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-		<ConfigurationType>Application</ConfigurationType>
-		<CharacterSet>Unicode</CharacterSet>
-		<PlatformToolset>v140</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-		<ConfigurationType>Application</ConfigurationType>
-		<CharacterSet>Unicode</CharacterSet>
-		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<PlatformToolset>v140</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-		<ConfigurationType>Application</ConfigurationType>
-		<CharacterSet>Unicode</CharacterSet>
-		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<PlatformToolset>v140</PlatformToolset>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
-		<TargetName>$(ProjectName)_debug</TargetName>
-		<LinkIncremental>true</LinkIncremental>
-		<GenerateManifest>true</GenerateManifest>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
-		<TargetName>$(ProjectName)_debug</TargetName>
-		<LinkIncremental>true</LinkIncremental>
-		<GenerateManifest>true</GenerateManifest>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
-		<LinkIncremental>false</LinkIncremental>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
-		<LinkIncremental>false</LinkIncremental>
-	</PropertyGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<ClCompile>
-			<Optimization>Disabled</Optimization>
-			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
-			<CompileAs>CompileAsCpp</CompileAs>
-		</ClCompile>
-		<Link>
-			<GenerateDebugInformation>true</GenerateDebugInformation>
-			<SubSystem>Console</SubSystem>
-			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32</AdditionalLibraryDirectories>
-		</Link>
-		<PostBuildEvent />
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<ClCompile>
-			<Optimization>Disabled</Optimization>
-			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
-			<CompileAs>CompileAsCpp</CompileAs>
-			<MultiProcessorCompilation>true</MultiProcessorCompilation>
-		</ClCompile>
-		<Link>
-			<GenerateDebugInformation>true</GenerateDebugInformation>
-			<SubSystem>Console</SubSystem>
-			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64</AdditionalLibraryDirectories>
-		</Link>
-		<PostBuildEvent />
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<ClCompile>
-			<WholeProgramOptimization>false</WholeProgramOptimization>
-			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
-			<CompileAs>CompileAsCpp</CompileAs>
-			<MultiProcessorCompilation>true</MultiProcessorCompilation>
-		</ClCompile>
-		<Link>
-			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-			<GenerateDebugInformation>false</GenerateDebugInformation>
-			<SubSystem>Console</SubSystem>
-			<OptimizeReferences>true</OptimizeReferences>
-			<EnableCOMDATFolding>true</EnableCOMDATFolding>
-			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32</AdditionalLibraryDirectories>
-		</Link>
-		<PostBuildEvent />
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<ClCompile>
-			<WholeProgramOptimization>false</WholeProgramOptimization>
-			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
-			<CompileAs>CompileAsCpp</CompileAs>
-		</ClCompile>
-		<Link>
-			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-			<GenerateDebugInformation>false</GenerateDebugInformation>
-			<SubSystem>Console</SubSystem>
-			<OptimizeReferences>true</OptimizeReferences>
-			<EnableCOMDATFolding>true</EnableCOMDATFolding>
-			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64</AdditionalLibraryDirectories>
-		</Link>
-		<PostBuildEvent />
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClCompile Include="src\main.cpp" />
-		<ClCompile Include="src\ofApp.cpp" />
-		<ClCompile Include="..\..\..\addons\ofx2DCam\src\ofx2DCam.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ConvolutionPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\DofAltPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\DofPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\EdgePass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\FakeSSSPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\FxaaPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\GodRaysPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\HorizontalTiltShifPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\HsbShiftPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\KaleidoscopePass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\LimbDarkeningPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\LUTPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\NoiseWarpPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\PixelatePass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\PostProcessing.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RenderPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RGBShiftPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RimHighlightingPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\SSAOPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ToonPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\VerticalTiltShifPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ZoomBlurPass.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUI2DGraph.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUI2DPad.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIBaseDraws.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIBiLabelSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIButton.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUICanvas.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUICircleSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIDragableLabelButton.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIDropDownList.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIEventArgs.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIFPS.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIFPSSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImage.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageButton.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageSampler.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageToggle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabel.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabelButton.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabelToggle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMinimalSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMovingGraph.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageButton.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageToggle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUINumberDialer.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRadio.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRangeSlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRectangle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRotarySlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIScrollableCanvas.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISlider.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISortableList.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISpacer.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISpectrum.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISuperCanvas.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITabBar.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITextArea.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITextInput.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIToggle.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIToggleMatrix.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIValuePlotter.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWaveform.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWidget.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxVboParticles\src\ofxVboParticles.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
-		<ClCompile Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.cpp" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="src\ofApp.h" />
-		<ClInclude Include="..\..\..\addons\ofx2DCam\src\ofx2DCam.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpUtils.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\ai_assert.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\anim.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\camera.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cexport.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cfileio.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cimport.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\color4.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\poppack1.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\pstdint.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\pushpack1.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\config.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\DefaultLogger.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\defs.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Exporter.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Importer.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\importerdesc.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\IOStream.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\IOSystem.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\light.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Logger.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\LogStream.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\material.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\matrix3x3.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\matrix4x4.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\mesh.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\metadata.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\NullLogger.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\postprocess.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\ProgressHandler.hpp" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\quaternion.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\scene.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\texture.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\types.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector2.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector3.h" />
-		<ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\version.h" />
-		<ClInclude Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DMode.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapeType.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\homography\homography.h" />
-		<ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\mtlUtils.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ConvolutionPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\DofAltPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\DofPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\EdgePass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\FakeSSSPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\FxaaPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\GodRaysPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\HorizontalTiltShifPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\HsbShiftPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\KaleidoscopePass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\LimbDarkeningPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\LUTPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\NoiseWarpPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ofxPostProcessing.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\PixelatePass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\PostProcessing.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RenderPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RGBShiftPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RimHighlightingPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\SSAOPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ToonPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\VerticalTiltShifPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ZoomBlurPass.h" />
-		<ClInclude Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DGraph.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DPad.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIBaseDraws.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIBiLabelSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIButton.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUICanvas.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUICircleSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDefines.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDragableLabelButton.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDropDownList.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIEventArgs.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIFPS.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIFPSSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImage.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageButton.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageSampler.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageToggle.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabel.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabelButton.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabelToggle.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMinimalSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMovingGraph.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageButton.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageToggle.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUINumberDialer.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIOFWrapper.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRadio.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRangeSlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRectangle.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRotarySlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIScrollableCanvas.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISlider.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISortableList.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISpacer.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISpectrum.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISuperCanvas.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITabBar.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITextArea.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITextInput.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIToggle.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIToggleMatrix.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIUtils.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIValuePlotter.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWaveform.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidget.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgets.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h" />
-		<ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWrapper.h" />
-		<ClInclude Include="..\..\..\addons\ofxVboParticles\src\ofxVboParticles.h" />
-		<ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
-		<ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
-		<ClInclude Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.h" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
-			<Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<ResourceCompile Include="icon.rc">
-			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
-			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
-			<AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
-		</ResourceCompile>
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ProjectExtensions>
-		<VisualStudio>
-			<UserProperties RESOURCE_FILE="icon.rc" />
-		</VisualStudio>
-	</ProjectExtensions>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>jaguarshoes1</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_debug</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_debug</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxPostProcessing\src;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVboParticles\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);assimp.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DBlendMask.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="..\..\..\addons\ofx2DCam\src\ofx2DCam.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ConvolutionPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\DofAltPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\DofPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\EdgePass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\FakeSSSPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\FxaaPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\GodRaysPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\HorizontalTiltShifPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\HsbShiftPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\KaleidoscopePass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\LimbDarkeningPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\LUTPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\NoiseWarpPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\PixelatePass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\PostProcessing.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RenderPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RGBShiftPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\RimHighlightingPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\SSAOPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ToonPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\VerticalTiltShifPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxPostProcessing\src\ZoomBlurPass.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUI2DGraph.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUI2DPad.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIBaseDraws.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIBiLabelSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIButton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUICanvas.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUICircleSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIDragableLabelButton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIDropDownList.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIEventArgs.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIFPS.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIFPSSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImage.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageButton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageSampler.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIImageToggle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabel.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabelButton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUILabelToggle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMinimalSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMovingGraph.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageButton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageToggle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUINumberDialer.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRadio.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRangeSlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRectangle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIRotarySlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIScrollableCanvas.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISlider.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISortableList.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISpacer.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISpectrum.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUISuperCanvas.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITabBar.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITextArea.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUITextInput.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIToggle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIToggleMatrix.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIValuePlotter.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWaveform.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWidget.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxVboParticles\src\ofxVboParticles.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DBlendMask.h" />
+    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="..\..\..\addons\ofx2DCam\src\ofx2DCam.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpTexture.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpUtils.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\anim.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\camera.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\color4.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\config.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\defs.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\light.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\material.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\scene.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\texture.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\types.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\version.h" />
+    <ClInclude Include="..\..\..\addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\controls\ofxMtlMapping2DControls.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2D.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DMode.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapes.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\ofxMtlMapping2DShapeType.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\settings\ofxMtlMapping2DSettings.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DGrid.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DInput.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DMask.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DPolygon.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DQuad.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DShape.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DTriangle.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\shapes\ofxMtlMapping2DVertex.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\homography\homography.h" />
+    <ClInclude Include="..\..\..\addons\ofxMtlMapping2D\src\utils\mtlUtils.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BleachBypassPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\BloomPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ContrastPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ConvolutionPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\DofAltPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\DofPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\EdgePass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\FakeSSSPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\FxaaPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\GodRaysPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\HorizontalTiltShifPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\HsbShiftPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\KaleidoscopePass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\LimbDarkeningPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\LUTPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\NoiseWarpPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ofxPostProcessing.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\PixelatePass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\PostProcessing.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RenderPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RGBShiftPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\RimHighlightingPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\SSAOPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ToonPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\VerticalTiltShifPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxPostProcessing\src\ZoomBlurPass.h" />
+    <ClInclude Include="..\..\..\addons\ofxSunCalc\src\ofxSunCalc.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DGraph.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DPad.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIBaseDraws.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIBiLabelSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIButton.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUICanvas.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUICircleSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDefines.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDragableLabelButton.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIDropDownList.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIEventArgs.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIFPS.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIFPSSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImage.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageButton.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageSampler.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIImageToggle.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabel.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabelButton.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUILabelToggle.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMinimalSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMovingGraph.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageButton.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIMultiImageToggle.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUINumberDialer.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIOFWrapper.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRadio.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRangeSlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRectangle.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIRotarySlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIScrollableCanvas.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISlider.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISortableList.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISpacer.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISpectrum.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUISuperCanvas.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITabBar.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITextArea.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUITextInput.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIToggle.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIToggleMatrix.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIUtils.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIValuePlotter.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWaveform.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidget.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgets.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h" />
+    <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWrapper.h" />
+    <ClInclude Include="..\..\..\addons\ofxVboParticles\src\ofxVboParticles.h" />
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+      <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="icon.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
