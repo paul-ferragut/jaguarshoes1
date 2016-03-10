@@ -1,0 +1,26 @@
+<root>
+    <shape id="2">
+        <setting key="type">quad</setting>
+        <outputVertices>
+            <vertex x="796" y="401"></vertex>
+            <vertex x="1871" y="409"></vertex>
+            <vertex x="1863" y="1004"></vertex>
+            <vertex x="778" y="969"></vertex>
+        </outputVertices>
+        <inputPolygon>
+            <vertex x="33" y="8"></vertex>
+            <vertex x="1920" y="8"></vertex>
+            <vertex x="1920" y="1059"></vertex>
+            <vertex x="33" y="1059"></vertex>
+        </inputPolygon>
+    </shape>
+    <shape id="5">
+        <setting key="type">blendMask</setting>
+        <outputVertices>
+            <vertex x="1658" y="1068"></vertex>
+            <vertex x="1885" y="1122"></vertex>
+            <vertex x="1856" y="245"></vertex>
+            <vertex x="1614" y="238"></vertex>
+        </outputVertices>
+    </shape>
+</root>

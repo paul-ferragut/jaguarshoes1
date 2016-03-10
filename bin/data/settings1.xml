@@ -2,8 +2,8 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>1709.000000000</XPosition>
-    <YPosition>0.000000000</YPosition>
+    <XPosition>346.000000000</XPosition>
+    <YPosition>-13.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>4</Kind>
@@ -28,7 +28,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>useTextureB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -38,17 +38,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>fluidity 2</Name>
-    <Value>0.241379306</Value>
+    <Value>0.482758611</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>fluidity 3</Name>
-    <Value>0.802955687</Value>
+    <Value>0.630541861</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>time</Name>
-    <Value>0.807881773</Value>
+    <Value>0.359605908</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -63,17 +63,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>shadow offset x</Name>
-    <Value>-24.630546570</Value>
+    <Value>123.152732849</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>shadow offset y</Name>
-    <Value>-162.561599731</Value>
+    <Value>-133.004898071</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>shadow offset z</Name>
-    <Value>-24.630546570</Value>
+    <Value>44.335006714</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -83,7 +83,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>structureToDustB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -123,7 +123,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>val5</Name>
-    <Value>0.078817733</Value>
+    <Value>0.034482758</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

@@ -173,6 +173,7 @@ void ofApp::update(){
 
 	//lets scale the vol up to a 0-1 range 
 	scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
+	scaledVol = ofMap(scaledVol, 0.05, 0.2, 0.0, 1.0, true);
 	//cout << "scaled vol" << scaledVol<<endl;
 	//camTest.setForceAspectRatio(true);
 	//camTest.setLensOffset(ofVec2f(0, 0));
