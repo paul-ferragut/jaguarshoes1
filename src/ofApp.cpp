@@ -444,30 +444,12 @@ void ofApp::drawPost3dEnd() {
 //--------------------------------------------------------------
 void ofApp::drawPostFlatBegin() {
 
-	ofFile fragFile("shaders/POST.frag"), vertFile("shaders/POST.vert");
-
-
-		std::filesystem::last_write_time(fragFile);
-	Poco::Timestamp fragTimestamp = std::filesystem::last_write_time(fragFile); //fragFile.getPocoFile().getLastModified();
-	Poco::Timestamp vertTimestamp = std::filesystem::last_write_time(vertFile);//vertFile.getPocoFile().getLastModified();
-	if (fragTimestamp != lastFragTimestampPost || vertTimestamp != lastVertTimestampPost) {
-		bool validShader = shaderPost.load("shaders/POST");
-		if (validShader == false) { cout << "invalid shader: " << "POST" << endl; }
-		//setb("validShader", validShader);
-	}
-	lastFragTimestampPost = fragTimestamp;
-	lastVertTimestampPost = vertTimestamp;
-
-
 	shaderPost.begin();
 	ofSetColor(255, 255, 255);
 	//validShaderPost = reloadShader(&shaderPost, &lastVertPostTimestamp, &lastFragPostTimestamp, "shaders/post/", &shaderPostStyle, shaderSelectionPostString);
 	//shaderPost.begin();
 	shaderPost.setUniform1f("elapsedTime", ofGetElapsedTimeMillis()*0.0005);
 	shaderPost.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
-
-	shaderPost.setUniform2f("pos", mouseX, mouseY);
-
 	shaderPost.setUniform1f("alpha", opacityShader);
 	if (usePostWithSoundB) {
 		uniformFloatShader[2] = scaledVol;
