@@ -127,7 +127,7 @@ float horzFuzzOpt = 10.0*(val1*2.0);
 vec2 normalisedPos=pos/resolution;
 float range=0.4;
 float distortion=val1*(smoothstep(normalisedPos.x-range,normalisedPos.x,gl_FragCoord.x/resolution.x)*(1.0-smoothstep(normalisedPos.x,normalisedPos.x+range,gl_FragCoord.x/resolution.x)))
-*(smoothstep(normalisedPos.y-range,normalisedPos.y,gl_FragCoord.y/resolution.y)*(1.0-smoothstep(normalisedPos.y,normalisedPos.y+range,gl_FragCoord.y/resolution.y)))
+*(smoothstep(-normalisedPos.y-range,normalisedPos.y,gl_FragCoord.y/resolution.y)*(1.0-smoothstep(-normalisedPos.y,-normalisedPos.y+range,gl_FragCoord.y/resolution.y)))
 ;
 
 horzFuzzOpt = 10.0*distortion*2.0;
@@ -179,7 +179,7 @@ float red = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,uv
 
   vec3 color = vec3(red,green,blue);
   float scanline = sin(uv.y*resolution.y*500.0)*0.04*scalinesOpt;
-  float scanline = 0.0;//sin
+  scanline = 0.0;//sin
 
   color -= scanline;
 	

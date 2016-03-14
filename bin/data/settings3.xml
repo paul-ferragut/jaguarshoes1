@@ -13,17 +13,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 x</Name>
-    <Value>384.236328125</Value>
+    <Value>423.645263672</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 y</Name>
-    <Value>758.620727539</Value>
+    <Value>128.078704834</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos0 z</Name>
-    <Value>226.600891113</Value>
+    <Value>266.009796143</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -48,12 +48,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>light pos1 x</Name>
-    <Value>778.325073242</Value>
+    <Value>1014.778381348</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>light pos1 y</Name>
-    <Value>187.192199707</Value>
+    <Value>147.783279419</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -78,5 +78,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>drawLightDebugB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>

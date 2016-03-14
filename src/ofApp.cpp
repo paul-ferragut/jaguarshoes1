@@ -71,8 +71,8 @@ void ofApp::setup(){
 
 		image.load("2.png");
 
-		modelFoliage1.loadModel("3d/plantpart1c.obj");
-		modelFoliage2.loadModel("3d/plantpart2c.obj");
+		modelFoliage1.loadModel("3d/plantpart1d.dae");
+		modelFoliage2.loadModel("3d/plantpart2e.dae");
 		modelStructure.loadModel("3d/wallStudio.obj");
 		//cout << "HOW MANY VERT" << modelStructure.getMesh(0).getNumVertices() << endl;
 		vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
@@ -92,8 +92,15 @@ void ofApp::setup(){
 		//vboParticles->friction = 0.005;
 
 
-
-		fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+		ofFbo::Settings fboSettings;
+		fboSettings.useDepth = true;
+		fboSettings.useStencil = true;
+		fboSettings.depthStencilAsTexture = true;
+		
+		fboSettings.internalformat = GL_RGBA;
+		fboSettings.width = ofGetWidth();
+		fboSettings.height = ofGetHeight();
+		fbo.allocate(fboSettings);
 		shaderPost.load("shaders/POST");
 		shaderTexture.load("shaders/noise");
 		shaderGodrays.load("shaders/godray");
@@ -189,13 +196,20 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	//ofBackground(0);
-
+	if (useMappingB) {
 	_mapping->bind();
+	}
 
 	ofClear(255);
 	
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
+
+	if (usePostFlatShaderB == false) {
+
+ofEnableDepthTest();
+
+	}
 
 	//POST FLAT
 	if (usePostFlatShaderB||usePost3dShaderB) {
@@ -212,10 +226,6 @@ void ofApp::draw(){
 	//}//POST 3D
 
 
-	bool useLight = false;
-	for (int i = 0;i < NUM_LIGHT;i++) {
-		if(lights[i].useLight) useLight = true ;//If we use at least one light
-	}
 
 	if (drawUnderneathShadowsB) {
 		drawUnderneathShadows();
@@ -224,17 +234,28 @@ void ofApp::draw(){
 	if (drawBackgroundStructureB) {
 		drawBackgroundStructure();
 	}
+
+	bool useLight = false;
+	for (int i = 0;i < NUM_LIGHT;i++) {
+		if(lights[i].useLight) useLight = true ;//If we use at least one light
+	}
 	if (useLight) { drawLightBegin(); }
-
-
-
+	
+//	ofPushMatrix();
+//	ofRotateY(180);
 	cam.setScale(drawingScale*2);
-	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()*drawingScale));
+	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()*drawingScale));	
+	//cam.setOrientation(ofVec3f(mouseX, 0, 0));
 	if (drawUnderneathB){
 		drawUnderneath();
-	}
+	}	
+//	ofPopMatrix();
 
 	if (useLight) { drawLightEnd(); }
+
+	if (usePostFlatShaderB == false) {
+		ofDisableDepthTest();
+	}
 
 	ofPushMatrix();
 	ofScale(drawingScale, drawingScale, drawingScale);
@@ -242,6 +263,7 @@ void ofApp::draw(){
 		drawOverlayImage();
 	}
 	ofPopMatrix();
+
 	//POST 3D
 	//if (usePost3dShaderB) {
 	//	drawPost3dEnd();
@@ -257,15 +279,20 @@ void ofApp::draw(){
 		if (usePost3dShaderB) { drawPost3dEnd(); }
 	}//POST FLAT
 
-	if (drawDebugGridB) {
-		_mapping->grid();
-	}
-	_mapping->blend(_mapping->getMaskShapes());
-	_mapping->unbind();
+
+
+	if (useMappingB) {
+	
+		if (drawDebugGridB) {
+			_mapping->grid();
+		}
+	//_mapping->blend(_mapping->getMaskShapes());
+		_mapping->unbind();
 
 	
 	//-------- mapping of the towers/shapes
-	_mapping->draw();
+		_mapping->draw();
+	}
 
 	if (drawWeatherDebugB) {
 		drawWeatherDebug();
@@ -345,7 +372,11 @@ void ofApp::drawUnderneath() {
 	}
 	modelFoliage2.drawFaces();
 
-
+	/*
+	ofSetColor(255, 0, 255, 255);
+	modelFoliage1.drawWireframe();
+	modelFoliage2.drawWireframe();
+	*/
 
 	cam.end();
 	//camTest.end();
@@ -734,6 +765,8 @@ void ofApp::setGUI() {
 	*/
 	//opacityShader = 1.0;
 	gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
+
+	gui1->addToggle("useMappingB", &useMappingB);
 
 	//gui->addToggle("show weather", &showWeather);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
