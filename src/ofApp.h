@@ -155,6 +155,7 @@ class ofApp : public ofBaseApp{
 		//TEXTURES
 		bool useTextureB;
 		ofShader shaderTexture;
+		Poco::Timestamp lastFragTimestampTexture, lastVertTimestampTexture;
 		int resolutionWidthTexture;
 		int resolutionHeightTexture;
 		float fluidity[3];
@@ -186,6 +187,8 @@ class ofApp : public ofBaseApp{
 		void drawPostFlatBegin();
 		void drawPostFlatEnd();
 		ofShader shaderPost;
+		Poco::Timestamp lastFragTimestampPost, lastVertTimestampPost;
+
 		float uniformFloatShader[VAR_SHADER];
 		float opacityShader;
 		bool usePostFlatShaderB;

@@ -15,6 +15,7 @@ uniform float val7;
 uniform float val8;
 uniform float val9;
 uniform float val10;
+uniform vec2 pos;
 
 
 vec2 distortUV(vec2 uv, vec2 nUV)
@@ -117,11 +118,22 @@ void main( void )
 
 
 float vertJerkOpt = 90.0;
-float vertMovementOpt = 1.0*val1*20.0;
+float vertMovementOpt = 1.0*20.0;
 float bottomStaticOpt = 0.5;
 float scalinesOpt = 1.0;
-float rgbOffsetOpt = 2.0*val4;
-float horzFuzzOpt = 10.0*(val3*2.0);
+float rgbOffsetOpt = 2.0*val2;
+float horzFuzzOpt = 10.0*(val1*2.0);
+
+
+vec2 normalisedPos=pos/resolution;
+float range=0.4;
+float distortion=val1*(smoothstep(normalisedPos.x-range,normalisedPos.x,gl_FragCoord.x/resolution.x)*(1.0-smoothstep(normalisedPos.x,normalisedPos.x+range,gl_FragCoord.x/resolution.x)))
+*(smoothstep(normalisedPos.y-range,normalisedPos.y,gl_FragCoord.y/resolution.y)*(1.0-smoothstep(normalisedPos.y,normalisedPos.y+range,gl_FragCoord.y/resolution.y)))
+;
+
+horzFuzzOpt = 10.0*distortion*2.0;
+
+float vertzFuzzOpt = 10.0*(val3*2.0);
 
 
 	vec2 uv = gl_TexCoord[0].st/resolution.xy;//;//gl_FragCoord.xy/resolution.xy;//*resolution.xy;
@@ -143,7 +155,10 @@ float horzFuzzOpt = 10.0*(val3*2.0);
     
 	
 	float xOffset = (fuzzOffset + largeFuzzOffset) * horzFuzzOpt;
-    
+  
+  yOffset = (fuzzOffset + largeFuzzOffset) * vertzFuzzOpt;
+
+
     float staticVal = 0.0;
    
     for (float y = -1.0; y <= 1.0; y += 1.0) {
@@ -155,27 +170,16 @@ float horzFuzzOpt = 10.0*(val3*2.0);
     staticVal *= bottomStaticOpt;
 	
 	vec2 newTexCoord;
-	//newTexCoord.s = gl_TexCoord[0].s + (cos(elapsedTime + (gl_TexCoord[0].s*0.01)) * 10.0);
-//	newTexCoord.t = gl_TexCoord[0].t + (sin(elapsedTime + (gl_TexCoord[0].t*0.01)) * 10.0);
-
-	//vec2 texCoordRed 	= gl_TexCoord[0].r;
-	//vec2 texCoordGreen 	= gl_TexCoord[0].g;
-	//vec2 texCoordBlue 	= gl_TexCoord[0].b;
 
 
-	//float red 	=   texture2D(	u_tex_unit0, 	vec2(uv.x + xOffset -0.01*rgbOffsetOpt,y)).r+staticVal;
-	//float green = 	texture2D(	u_tex_unit0, 	vec2(uv.x + xOffset,	  y)).g+staticVal;
-	//float blue 	=	texture2D(	u_tex_unit0, 	vec2(uv.x + xOffset +0.01*rgbOffsetOpt,y)).b+staticVal;
-	float red = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,uv.y) *resolution.xy).r+staticVal;
-	float green = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset,uv.y)*resolution.xy).g;
-	float blue = texture2DRect(u_tex_unit0, vec2(uv.x+ xOffset +0.01*rgbOffsetOpt,uv.y)*resolution.xy).b+staticVal;		
-//	float red = texture2DRect( u_tex_unit0, texCoordRed ).r;
-//	float green = texture2DRect( u_tex_unit0, texCoordGreen).g;
-//	float blue = texture2DRect( u_tex_unit0, texCoordBlue).b;		
+
+	float red = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,uv.y+yOffset) *resolution.xy).r+staticVal;
+	float green = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset,uv.y+yOffset)*resolution.xy).g;//+staticVal //add some noise
+	float blue = texture2DRect(u_tex_unit0, vec2(uv.x+ xOffset +0.01*rgbOffsetOpt,uv.y+yOffset)*resolution.xy).b+staticVal;		
 
 
 	vec3 color = vec3(red,green,blue);
-	float scanline = sin(uv.y*resolution.y*500.0)*0.04*scalinesOpt;
+	float scanline = 0.0;//sin(uv.y*resolution.y*500.0)*0.04*scalinesOpt;
 	color -= scanline;
 	
 	gl_FragColor = vec4(color,1.0);
