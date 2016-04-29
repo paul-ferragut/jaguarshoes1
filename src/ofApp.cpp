@@ -78,6 +78,10 @@ void ofApp::setup(){
 		vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
 		
 	
+
+		roomImage.load("map-transparent.png");
+		//roomImageDebug.load("map-transparent.png");
+
 		/*
 		for (int i = 0; i < modelStructure.getMesh(0).getNumVertices(); i++) {
 			ofVec3f position = ofVec3f(modelStructure.getMesh(0).getVertex(i));
@@ -278,6 +282,16 @@ ofEnableDepthTest();
 		if (usePostFlatShaderB) { drawPostFlatEnd(); }
 		if (usePost3dShaderB) { drawPost3dEnd(); }
 	}//POST FLAT
+
+
+	ofEnableAlphaBlending();
+	if (drawRoomB) {
+		roomImage.draw(0, 0);
+	}
+
+	if (drawRoomDebugB) {
+		//roomImageDebug.draw(0, 0);
+	}
 
 
 
@@ -767,6 +781,9 @@ void ofApp::setGUI() {
 	gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
 
 	gui1->addToggle("useMappingB", &useMappingB);
+
+	gui1->addToggle("drawRoomB", &drawRoomB);
+	gui1->addToggle("drawRoomDebugB", &drawRoomDebugB);
 
 	//gui->addToggle("show weather", &showWeather);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);

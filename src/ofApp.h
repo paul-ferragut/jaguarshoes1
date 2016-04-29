@@ -184,6 +184,13 @@ class ofApp : public ofBaseApp{
 		bool drawBackgroundB;
 		//BG -->
 
+		//<-- ROOM 
+		bool drawRoomB;
+		bool drawRoomDebugB;
+		ofImage roomImage;
+		ofImage roomImageDebug;
+		//BG -->
+
 		colorPalette colorP;
 
 		//<-- DISTORTIONS
