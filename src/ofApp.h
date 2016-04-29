@@ -17,6 +17,7 @@
 #define VAR_SHADER 6
 #define COLOR_IN_PALETTE 5
 #define NUM_LIGHT 2
+#define NUM_SCREEN 2
 //local change
 
 struct colorPalette {
