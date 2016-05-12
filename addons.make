@@ -1,10 +1,12 @@
 ofx2DCam
 ofxAssimpModelLoader
+ofxCameraSaveLoad
+ofxGui
 ofxMSAInteractiveObject
 ofxMtlMapping2D
-ofxPostProcessing
 ofxSunCalc
+ofxSvg
 ofxUI
-ofxVboParticles
+ofxVoronoi
 ofxXmlSettings
 ofxYahooWeather

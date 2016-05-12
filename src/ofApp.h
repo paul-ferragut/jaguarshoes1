@@ -3,56 +3,26 @@
 #include "ofMain.h"
 #include "ofxSunCalc.h"
 #include "ofxYahooWeather.h"
-#include "ofxSunCalc.h"
+//#include "ofxSunCalc.h"
 #include "ofxAssimpModelLoader.h"
 #include "ofxUI.h"
 #include "ofx2DCam.h"
 //#include "ofxPostProcessing.h"
-#include "ofxVboParticles.h"
+//#include "ofxVboParticles.h"
 #include "ofxMtlMapping2D.h"
-
+#include "superLight.h"
+#include "ambientColor.h"
+#include "voronoi.h"
+#include "ParticleSystemSpawnTexture.h"
+#include "svgDraw.h"
 
 //test
 //test
-#define VAR_SHADER 6
+//#define VAR_SHADER 6
 #define COLOR_IN_PALETTE 5
 #define NUM_LIGHT 2
-#define NUM_SCREEN 2
+#define NUM_SCREEN 4
 //local change
-
-struct colorPalette {
-	
-	float r[COLOR_IN_PALETTE], g[COLOR_IN_PALETTE], b[COLOR_IN_PALETTE];
-	float rFloat[COLOR_IN_PALETTE], gFloat[COLOR_IN_PALETTE], bFloat[COLOR_IN_PALETTE];
-
-
-	ofColor getCol(int i) {
-		return ofColor(r[i], g[i], b[i]);
-	}
-	void convertToFloatCol() {
-		for (int i = 0;i < COLOR_IN_PALETTE;i++) {
-			rFloat[i] = ofMap(r[i], 0, 255, 0.0, 1.0);
-			gFloat[i] = ofMap(g[i], 0, 255, 0.0, 1.0);
-			bFloat[i] = ofMap(b[i], 0, 255, 0.0, 1.0);
-		}
-	}
-
-	void setCol(ofColor col,int i) {
-		r[i]=col.r;
-		g[i]=col.g;
-		b[i]=col.b;
-	}
-
-};
-
-struct lightStruct{
-
-	ofLight light;
-	ofVec3f position;
-	ofVec3f orientation;
-	bool useLight;
-
-};
 
 
 class ofApp : public ofBaseApp{
@@ -109,18 +79,18 @@ class ofApp : public ofBaseApp{
 		bool drawWeatherDebugB;
 		//SUN -->
 
-		ofxAssimpModelLoader modelStructure;
-		ofxAssimpModelLoader modelFoliage1;
-		ofxAssimpModelLoader modelFoliage2;
+		//ofxAssimpModelLoader modelStructure;
+		//ofxAssimpModelLoader modelFoliage1;
+		//ofxAssimpModelLoader modelFoliage2;
 
 		//<-- CAM
 		ofx2DCam cam;
 		ofEasyCam easyCam;
 		bool bUseEasyCam;		
-		ofVec3f positionCamera;
-		ofVec3f rotationCamera;
-		float modelFoliageScale;
-		float cameraFov;
+		//ofVec3f positionCamera;
+		//ofVec3f rotationCamera;
+		//float modelFoliageScale;
+		//float cameraFov;
 		//CAM -->
 
 		//<-- GUI
@@ -131,31 +101,28 @@ class ofApp : public ofBaseApp{
 		ofxUISuperCanvas *gui3;
 		// GUI -->
 
+		//ofFbo fbo;
 
 
-		
-
-		ofFbo fbo;
+		//float drawingScale;
 
 
-		float drawingScale;
+	//	void drawOverlayImage();
+	//	bool drawOverlayImageB;
+	//	ofImage image;
 
 
-		void drawOverlayImage();
-		bool drawOverlayImageB;
-		ofImage image;
-
-
-		void drawLightBegin();
-		void drawLightEnd();
-		bool drawLightDebugB;
-		lightStruct lights[NUM_LIGHT];
-		ofMaterial material;
+	//	void drawLightBegin();
+	//	void drawLightEnd();
+	//	bool drawLightDebugB;
+		//lightStruct lights[NUM_LIGHT];
+	//	ofMaterial material;
 
 		//<-- LEAVES
-		void drawUnderneath();
-		bool drawUnderneathB;
+	//	void drawUnderneath();
+	//	bool drawUnderneathB;
 		//TEXTURES
+		/*
 		bool useTextureB;
 		ofShader shaderTexture;
 		Poco::Timestamp lastFragTimestampTexture, lastVertTimestampTexture;
@@ -169,55 +136,77 @@ class ofApp : public ofBaseApp{
 		bool drawUnderneathShadowsB;
 		//bool useDirectShadowB;
 		ofVec3f shadowOffset;
+		*/
 		//LEAVES -->
 
 		//<-- STRUCTURES
+		/*
 		void drawBackgroundStructure();
 		bool drawBackgroundStructureB;
 		bool structureToDustB;
 		ofxVboParticles *vboParticles;
-		ofMesh mesh;
+		ofMesh mesh;*/
 		//STRUCTURES -->
 
 		//<-- BG 
 		void drawBackground();
-		bool drawBackgroundB;
 		//BG -->
 
 		//<-- ROOM 
-		bool drawRoomB;
-		bool drawRoomDebugB;
+
 		ofImage roomImage;
 		ofImage roomImageDebug;
 		//BG -->
 
-		colorPalette colorP;
+		//colorPalette colorP;
 
 		//<-- DISTORTIONS
+		/*
 		void drawPostFlatBegin();
 		void drawPostFlatEnd();
 		ofShader shaderPost;
 		Poco::Timestamp lastFragTimestampPost, lastVertTimestampPost;
 		float uniformFloatShader[VAR_SHADER];
-		float opacityShader;
-		bool usePostFlatShaderB;
-		bool usePostWithSoundB;
+		float opacityShader;*/
+		
+		//bool usePostWithSoundB;
+		
 		// DISTORTIONS -->
 
 		//GODRAYS
-		void drawPost3dBegin();
-		void drawPost3dEnd();
-		bool usePost3dShaderB;
-		ofShader shaderGodrays;
+		//void drawPost3dBegin();
+		//void drawPost3dEnd();
+		//bool usePost3dShaderB;
+		//ofShader shaderGodrays;
 
 
+		//
+		superLight light;
+		ambientColor color;
+		voronoi voro;
+		svgDraw svgDrawing;
+		ParticleSystemSpawnTexture pSystem;
 
-		
 
-		
 		//MAPPING
+		bool usePostShaderB;
 		bool useMappingB;
+		bool use2DCamB;
+		bool useLightB;
 		bool drawDebugGridB;
+		bool drawRoomB;
+		bool drawRoomDebugB;
+		bool drawBackgroundB;
+		bool drawStructureB;
+		bool drawVoroB;
+		bool useSoundB;
+		bool drawIllustrationB;
+		bool useTimeColorB;
+		ofColor colorP[COLOR_IN_PALETTE];
+		float rC[COLOR_IN_PALETTE];
+		float gC[COLOR_IN_PALETTE];
+		float bC[COLOR_IN_PALETTE];
+
 		   private:
 			   ofxMtlMapping2D* _mapping;
 };

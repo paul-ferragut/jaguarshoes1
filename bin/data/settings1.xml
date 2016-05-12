@@ -2,18 +2,33 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>3621.000000000</XPosition>
+    <XPosition>7469.000000000</XPosition>
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
-    <Kind>4</Kind>
-    <Name>drawingScale</Name>
-    <Value>0.557142854</Value>
+    <Kind>2</Kind>
+    <Name>usePostShaderB</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>useMappingB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use2DCamB</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useLightB</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>drawDebugGridB</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -27,136 +42,31 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>drawWeatherDebugB</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>drawOverlayImageB</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>drawUnderneathB</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>useTextureB</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>fluidity 1</Name>
-    <Value>0.142857149</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>fluidity 2</Name>
-    <Value>0.241379306</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>fluidity 3</Name>
-    <Value>0.802955687</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>time</Name>
-    <Value>0.807881773</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>scale texture</Name>
-    <Value>1.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>useDirectShadowB</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>shadow offset x</Name>
-    <Value>-24.630546570</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>shadow offset y</Name>
-    <Value>-93.596038818</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>shadow offset z</Name>
-    <Value>-24.630546570</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>drawBackgroundStructureB</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>structureToDustB</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>drawBackgroundB</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>usePostFlatShaderB</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>alpha shader</Name>
-    <Value>1.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val1</Name>
-    <Value>0.719211817</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val2</Name>
-    <Value>0.197044328</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val3</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val4</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val5</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>val6</Name>
-    <Value>0.103448279</Value>
+    <Name>drawStructureB</Name>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>usePostWithSoundB</Name>
+    <Name>drawVoroB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useSoundB</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>usePost3dShaderB</Name>
-    <Value>0</Value>
+    <Name>drawIllustrationB</Name>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>drawDebugGridB</Name>
+    <Name>drawWeatherDebugB</Name>
     <Value>0</Value>
 </Widget>

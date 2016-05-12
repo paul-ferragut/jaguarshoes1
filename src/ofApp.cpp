@@ -6,6 +6,10 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	ofSetWindowTitle("Jaguarshoes");
+	ofSetFrameRate(30);
+	ofSetSmoothLighting(true);
+
 	int london = 26346526;
 		weather.setup(london, 'c');
 		weather.refresh();
@@ -13,9 +17,7 @@ void ofApp::setup(){
 
 
 
-		ofSetWindowTitle("Jaguarshoes");
 
-		ofSetFrameRate(30);
 
 		Poco::LocalDateTime now;
 
@@ -69,17 +71,18 @@ void ofApp::setup(){
 			ofxSunCalc::drawSimpleDayInfoTimeline(timelines[i], sun_infos[i]);
 		}
 
-		image.load("2.png");
+		//image.load("2.png");
 
-		modelFoliage1.loadModel("3d/plantpart1d.dae");
-		modelFoliage2.loadModel("3d/plantpart2e.dae");
-		modelStructure.loadModel("3d/wallStudio.obj");
+		//modelFoliage1.loadModel("3d/plantpart1d.dae");
+		//modelFoliage2.loadModel("3d/plantpart2e.dae");
+		//modelStructure.loadModel("3d/wallStudio.obj");
 		//cout << "HOW MANY VERT" << modelStructure.getMesh(0).getNumVertices() << endl;
-		vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
+		//vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
 		
 	
 
 		roomImage.load("map-transparent.png");
+		roomImageDebug.load("debug.png");
 		//roomImageDebug.load("map-transparent.png");
 
 		/*
@@ -95,7 +98,7 @@ void ofApp::setup(){
 		*/
 		//vboParticles->friction = 0.005;
 
-
+		/*
 		ofFbo::Settings fboSettings;
 		fboSettings.useDepth = true;
 		fboSettings.useStencil = true;
@@ -110,7 +113,7 @@ void ofApp::setup(){
 		shaderGodrays.load("shaders/godray");
 		resolutionWidthTexture = 800;
 		resolutionHeightTexture = 800;
-
+		*/
 
 
 		soundStream.printDeviceList();
@@ -125,10 +128,10 @@ void ofApp::setup(){
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
 		ofBackground(0, 0, 0);
 
-		cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
-		cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
-		cam.setScale(2.0);
-		cam.disableMouseInput();
+		//cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
+		//cam.setTranslation2D(ofVec2f(0.0, image.getHeight()));
+		//cam.setScale(2.0);
+		//cam.disableMouseInput();
 		/*
 		camTest.enableOrtho();
 		camTest.setLensOffset(ofVec2f(0, 0));
@@ -165,11 +168,14 @@ void ofApp::setup(){
 		postProcessing.createPass<GodRaysPass>()->setEnabled(true);
 		//light.setPosition(1000, 1000, 2000);
 		*/
+		/*
 		material.setShininess(120);
 		// the light highlight of the material //
 		material.setSpecularColor(ofColor(255, 255, 255, 255));
 
-
+		light.setup(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 100 );
+		//ofVec2f(50.0, 50.0), ofVec2f(40.0, 40.0)
+		*/
 		ofBackground(50);
 
 		// ----
@@ -177,11 +183,48 @@ void ofApp::setup(){
 		_mapping->init(ofGetWidth(), ofGetHeight(), "mapping/xml/shapes.xml", "mapping/controls/mapping.xml");
 
 		setGUI();
+
+		color.setup();
+		voro.setup();
+		pSystem.init("3d/newcGardenDoor.obj", "settingsUI/particles.xml", "camera/camSettings0", "camera/camSettings0b");
+		pSystem.visibleGuiB = true;
+		svgDrawing.setup("illu2.svg");
+		light.setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0,0, ofGetWidth(), ofGetHeight()),ofVec2f(0.02,0.02),ofVec2f(0.01, 0.01),200);
+		cam.disableMouseInput();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
+	color.update();
+
+	if (drawStructureB) {
+	pSystem.update();
+	}
+
+	if(useTimeColorB){
+		for (int i = 0;i < COLOR_IN_PALETTE;i++) {
+			colorP[i] = color.getColor(i);
+		}
+	}
+	else {
+		for (int i = 0;i < COLOR_IN_PALETTE;i++) {
+			colorP[i].set(rC[i], gC[i], bC[i]);
+		}
+	}
+
+	if (drawVoroB) {
+		voro.update(scaledVol);
+	}
+	
+	//
+	//cout << "PRINT COLORS" << endl << endl;
+	//for (int i = 0;i < NUM_COLORS_IN_PALETTE;i++) {
+		
+		//cout << color.getColor(i) << endl;
+
+	//}
+	
 	//lets scale the vol up to a 0-1 range 
 	scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
 	//cout << "scaled vol" << scaledVol<<endl;
@@ -189,9 +232,11 @@ void ofApp::update(){
 	//camTest.setLensOffset(ofVec2f(0, 0));
 	//camTest.setupOffAxisViewPortal(ofVec3f(0, 0, 0), ofVec3f(0, ofGetHeight(), 0), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
 
-	if (structureToDustB) {
-		vboParticles->update();
-	}
+	light.update();
+	/**/
+	//if (structureToDustB) {
+	//	vboParticles->update();
+	//}
 
 	_mapping->update();
 
@@ -199,7 +244,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	//ofBackground(0);
+	ofBackground(0);
 	if (useMappingB) {
 	_mapping->bind();
 	}
@@ -209,21 +254,65 @@ void ofApp::draw(){
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
 
-	if (usePostFlatShaderB == false) {
+//	if (usePostFlatShaderB == false) {
 
-ofEnableDepthTest();
+//ofEnableDepthTest();
 
-	}
+//	}
 
 	//POST FLAT
-	if (usePostFlatShaderB||usePost3dShaderB) {
-		fbo.begin();
-	}//POST FLAT
+	//if (usePostFlatShaderB||usePost3dShaderB) {
+	//	fbo.begin();
+	//}//POST FLAT
+	
+
 
 
 	if (drawBackgroundB) {
 		drawBackground();
 	}
+
+	ofEnableDepthTest();
+
+	if (drawVoroB) {
+		voro.draw();
+	}
+	
+	if (use2DCamB) {
+		cam.begin();
+	}
+	else {
+		easyCam.begin();
+	}
+
+	if (useLightB) {
+		ofEnableLighting();
+		light.begin(true);
+	}
+
+	if (drawIllustrationB) {
+		svgDrawing.draw();
+	}
+
+	if (useLightB) {
+		ofDisableLighting();
+		light.end();
+	}
+
+	if (use2DCamB) {
+		cam.end();
+	}
+	else {
+		easyCam.end();
+	}
+
+	if (drawStructureB) {
+		pSystem.draw();
+	}
+
+	light.drawDebug();
+
+	ofDisableDepthTest();
 	//POST 3D
 	//if (usePost3dShaderB) {
 	//	drawPost3dBegin();
@@ -231,42 +320,43 @@ ofEnableDepthTest();
 
 
 
-	if (drawUnderneathShadowsB) {
-		drawUnderneathShadows();
-	}
+	//if (drawUnderneathShadowsB) {
+	//	drawUnderneathShadows();
+	//}
 
-	if (drawBackgroundStructureB) {
-		drawBackgroundStructure();
-	}
+	//if (drawBackgroundStructureB) {
+	//	drawBackgroundStructure();
+	//}
 
+	/*
 	bool useLight = false;
 	for (int i = 0;i < NUM_LIGHT;i++) {
 		if(lights[i].useLight) useLight = true ;//If we use at least one light
 	}
 	if (useLight) { drawLightBegin(); }
-	
+	*/
 //	ofPushMatrix();
 //	ofRotateY(180);
-	cam.setScale(drawingScale*2);
-	cam.setTranslation2D(ofVec2f(0.0, image.getHeight()*drawingScale));	
+	//cam.setScale(drawingScale*2);
+	//cam.setTranslation2D(ofVec2f(0.0, image.getHeight()*drawingScale));	
 	//cam.setOrientation(ofVec3f(mouseX, 0, 0));
-	if (drawUnderneathB){
-		drawUnderneath();
-	}	
+	//if (drawUnderneathB){
+	//	drawUnderneath();
+	//}	
 //	ofPopMatrix();
 
-	if (useLight) { drawLightEnd(); }
+	//if (useLight) { drawLightEnd(); }
 
-	if (usePostFlatShaderB == false) {
-		ofDisableDepthTest();
-	}
+	//if (usePostFlatShaderB == false) {
+	//	ofDisableDepthTest();
+	//}
 
-	ofPushMatrix();
-	ofScale(drawingScale, drawingScale, drawingScale);
-	if (drawOverlayImageB) {
-		drawOverlayImage();
-	}
-	ofPopMatrix();
+	//ofPushMatrix();
+	//ofScale(drawingScale, drawingScale, drawingScale);
+	//if (drawOverlayImageB) {
+	//	drawOverlayImage();
+	//}
+	//ofPopMatrix();
 
 	//POST 3D
 	//if (usePost3dShaderB) {
@@ -274,24 +364,26 @@ ofEnableDepthTest();
 	//}//POST 3D
 
 	//POST FLAT
-	if (usePostFlatShaderB || usePost3dShaderB) {
-		fbo.end();
-		if (usePostFlatShaderB) { drawPostFlatBegin(); }
-		if (usePost3dShaderB) { drawPost3dBegin(); }
-		fbo.draw(0,0);
-		if (usePostFlatShaderB) { drawPostFlatEnd(); }
-		if (usePost3dShaderB) { drawPost3dEnd(); }
-	}//POST FLAT
+	//if (usePostFlatShaderB || usePost3dShaderB) {
+	//	fbo.end();
+	//	if (usePostFlatShaderB) { drawPostFlatBegin(); }
+	//	if (usePost3dShaderB) { drawPost3dBegin(); }
+	//	fbo.draw(0,0);
+	//	if (usePostFlatShaderB) { drawPostFlatEnd(); }
+	//	if (usePost3dShaderB) { drawPost3dEnd(); }
+	//}//POST FLAT
 
 
-	ofEnableAlphaBlending();
+	
+	ofSetColor(255, 255, 255, 255);
 	if (drawRoomB) {
 		roomImage.draw(0, 0);
 	}
 
 	if (drawRoomDebugB) {
-		//roomImageDebug.draw(0, 0);
+		roomImageDebug.draw(0, 0);
 	}
+
 
 
 
@@ -305,6 +397,7 @@ ofEnableDepthTest();
 
 	
 	//-------- mapping of the towers/shapes
+		ofSetColor(255, 255, 255, 255);
 		_mapping->draw();
 	}
 
@@ -317,6 +410,7 @@ ofEnableDepthTest();
 }
 
 //--------------------------------------------------------------
+/*
 void ofApp::drawOverlayImage() {
 
 	ofPushStyle();
@@ -368,10 +462,10 @@ void ofApp::drawUnderneath() {
 		shaderTexture.setUniform1f("colorRange", shaderTextureColNumUsed);//1.0/
 																  //cout << (float)1.0 / currentColorNum << "current color num" << endl;
 
-		colorP.convertToFloatCol();
-		shaderTexture.setUniform1fv("red", &colorP.rFloat[2], shaderTextureColNumUsed);//ofMap(,0,255,0.0,1.0)
-		shaderTexture.setUniform1fv("green", &colorP.gFloat[2], shaderTextureColNumUsed);//ofMap(, 0, 255, 0.0, 1.0)
-		shaderTexture.setUniform1fv("blue", &colorP.bFloat[2], shaderTextureColNumUsed); //start at 
+		//TO DO INPUT THE COLOR IN THE SHADER
+		//shaderTexture.setUniform1fv("red", &colorP.rFloat[2], shaderTextureColNumUsed);//ofMap(,0,255,0.0,1.0)
+		//shaderTexture.setUniform1fv("green", &colorP.gFloat[2], shaderTextureColNumUsed);//ofMap(, 0, 255, 0.0, 1.0)
+		//shaderTexture.setUniform1fv("blue", &colorP.bFloat[2], shaderTextureColNumUsed); //start at 
 	}
 
 
@@ -386,16 +480,13 @@ void ofApp::drawUnderneath() {
 	}
 	modelFoliage2.drawFaces();
 
-	/*
-	ofSetColor(255, 0, 255, 255);
-	modelFoliage1.drawWireframe();
-	modelFoliage2.drawWireframe();
-	*/
+	
 
 	cam.end();
 	//camTest.end();
 
 }
+
 
 //--------------------------------------------------------------
 void ofApp::drawBackgroundStructure() {
@@ -434,32 +525,24 @@ void ofApp::drawBackgroundStructure() {
 	easyCam.end();
 
 }
-
+*/
 //--------------------------------------------------------------
 void ofApp::drawBackground() {
 
-	ofBackgroundGradient(colorP.getCol(0), colorP.getCol(1), OF_GRADIENT_LINEAR);
+	ofBackgroundGradient(colorP[0], colorP[1], OF_GRADIENT_LINEAR);
 
 }
-
+/*
 //--------------------------------------------------------------
 void ofApp::drawPost3dBegin() {
-	/*
-	glPushAttrib(GL_ENABLE_BIT);
-	// setup gl state
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-//	light.enable();
-	// begin scene to post process easyCam
-	postProcessing.begin();
-	*/
+
 
 	shaderGodrays.begin();
 	ofSetColor(255, 255, 255);
 	shaderGodrays.setUniformTexture("otex", fbo.getTextureReference(), 0);
 	shaderGodrays.setUniformTexture("rtex", fbo.getTextureReference(), 1);
-	shaderGodrays.setUniform2f("lightPositionOnScreen", lights[0].light.getPosition().x, lights[0].light.getPosition().y);
-	shaderGodrays.setUniform1f("lightDirDOTviewDir", lights[0].light.getPosition().z*0.01);//TO DO CHANGE THIS AS TEMP
+	//shaderGodrays.setUniform2f("lightPositionOnScreen", lights[0].light.getPosition().x, lights[0].light.getPosition().y);
+	//shaderGodrays.setUniform1f("lightDirDOTviewDir", lights[0].light.getPosition().z*0.01);//TO DO CHANGE THIS AS TEMP
 
 }
 
@@ -469,21 +552,7 @@ void ofApp::drawPost3dEnd() {
 	shaderGodrays.end();
 	//shaderPost.end();
 	// set gl state back to original
-	/*
-	postProcessing.end();
-	glPopAttrib();
 
-	// draw help
-	ofSetColor(0, 255, 255);
-	ofDrawBitmapString("Number keys toggle effects, mouse rotates scene", 10, 20);
-	for (unsigned i = 0; i < postProcessing.size(); ++i)
-	{
-		if (postProcessing[i]->getEnabled()) ofSetColor(0, 255, 255);
-		else ofSetColor(255, 0, 0);
-		ostringstream oss;
-		oss << i << ": " << postProcessing[i]->getName() << (postProcessing[i]->getEnabled() ? " (on)" : " (off)");
-		ofDrawBitmapString(oss.str(), 10, 20 * (i + 2));
-	}*/
 }
 
 //--------------------------------------------------------------
@@ -532,27 +601,9 @@ void ofApp::drawLightBegin() {
 	ofEnableLighting();
 	material.begin();
 	//cout << "light" << endl;
-	lights[0].light.setDiffuseColor(colorP.getCol(0));
-	lights[1].light.setDiffuseColor(colorP.getCol(1));
+	//lights[0].light.setDiffuseColor(colorP.getCol(0));
+	//lights[1].light.setDiffuseColor(colorP.getCol(1));
 
-	for (int i = 0;i < NUM_LIGHT;i++) {
-		if(lights[i].useLight){
-			lights[i].light.enable();
-			//lights[i].light.setDirectional();
-			
-
-			// specular color, the highlight/shininess color //
-			lights[i].light.setSpecularColor(ofColor(255.f, 255.f, 255.f));
-			lights[i].light.setPointLight();
-			
-			lights[i].light.setPosition(lights[i].position);
-			lights[i].light.setOrientation(lights[i].orientation);
-			if (drawLightDebugB) {
-				ofSetColor(lights[i].light.getDiffuseColor());
-				lights[i].light.draw();
-			}
-		}
-	}
 }
 
 //--------------------------------------------------------------
@@ -560,14 +611,12 @@ void ofApp::drawLightBegin() {
 void ofApp::drawLightEnd() {
 	
 	for (int i = 0;i < NUM_LIGHT;i++) {
-		if (lights[i].useLight) {
-			lights[i].light.disable();
-		}
+
 	}
 	material.end();
 	ofDisableLighting();
 }
-
+*/
 //--------------------------------------------------------------
 void ofApp::drawWeatherDebug() {
 
@@ -778,66 +827,59 @@ void ofApp::setGUI() {
 	gui1->addSlider("scale", 0.01, 10, &modelFoliageScale);
 	*/
 	//opacityShader = 1.0;
-	gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
+	//gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
 
+
+	gui1->addToggle("usePostShaderB", &usePostShaderB);
 	gui1->addToggle("useMappingB", &useMappingB);
-
+	gui1->addToggle("use2DCamB", &use2DCamB);
+	gui1->addToggle("useLightB", &useLightB);
+	gui1->addToggle("drawDebugGridB", &drawDebugGridB);
 	gui1->addToggle("drawRoomB", &drawRoomB);
 	gui1->addToggle("drawRoomDebugB", &drawRoomDebugB);
-
-	//gui->addToggle("show weather", &showWeather);
+	gui1->addToggle("drawBackgroundB", &drawBackgroundB);
+	gui1->addToggle("drawStructureB", &drawStructureB);
+	gui1->addToggle("drawVoroB", &drawVoroB);
+	gui1->addToggle("useSoundB", &useSoundB);
+	gui1->addToggle("drawIllustrationB", &drawIllustrationB);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
 	gui1->addSpacer();
-	gui1->addToggle("drawOverlayImageB", &drawOverlayImageB);
-	gui1->addSpacer();
-	gui1->addToggle("drawUnderneathB", &drawUnderneathB);
-	gui1->addSpacer();
-	gui1->addLabel("Texture", OFX_UI_FONT_SMALL);
-	gui1->addToggle("useTextureB", &useTextureB);
-	gui1->addSlider("fluidity 1", 0, 1.0, &fluidity[0]);
-	gui1->addSlider("fluidity 2", 0, 1.0, &fluidity[1]);
-	gui1->addSlider("fluidity 3", 0, 1.0, &fluidity[2]);
-	gui1->addSlider("time", 0, 1.0, &timeMotion);
-	gui1->addSlider("scale texture", 0, 1.0, &scaleTexture);
-	gui1->addSpacer();
-	gui1->addLabel("Shadow", OFX_UI_FONT_SMALL);
-	gui1->addToggle("useDirectShadowB", &drawUnderneathShadowsB);
-	gui1->addSlider("shadow offset x", -1000, 1000, &shadowOffset.x);
-	gui1->addSlider("shadow offset y", -1000, 1000, &shadowOffset.y);
-	gui1->addSlider("shadow offset z", -1000, 1000, &shadowOffset.z);
-
-
-	gui1->addSpacer();
-	gui1->addLabel("Structure", OFX_UI_FONT_SMALL);
-	gui1->addToggle("drawBackgroundStructureB", &drawBackgroundStructureB);
-	gui1->addToggle("structureToDustB", &structureToDustB);
-
-	gui1->addSpacer();
-	gui1->addLabel("Background", OFX_UI_FONT_SMALL);
-	gui1->addToggle("drawBackgroundB", &drawBackgroundB);
+	//gui1->addToggle("drawOverlayImageB", &drawOverlayImageB);
+	//gui1->addSpacer();
+	//gui1->addToggle("drawUnderneathB", &drawUnderneathB);
+	//gui1->addSpacer();
+	//gui1->addLabel("Texture", OFX_UI_FONT_SMALL);
+	//gui1->addToggle("useTextureB", &useTextureB);
+	//gui1->addSlider("fluidity 1", 0, 1.0, &fluidity[0]);
+	//gui1->addSlider("fluidity 2", 0, 1.0, &fluidity[1]);
+	//gui1->addSlider("fluidity 3", 0, 1.0, &fluidity[2]);
+	//gui1->addSlider("time", 0, 1.0, &timeMotion);
+	//gui1->addSlider("scale texture", 0, 1.0, &scaleTexture);
+	//gui1->addSpacer();
+	//gui1->addLabel("Shadow", OFX_UI_FONT_SMALL);
+	//gui1->addToggle("useDirectShadowB", &drawUnderneathShadowsB);
+	//gui1->addSlider("shadow offset x", -1000, 1000, &shadowOffset.x);
+	//gui1->addSlider("shadow offset y", -1000, 1000, &shadowOffset.y);
+	//gui1->addSlider("shadow offset z", -1000, 1000, &shadowOffset.z);
 
 
 
 
 
-	gui1->addSpacer();
-	gui1->addLabel("Distortions", OFX_UI_FONT_SMALL);
-	gui1->addToggle("usePostFlatShaderB", &usePostFlatShaderB);
-	gui1->addSlider("alpha shader", 0.0, 1.0, &opacityShader);
-
-	for (int i = 0;i < VAR_SHADER;i++) {
-		gui1->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
-	}
-	gui1->addToggle("usePostWithSoundB", &usePostWithSoundB);
-
-	gui1->addToggle("usePost3dShaderB", &usePost3dShaderB);
+	//gui1->addSpacer();
+	//gui1->addLabel("Distortions", OFX_UI_FONT_SMALL);
 	
-	gui1->addSpacer();
-	gui1->addLabel("Mapping", OFX_UI_FONT_SMALL);
-	gui1->addToggle("drawDebugGridB",&drawDebugGridB);
+	//gui1->addSlider("alpha shader", 0.0, 1.0, &opacityShader);
 
+	//for (int i = 0;i < VAR_SHADER;i++) {
+	//	gui1->addSlider("val" + ofToString(i + 1), 0.0, 1.0, &uniformFloatShader[i]);
+	//}
+	//gui1->addToggle("usePostWithSoundB", &usePostWithSoundB);
 
-
+	//gui1->addToggle("usePost3dShaderB", &usePost3dShaderB);
+	
+	//gui1->addSpacer();
+	//gui1->addLabel("Mapping", OFX_UI_FONT_SMALL);
 
 	gui1->autoSizeToFitWidgets();
 	ofAddListener(gui1->newGUIEvent, this, &ofApp::guiEvent);
@@ -849,14 +891,16 @@ void ofApp::setGUI() {
 
 	gui2 = new ofxUISuperCanvas("COLORS");
 	gui2->addSpacer();
-	//gui2->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
+	gui2->addToggle("useTimeColorB", &useTimeColorB);
 	for (int i = 0;i < COLOR_IN_PALETTE;i++) {
 		gui2->addLabel("Color " + ofToString(i), OFX_UI_FONT_SMALL);
-		gui2->addSlider("red " + ofToString(i), 0, 255, &colorP.r[i]);
-		gui2->addSlider("green " + ofToString(i), 0, 255, &colorP.g[i]);
-		gui2->addSlider("blue " + ofToString(i), 0, 255, &colorP.b[i]);
+		gui2->addSlider("red " + ofToString(i), 0, 255, &rC[i]);
+		gui2->addSlider("green " + ofToString(i), 0, 255, &gC[i]);
+		gui2->addSlider("blue " + ofToString(i), 0, 255, &bC[i]);
 		gui2->addSpacer();
 	}
+
+
 	gui2->autoSizeToFitWidgets();
 	ofAddListener(gui2->newGUIEvent, this, &ofApp::guiEvent);
 
@@ -869,6 +913,7 @@ void ofApp::setGUI() {
 	gui3->addSpacer();
 	//gui2->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
 	for (int i = 0;i <NUM_LIGHT;i++) {
+		/*
 		gui3->addToggle("use light" + ofToString(i), &lights[i].useLight);
 		gui3->addSpacer();
 		gui3->addSlider("light pos"+ofToString(i)+" x", -2000, 2000, &lights[i].position.x);
@@ -879,9 +924,10 @@ void ofApp::setGUI() {
 		gui3->addSlider("light rot" + ofToString(i) + " y", -180, 180, &lights[i].orientation.y);
 		gui3->addSlider("light rot" + ofToString(i) + " z", -180, 180, &lights[i].orientation.z);
 		gui3->addSpacer();
+		*/
 	}
 
-	gui3->addToggle("drawLightDebugB", &drawLightDebugB);
+	//gui3->addToggle("drawLightDebugB", &drawLightDebugB);
 	gui3->autoSizeToFitWidgets();
 	ofAddListener(gui3->newGUIEvent, this, &ofApp::guiEvent);
 
@@ -889,7 +935,7 @@ void ofApp::setGUI() {
 
 	gui3->setPosition(ofGetWidth() - (gui1->getGlobalCanvasWidth() * 3), 0);
 
-
+	
 }
 
 
