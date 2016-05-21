@@ -2,7 +2,7 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>7469.000000000</XPosition>
+    <XPosition>1709.000000000</XPosition>
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
@@ -49,6 +49,16 @@
     <Kind>2</Kind>
     <Name>drawStructureB</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>showGuiPSystemLeftB</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>showGuiPSystemRightB</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

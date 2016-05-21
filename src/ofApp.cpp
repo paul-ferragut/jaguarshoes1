@@ -186,8 +186,20 @@ void ofApp::setup(){
 
 		color.setup();
 		voro.setup();
-		pSystem.init("3d/newcGardenDoor.obj", "settingsUI/particles.xml", "camera/camSettings0", "camera/camSettings0b");
-		pSystem.visibleGuiB = true;
+		pSystemLeft[0].init("3d/newcGardenDoor.obj", "settingsUI/particles1.xml", "3d/gardenDoor0", "3d/gardenDoor1", 150000);
+		cout << "loading." << endl;
+		pSystemLeft[1].init("3d/newcStructure.obj", "settingsUI/particles4.xml", "3d/structure0", "3d/structure1", 150000);
+		cout << "loading.." << endl;
+		pSystemLeft[2].init("3d/newcGardenWall.obj", "settingsUI/particles3.xml", "3d/gardenWall0", "3d/gardenWall0", 150000);
+		cout << "loading..." << endl;
+		pSystemRight[0].init("3d/newcCorridor.obj", "settingsUI/particles2.xml", "3d/corridor0", "3d/corridor1", 150000);
+		cout << "loading...." << endl;
+		pSystemRight[1].init("3d/newcCrane.obj", "settingsUI/particles5.xml", "3d/crane0", "3d/crane1", 250000);
+		cout << "loading....." << endl;
+		currentPSystemLeft = floor(ofRandom(0,3));
+		currentPSystemRight = floor(ofRandom(0, 2));
+
+		//pSystem1[0].visibleGuiB = true;
 		svgDrawing.setup("illu2.svg");
 		light.setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0,0, ofGetWidth(), ofGetHeight()),ofVec2f(0.02,0.02),ofVec2f(0.01, 0.01),200);
 		cam.disableMouseInput();
@@ -199,7 +211,22 @@ void ofApp::update(){
 	color.update();
 
 	if (drawStructureB) {
-	pSystem.update();
+
+		bool nextRight=pSystemRight[currentPSystemRight].update();
+		if (nextRight == false) {
+			currentPSystemRight++;
+			if (currentPSystemRight == 2) {
+				currentPSystemRight = 0;
+			}
+		}
+		bool nextLeft = pSystemLeft[currentPSystemLeft].update();
+		if (nextLeft == false) {
+			currentPSystemLeft++;
+			if (currentPSystemLeft == 3) {
+				currentPSystemLeft = 0;
+			}
+		}
+
 	}
 
 	if(useTimeColorB){
@@ -240,6 +267,8 @@ void ofApp::update(){
 
 	_mapping->update();
 
+
+	ofSetWindowTitle("fps:"+ofToString(ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------
@@ -291,7 +320,10 @@ void ofApp::draw(){
 	}
 
 	if (drawIllustrationB) {
-		svgDrawing.draw();
+		vector<ofFloatColor>colPass=color.getFloatColors();
+		//cout << "color1" << colPass[0] << endl;
+		//cout << "color2" << colPass[1] << endl;
+		svgDrawing.draw(color.getFloatColors());
 	}
 
 	if (useLightB) {
@@ -307,7 +339,21 @@ void ofApp::draw(){
 	}
 
 	if (drawStructureB) {
-		pSystem.draw();
+		//ofPushView();
+		//ofPushMatrix();
+		//ofTranslate(pSystem1X, 0, 0);
+		//pSystem1.translateX = pSystem1X;
+		//ofVec3f posCam = pSystem1.camera.getGlobalPosition();
+		//ofVec3f posCam2(posCam.x + pSystem1X, posCam.y, posCam.z);
+		//pSystem1.camera.setLensOffset(ofVec2f(pSystem1X, 0));
+		//if (tLensoffset) {
+		//pSystem1[currentPSystem].camera.setLensOffset(ofVec2f(pSystem1X,0));
+	//	}
+		pSystemRight[currentPSystemRight].draw();
+		pSystemLeft[currentPSystemLeft].draw();
+		//pSystem1.camera.setPosition(posCam);
+		//ofPopMatrix();
+		//ofPopView();
 	}
 
 	light.drawDebug();
@@ -405,7 +451,13 @@ void ofApp::draw(){
 		drawWeatherDebug();
 	}
 
+	if (showGuiPSystemRightB) {
+	pSystemRight[currentPSystemRight].drawGui();
+	}
 
+	if (showGuiPSystemLeftB) {
+		pSystemLeft[currentPSystemLeft].drawGui();
+	}
 
 }
 
@@ -743,8 +795,10 @@ void ofApp::keyReleased(int key){
 	//unsigned idx = key - '0';
 //	if (idx < postProcessing.size()) postProcessing[idx]->setEnabled(!postProcessing[idx]->getEnabled());
 
+	tLensoffset = !tLensoffset;
 
-	if (key = 'h'){
+
+	if (key == 'h'){
 		gui1->toggleVisible();
 		gui2->toggleVisible();
 		gui3->toggleVisible();
@@ -839,10 +893,17 @@ void ofApp::setGUI() {
 	gui1->addToggle("drawRoomDebugB", &drawRoomDebugB);
 	gui1->addToggle("drawBackgroundB", &drawBackgroundB);
 	gui1->addToggle("drawStructureB", &drawStructureB);
+	gui1->addToggle("showGuiPSystemLeftB", &showGuiPSystemLeftB);
+	gui1->addToggle("showGuiPSystemRightB", &showGuiPSystemRightB);
+	//gui1->addToggle("drawStructureB", &drawStructureB);
+//	gui1->addSlider("structure X", -3840, 3840, &pSystem1X);
 	gui1->addToggle("drawVoroB", &drawVoroB);
 	gui1->addToggle("useSoundB", &useSoundB);
 	gui1->addToggle("drawIllustrationB", &drawIllustrationB);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
+
+
+
 	gui1->addSpacer();
 	//gui1->addToggle("drawOverlayImageB", &drawOverlayImageB);
 	//gui1->addSpacer();
@@ -886,7 +947,7 @@ void ofApp::setGUI() {
 
 	gui1->loadSettings("settings1.xml");
 
-	gui1->setPosition(ofGetWidth()- gui1->getGlobalCanvasWidth(), 0);
+	gui1->setPosition(1920- gui1->getGlobalCanvasWidth(), 0);
 
 
 	gui2 = new ofxUISuperCanvas("COLORS");
@@ -906,7 +967,7 @@ void ofApp::setGUI() {
 
 	gui2->loadSettings("settings2.xml");
 
-	gui2->setPosition(ofGetWidth() - (gui1->getGlobalCanvasWidth()*2), 0);
+	gui2->setPosition(1920 - (gui1->getGlobalCanvasWidth()*2), 0);
 
 	//
 	gui3 = new ofxUISuperCanvas("LIGHT");
@@ -933,7 +994,7 @@ void ofApp::setGUI() {
 
 	gui3->loadSettings("settings3.xml");
 
-	gui3->setPosition(ofGetWidth() - (gui1->getGlobalCanvasWidth() * 3), 0);
+	gui3->setPosition(1920 - (gui1->getGlobalCanvasWidth() * 3), 0);
 
 	
 }

@@ -6,48 +6,23 @@ uniform float fluidity1;
 uniform float fluidity2;
 uniform int fluidity3;
 
-uniform float colorBlendingGradientX;
-uniform float colorBlendingGradientY;
-
-uniform float addBlurSurface1;
-uniform float addBlurSurface2;
-
-uniform float addInnerSurface1;
-uniform float addInnerSurface2;
-
-uniform float moveContrast;
-
-uniform float fillThreshold;
-
-
-
 uniform int width;
 uniform int height;
 
 uniform float scaleWidth;
 uniform float scaleHeight;
 
+uniform int colorNumber;
 
-uniform float red[7];
-uniform float green[7];
-uniform float blue[7];
-
-uniform float colorRange;
-
-
-//uniform sampler2D tex0;     // base image to renderRect
-//uniform sampler2DRect gradient; // color gradient to applyRect
-//uniform float gradientWidth;    // gradient width
-
-
+uniform float colR[6];//NORMALLY 7 BUT 7th needed
+uniform float colG[6];
+uniform float colB[6];
+//vec3 colCopy;
 
 vec4 mod289(vec4 x)
 {
 return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
-
-
-
 
 vec4 permute(vec4 x)
 {
@@ -196,93 +171,52 @@ return fbm( p + 4.0*r ,oc,l,g);
 
 
 
-float inRange(float inVal,float lowVal,float highVal){
-float s1=step(lowVal,inVal); //must return 1 because higher
-float s2=step(highVal,inVal); //must return 0 because smaller
-return s1+s2;
-}
-
-float mapFunction(float value, float inMin, float inMax, float outMin, float outMax) {
-  return outMin + (outMax - outMin) * (value - inMin) / (inMax - inMin);
-}
 
 void main() {
+    
+    vec2 q = gl_FragCoord.xy / vec2(scaleWidth,scaleHeight);
+    vec2 p = -1.0 + 2.0 * q;
+    vec2 qq;
+    vec2 r;
+    float color = pattern2(p,qq,r,time);
+    
+    
+    
+    vec4 c =vec4(color,  color, color,1.0);
+    
+    c *= 3.5;
+    
+    float gray = c.r + c.g + c.b;
 
-vec2 q = gl_FragCoord.xy / vec2(scaleWidth,scaleHeight);
-vec2 p = -1.0 + 2.0 * q;
-vec2 qq;
-vec2 r;
-float color = pattern2(p,qq,r,time);
-
-//vec4 c = vec4(color,color,color,color);
-//vec4 c = vec4(color * p.x + qq.y + qq.x, qq.x + p.y * color + r.y + r.y, qq.x * r.x + qq.x+color,1.);
-//vec4 c = vec4(color * red1 + green2 + green1, green1 + red2 * color + red3 + red3, green1 *  blue1 +  green1+color,1.);
-//vec4 c = vec4(  color *red1+red2+red3,  green3+green4* color +green1+green2,blue3* blue2 + blue1+color,1.);
-//vec4 c = vec4(color * (p.x*colorBlendingGradientX) + (qq.y*addBlurSurface1) + (qq.x*addBlurSurface1), (qq.x*moveContrast) + (p.y*colorBlendingGradientY) * color + (r.y*addInnerSurface1) + (r.y*addInnerSurface2) , qq.x *  r.x + (qq.x*fillThreshold)+color,1.);
-    
-    //vec4 c = vec4(,,,1.);
-    
-   // color * (p.x*colorBlendingGradientX) + (qq.y*addBlurSurface1) + (qq.x*addBlurSurface1)
-   // (qq.x*moveContrast) + (p.y*colorBlendingGradientY) * color + (r.y*addInnerSurface1) + (r.y*addInnerSurface2)
-   // qq.x *  r.x + (qq.x*fillThreshold)+color
-    
-    // color * (p.x*colorBlendingGradientX) + (qq.y*addBlurSurface1) + (qq.x*addBlurSurface1)
-    // (qq.x*moveContrast) + (p.y*colorBlendingGradientY) * color + (r.y*addInnerSurface1) + (r.y*addInnerSurface2)
-    // qq.x *  r.x + (qq.x*fillThreshold)+color
-    
-   // vec4 c = vec4(qq.x *  r.x + (qq.x*fillThreshold)+color, qq.x *  r.x + (qq.x*fillThreshold)+color, qq.x *  r.x + (qq.x*fillThreshold)+color,1.);
- vec4 c = vec4(color,color, color,1.);
-
-c *= 3.5;
-
-    
-// float gray = 0.2989 * c.r + 0.5870 * c.g + 0.1140 * c.b;
-    
-     float gray = c.r + c.g + c.b;
-    
-  // vec2 pos = gl_TexCoord[0].st;
-  // vec4 src = texture2DRect(tex0, pos);
-  //  vec4 map = texture2DRect(gradient, vec2(gray* gradientWidth*0.3,gray* gradientWidth*0.3) );//Rect
+    int indexCol=colorNumber;
+    float steps= 1.0/float(indexCol+1);
     
 
-    //float range=1.0/float(colorNum);
-    //float range=gray*float(colorNum)/7.0;
-    vec3 newColor=vec3(0.0,0.0,0.0);
-    //float range=1.0/(gray*colorRange);//((gray) * ((1.0*)/colorRange)) ;//round(
-   // smoothstep(gray,1.0,colorRange);//=map(gray,0.0,1.0,0.0,float(colorNum));gray*colorRange
-//float range= -(colorRange*gray)/colorRange;
+  //  colR[indexCol+1]=colR[0];
+  //  colG[indexCol+1]=colG[0];
+  //  colB[indexCol+1]=colB[0];
 
-float range=mapFunction(gray,0.0,1.0,0.0,colorRange)-1.0;
-range=min(max(range, colorRange), 0.0);
+    
+    
+    for (int i=0; i<indexCol+1; i++) {
+        
+        
+        
+        float lowerRange=step((float(i)+1.0)*steps,color);
+        float higherRange=step((float(i))*steps,color);
+        float process = higherRange-lowerRange;
+        if(process==1.0){
 
+            float colorScaled=smoothstep(float(i)*steps,(float(i)+1.0)*steps,color);
 
-   // newColor.r=smoothstep(red[int(range)],red[int(range)+1],gray);
-   // newColor.g=smoothstep(green[int(range)],green[int(range)+1],gray);
-   // newColor.b=smoothstep(blue[int(range)],blue[int(range)+1],gray);
+            gl_FragColor=vec4( vec3(mix(vec3(colR[i],colG[i],colB[i]),vec3(colR[i+1],colG[i+1],colB[i+1]),vec3(colorScaled,colorScaled,colorScaled))),1.0);
 
-   newColor.r=mix(red[int(range)],red[int(range)+1],gray);
-   newColor.g=mix(green[int(range)],green[int(range)+1],gray);
-   newColor.b=mix(blue[int(range)],blue[int(range)+1],gray);
-
-   // for(int i=0;i<colorNum;i++){
-     
-
-     // float lowRange=range*float(i);
-     // float highRange=range*(float(i+1));
-     // if(inRange(gray, lowRange, highRange)==1.0)
-      //{
-
-     // }
-   // }
-
-
-
-    gl_FragColor = vec4( newColor.rgb, c.a );
- 
+            return;
+        }
+    }
+    
+    
+    gl_FragColor = vec4( vec3(colR[0],colG[0],colB[0]), 1.0 );
+    
+    //gl_FragColor = c;
 }
-
-
-//float insideBox(vec2 v, vec2 bottomLeft, vec2 topRight) {
-//    vec2 s = step(bottomLeft, v) - step(topRight, v);
-//    return s.x * s.y;   
-//}

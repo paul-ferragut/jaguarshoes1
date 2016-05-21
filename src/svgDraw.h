@@ -5,6 +5,7 @@
 
 #include "ofxSvg.h"
 #include "ofx2DCam.h"
+#include "shaderShape.h"
 
 class svgDraw {
 public:
@@ -13,7 +14,8 @@ public:
 	~svgDraw();
     void setup(string svgString);
     void update();
-    void draw();
+    void draw(vector<ofFloatColor>colorsInput);
+
     
 private:
 	ofxSVG svg;
@@ -23,4 +25,7 @@ private:
 	vector<vector<ofPath>>pathsShader;
 	vector<float>zPosition;
 	bool isGray(ofColor cGray);
+
+	vector<ofColor>colors;
+	vector<shaderShape>shaderShapes;
 };

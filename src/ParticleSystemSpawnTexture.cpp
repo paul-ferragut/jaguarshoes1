@@ -8,6 +8,16 @@
 
 #include "ParticleSystemSpawnTexture.h"
 
+
+ParticleSystemSpawnTexture::ParticleSystemSpawnTexture() {
+
+}
+
+ParticleSystemSpawnTexture::~ParticleSystemSpawnTexture() {
+	mesh.clear();
+}
+
+
 //-----------------------------------------------------------------------------------------
 //ofEasyCam* _camera,
 void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, string cam1, string cam2, float  cameraSpeed, int _texSize) //ofVboMesh vboMesh  int instanceNum
@@ -59,7 +69,12 @@ void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, 
 	gui.add( materialAmbient.set("Material Ambient",   	 ofColor(50,50,50), 	ofColor(0,0,0,0), ofColor(255,255,255,255)) );
 	gui.add( materialSpecular.set("Material Specular",   ofColor(255,255,255),  ofColor(0,0,0,0), ofColor(255,255,255,255)) );
 	gui.add( materialEmissive.set("Material Emmissive",  ofColor(255,255,255),  ofColor(0,0,0,0), ofColor(255,255,255,255)) );
-	gui.setPosition( ofVec2f(40, 0) );
+	gui.setPosition( ofVec2f(3800, 0) );
+
+	gui.add(translateXB.set("translateXB", false));
+	gui.add(translateX.set("translateX", 0, -1.0,1.0));
+	//ofParameter<float> translateX;
+	//ofParameter<bool>  translateXB;
 	
 
 	loadSettings(settingsString);
@@ -67,6 +82,7 @@ void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, 
 	loadCamera(cam1,cam2,cameraSpeed);
 	camera.setNearClip(0.1);
 	camera.disableMouseInput();
+	//camera.setLensOffset(ofVec2f(translateX, 0.0));
 	// UI for the light and material
 	//string xmlSettingsPathLight = "Settings/LightAndMaterial.xml";
 
@@ -131,7 +147,7 @@ void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, 
 	light[0].setGlobalPosition( ofVec3f( -0.2, 0.35, 0.0 ) );
 	light[0].enable();
 
-
+	//translateX = 0;
 
 	//reset();
 	ofxAssimpModelLoader loader;
@@ -162,6 +178,15 @@ void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, 
 
 
 	stepsGrayConstruct = 100;
+
+
+
+
+}
+
+
+void initNew(string meshLocation, string settingsFile, string cam1, string cam2, float  cameraSpeed = 6000, int _texSize = 128) {
+
 }
 //-----------------------------------------------------------------------------------------
 //
@@ -252,7 +277,7 @@ void ParticleSystemSpawnTexture::reset() {
 
 }
 //-----------------------------------------------------------------------------------------
-void ParticleSystemSpawnTexture::update() {
+bool ParticleSystemSpawnTexture::update() {
 
 	if (saveSettingsB) {
 		gui.saveToFile(settingsString);
@@ -486,6 +511,7 @@ void ParticleSystemSpawnTexture::update() {
 			particlePhase = PARTICLEPHASE_CONSTRUCT;
 			startConstruct = true;
 			invisibleCounter = 0;
+			return false;
 		}
 	
 	}
@@ -497,7 +523,7 @@ void ParticleSystemSpawnTexture::update() {
 			invisibleCounter = 0;
 		}
 	}
-
+	return true;
 }
 
 
@@ -512,6 +538,7 @@ void ParticleSystemSpawnTexture::updateTime( float _time, float _timeStep )
 //
 void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 {	
+	//fbo.begin();
 
 	ofSetGlobalAmbientColor(globalAmbient);
 	light[0].setAmbientColor( light1Ambient.get() ); // If you're having trouble passing an 'ofParameter<Class>' into something that expects a 'Class' use .get()
@@ -524,10 +551,14 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 	particleMaterial.setShininess( materialShininess );
 
 	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-
+	if (translateXB) {
+		camera.setLensOffset(ofVec2f(translateX, 0));
+	}
+	
 		camera.begin();
 		ofPushMatrix();
 		ofScale(1, -1, 1);
+		//ofTranslate(translateX, 0, 0);
 
 		if (particlePhase == PARTICLEPHASE_DESTRUCT) {
 			ofEnableLighting();
@@ -547,7 +578,12 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 		//particleMaterial.end();
 		ofPopMatrix();
 		camera.end();
-	
+
+
+		//fbo.end();
+		//fbo.draw(translateX, 0);
+
+
 }
 
 
@@ -630,14 +666,14 @@ void ParticleSystemSpawnTexture::drawMesh()
 void ParticleSystemSpawnTexture::drawGui()
 {
 	
-	if (visibleGuiB) {
+	//if (visibleGuiB) {
 	
 	gui.draw();
 //	guiLightAndMaterial.draw();
 	
 	spawnPosTexture.draw( gui.getPosition() + ofVec2f(0,gui.getHeight() + 10 ), 128, 128);
 	spawnStartTexture.draw(gui.getPosition() + ofVec2f(138, gui.getHeight() + 10), 128, 128);
-}
+//}
 	
 }
 

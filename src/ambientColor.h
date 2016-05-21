@@ -30,6 +30,16 @@ struct colorPalette {
 		return passCol;
 	}
 
+	vector<ofFloatColor>getFloatCols() {
+
+		vector<ofFloatColor>passCol;
+		for (int i = 0;i < NUM_COLORS_IN_PALETTE;i++) {
+			passCol.push_back(getColFloat(i));
+		}
+
+		return passCol;
+	}
+
 	ofFloatColor getColFloat(int i) {
 		return ofFloatColor(rFloat[i], gFloat[i], bFloat[i]);
 	}
@@ -99,6 +109,7 @@ class ambientColor{
 	
 		ofColor getColor(int indx);
 		vector<ofColor> getColors();
+		vector<ofFloatColor> getFloatColors();
 
 		int convertTime(int h, int m, int s);
 		int searchArray(vector<int>a, int b);

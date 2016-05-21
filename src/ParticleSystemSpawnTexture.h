@@ -29,9 +29,14 @@ class ParticleSystemSpawnTexture
 
 	public:
 	//ofEasyCam * _camera,
-		void init(string meshLocation, string settingsFile, string cam1,string cam2, float  cameraSpeed=6000,int _texSize = 128);// ofVboMesh vboMesh, int instanceNum);
+		ParticleSystemSpawnTexture();
+		~ParticleSystemSpawnTexture();
+
+		void init(string meshLocation, string settingsFile, string cam1,string cam2, float  cameraSpeed=60000,int _texSize = 128);// ofVboMesh vboMesh, int instanceNum);
+		void initNew(string meshLocation, string settingsFile, string cam1, string cam2, float  cameraSpeed = 6000, int _texSize = 128);// ofVboMesh vboMesh, int instanceNum);
+
 		void updateTime( float _time, float _timeStep );
-		void update();
+		bool update();
 
 		void drawMesh();
 		void draw(  );
@@ -154,7 +159,8 @@ class ParticleSystemSpawnTexture
 
 		int stepsGrayConstruct;
 
-
+		ofParameter<float> translateX;
+		ofParameter<bool>  translateXB;
 	
 		string settingsString;
 		ofParameter<bool> saveSettingsB;
@@ -162,5 +168,7 @@ class ParticleSystemSpawnTexture
 		ofParameter<bool> saveCameraB;
 		ofParameter<bool> enableMouseControlB;
 		ofParameter<bool>  visibleGuiB;
+
+		//ofFbo fbo;
 
 };

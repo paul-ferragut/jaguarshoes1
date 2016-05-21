@@ -126,10 +126,12 @@ ofColor ambientColor::getColor(int indx) {
 }
 
 vector<ofColor> ambientColor::getColors() {
-	
-
-
 	return currentColor.getCols();
+}
+
+
+vector<ofFloatColor> ambientColor::getFloatColors() {
+	return currentColor.getFloatCols();
 }
 
 

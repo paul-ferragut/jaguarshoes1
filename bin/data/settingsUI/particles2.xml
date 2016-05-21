@@ -4,16 +4,16 @@
 	<Noise_Position_Scale>3.004</Noise_Position_Scale>
 	<Noise_Time_Scale>0.57709</Noise_Time_Scale>
 	<Noise_Persistence>0.55045</Noise_Persistence>
-	<Wind>0.0171269, -0.190476, 0.0171269</Wind>
+	<Wind>0.0171269, 0.22449, 0.0171269</Wind>
 	<Start_Color>255, 255, 255, 255</Start_Color>
 	<End_Color>0, 20, 255, 255</End_Color>
 	<Twist_Noise_Time_Scale>0.0233333</Twist_Noise_Time_Scale>
 	<Twist_Noise_Pos_Scale>0.06</Twist_Noise_Pos_Scale>
 	<Twist_Min_Ang>-0.266667</Twist_Min_Ang>
 	<Twist_Max_Ang>0.9</Twist_Max_Ang>
-	<Mesh_Scale>7.46761</Mesh_Scale>
+	<Mesh_Scale>7.65023</Mesh_Scale>
 <Particles/>
-<saveSettingsB>0</saveSettingsB>
+<saveSettingsB>1</saveSettingsB>
 	<saveCameraB>0</saveCameraB>
 	<enableMouseControlB>0</enableMouseControlB>
 	<visibleGuiB>0</visibleGuiB>

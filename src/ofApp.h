@@ -185,7 +185,10 @@ class ofApp : public ofBaseApp{
 		ambientColor color;
 		voronoi voro;
 		svgDraw svgDrawing;
-		ParticleSystemSpawnTexture pSystem;
+		ParticleSystemSpawnTexture pSystemLeft[3];
+		ParticleSystemSpawnTexture pSystemRight[2];
+		int currentPSystemLeft;
+		int currentPSystemRight;
 
 
 		//MAPPING
@@ -202,11 +205,15 @@ class ofApp : public ofBaseApp{
 		bool useSoundB;
 		bool drawIllustrationB;
 		bool useTimeColorB;
+		bool showGuiPSystemLeftB;
+		bool showGuiPSystemRightB;
 		ofColor colorP[COLOR_IN_PALETTE];
 		float rC[COLOR_IN_PALETTE];
 		float gC[COLOR_IN_PALETTE];
 		float bC[COLOR_IN_PALETTE];
 
+
+		bool tLensoffset;
 		   private:
 			   ofxMtlMapping2D* _mapping;
 };

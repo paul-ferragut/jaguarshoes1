@@ -107,12 +107,19 @@ void svgDraw::setup(string svgString) {
 				if (groupByCol[j] == colToDepth) {
 					pathsShader[j].push_back(p);
 					//return;
+					shaderShape s;
+					shaderShapes.push_back(s);
 				}
 			}
 		}
 
 	}
-
+	cout << "shader shapes" << pathsShader.size() << endl;
+	for (int i = 0;i < pathsShader.size();i++) {
+		shaderShapes[i].setup("shaders/noise", "settingsShaders/settings"+ofToString(i)+".xml", pathsShader[i]);
+	}
+	
+	
 
 	for (int i = 0; i < paths.size();i++) {
 
@@ -126,6 +133,8 @@ void svgDraw::setup(string svgString) {
 		//cout <<"after"<< paths[i].getFillColor() << endl;
 		
 	}
+
+
 
 }
 
@@ -154,7 +163,7 @@ void svgDraw::update(){
 }
 
 //--------------------------------------------------------------
-void svgDraw::draw(){
+void svgDraw::draw(vector<ofFloatColor>colorsInput){
     
 	ofSetColor(255, 255, 255);
 	//ofPushMatrix();
@@ -167,6 +176,26 @@ void svgDraw::draw(){
 		//cout << "during" << paths[i].getFillColor() << endl;
 		ofPopMatrix();
 	}
+	/*
+	for (int i = 0; i < pathsShader.size();i++) {
+		for (int j = 0; j < pathsShader[i].size();j++) {
+			pathsShader[i][j].draw();
+		}
+	}
+	*/
+
+	for (int i = 0;i < shaderShapes.size();i++) {
+		//shaderShapes[0].setup("shaders/noise", "settingsShaders/settings" + ofToString(i) + ".xml", pathsShader[i]);
+		shaderShapes[i].draw(true, colorsInput);
+	}
+
+
+	ofDisableDepthTest();
+	for (int i = 0;i < shaderShapes.size();i++) {
+		//shaderShapes[0].setup("shaders/noise", "settingsShaders/settings" + ofToString(i) + ".xml", pathsShader[i]);
+		shaderShapes[i].gui.draw();//(false, colorsInput);
+	}
+	ofEnableDepthTest();
 	//ofPopMatrix();
 
 }
