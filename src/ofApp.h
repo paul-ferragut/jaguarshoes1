@@ -15,13 +15,17 @@
 #include "voronoi.h"
 #include "ParticleSystemSpawnTexture.h"
 #include "svgDraw.h"
+#include "distort.h"
+
+
 
 //test
 //test
 //#define VAR_SHADER 6
 #define COLOR_IN_PALETTE 5
 #define NUM_LIGHT 2
-#define NUM_SCREEN 4
+#define NUM_SCREEN 1
+#define LIGHT_NUM 5
 //local change
 
 
@@ -181,7 +185,15 @@ class ofApp : public ofBaseApp{
 
 
 		//
-		superLight light;
+		superLight light[LIGHT_NUM];
+		float lightType[LIGHT_NUM];
+		float shadowSpread[LIGHT_NUM];
+		float lightZ[LIGHT_NUM];
+		bool useLightB[LIGHT_NUM];
+		bool useMaterialB;
+		float shininess;
+		ofMaterial material;
+
 		ambientColor color;
 		voronoi voro;
 		svgDraw svgDrawing;
@@ -193,9 +205,14 @@ class ofApp : public ofBaseApp{
 
 		//MAPPING
 		bool usePostShaderB;
+		float postRadius;
+		float postIntensity;
+		distort distortI;
+
+
 		bool useMappingB;
 		bool use2DCamB;
-		bool useLightB;
+		//bool useLightB;
 		bool drawDebugGridB;
 		bool drawRoomB;
 		bool drawRoomDebugB;
@@ -212,6 +229,15 @@ class ofApp : public ofBaseApp{
 		float gC[COLOR_IN_PALETTE];
 		float bC[COLOR_IN_PALETTE];
 
+		float zExtrusionShapes;
+
+
+		ofxSVG * shadowBack;
+		ofxSVG * shadowFront;
+
+		float x;
+		float y;
+		float z;
 
 		bool tLensoffset;
 		   private:

@@ -145,7 +145,7 @@ void ParticleSystemSpawnTexture::init(string meshLocation, string settingsFile, 
 	singleParticleMesh.setMode( primitiveMode );
 	
 	light[0].setGlobalPosition( ofVec3f( -0.2, 0.35, 0.0 ) );
-	light[0].enable();
+//	light[0].enable();
 
 	//translateX = 0;
 
@@ -540,7 +540,7 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 {	
 	//fbo.begin();
 
-	ofSetGlobalAmbientColor(globalAmbient);
+	//ofSetGlobalAmbientColor(globalAmbient);
 	light[0].setAmbientColor( light1Ambient.get() ); // If you're having trouble passing an 'ofParameter<Class>' into something that expects a 'Class' use .get()
 	light[0].setDiffuseColor( light1Diffuse.get() );
 	light[0].setSpecularColor( light1Specular.get() );
@@ -550,7 +550,7 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 	particleMaterial.setEmissiveColor( materialEmissive.get() );
 	particleMaterial.setShininess( materialShininess );
 
-	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+	//ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 	if (translateXB) {
 		camera.setLensOffset(ofVec2f(translateX, 0));
 	}
@@ -562,9 +562,9 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 
 		if (particlePhase == PARTICLEPHASE_DESTRUCT) {
 			ofEnableLighting();
-
+	light[0].enable();
 			drawParticles(&particleDraw);//_camera, &camera
-	
+	light[0].disable();	
 			ofDisableLighting();
 		}
 
@@ -578,11 +578,11 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 		//particleMaterial.end();
 		ofPopMatrix();
 		camera.end();
-
+	
 
 		//fbo.end();
 		//fbo.draw(translateX, 0);
-
+		
 
 }
 
@@ -590,13 +590,13 @@ void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
 void ParticleSystemSpawnTexture::drawMesh()
 {
 	//camera.begin();
-
+	ofEnableLighting();
 	ofEnableAlphaBlending();
 	if (particlePhase == PARTICLEPHASE_DESTRUCT) {	
 		ofSetColor(ofColor::white);
 
 		ofVboMesh vboMesh;
-		ofEnableLighting();
+		
 	
 
 		int limit;
@@ -611,12 +611,12 @@ void ParticleSystemSpawnTexture::drawMesh()
 		}
 
 		vboMesh.drawVertices();
-		ofDisableLighting();
+		//ofDisableLighting();
 
 	}
 	else if (particlePhase == PARTICLEPHASE_CONSTRUCT) {
 
-		ofEnableLighting();
+		//ofEnableLighting();
 
 		for (int i = 0; i <stepsGrayConstruct; i++) {
 				ofVboMesh vboMesh;
@@ -638,27 +638,28 @@ void ParticleSystemSpawnTexture::drawMesh()
 		}
 		vboMeshA.drawVertices();
 
-		ofDisableLighting();
+		//ofDisableLighting();
 
 	}
 	else if (particlePhase == PARTICLEPHASE_INVISIBLE) {
 
 		ofSetColor(ofColor::white);
-		ofEnableLighting();
-		ofDisableLighting();
+		//ofEnableLighting();
+		//ofDisableLighting();
 	}
 	else if (particlePhase == PARTICLEPHASE_INACTIVE) {
 		//constructActiveParticle		
 		ofSetColor(ofColor::white);
-		ofEnableLighting();
+	
 		ofVboMesh vboMesh;
 		for (int i = 0; i < mesh.getNumVertices(); i++) {
 			vboMesh.addVertex(mesh.getVertex(i));
 		}
 
 		vboMesh.drawVertices();
-		ofDisableLighting();
+		
 	}
+	ofDisableLighting();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -682,7 +683,7 @@ void ParticleSystemSpawnTexture::drawGui()
 void ParticleSystemSpawnTexture::updateParticles( float _time, float _timeStep )
 {
 	ofEnableBlendMode( OF_BLENDMODE_DISABLED ); // Important! We just want to write the data as is to the target fbo
-	
+	//ofClear(255);try 27 didnt worked
 	particleDataFbo.dest()->begin();
 	
 		particleDataFbo.dest()->activateAllDrawBuffers(); // if we have multiple color buffers in our FBO we need this to activate all of them
@@ -767,7 +768,7 @@ void ParticleSystemSpawnTexture::drawParticles( ofShader* _shader )//, ofCamera*
 	
 	_shader->end();
 
-	//ofEnableBlendMode(OF_BLENDMODE_DISABLED); // Important! We just want to write the data as is to the target fbo
+	ofEnableBlendMode(OF_BLENDMODE_DISABLED); // Important! We just want to write the data as is to the target fbo
 
 	
 }

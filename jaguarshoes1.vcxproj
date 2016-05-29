@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Math;src\Utils;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxCameraSaveLoad\src;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxSvg\libs;..\..\..\addons\ofxSvg\libs\svgTiny;..\..\..\addons\ofxSvg\libs\svgTiny\src;..\..\..\addons\ofxSvg\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVoronoi\libs;..\..\..\addons\ofxVoronoi\libs\Voronoi;..\..\..\addons\ofxVoronoi\libs\Voronoi\lib;..\..\..\addons\ofxVoronoi\libs\Voronoi\src;..\..\..\addons\ofxVoronoi\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Math;src\Utils;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxCameraSaveLoad\src;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxSvg\libs;..\..\..\addons\ofxSvg\libs\svgTiny;..\..\..\addons\ofxSvg\libs\svgTiny\src;..\..\..\addons\ofxSvg\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVoronoi\libs;..\..\..\addons\ofxVoronoi\libs\Voronoi;..\..\..\addons\ofxVoronoi\libs\Voronoi\lib;..\..\..\addons\ofxVoronoi\libs\Voronoi\src;..\..\..\addons\ofxVoronoi\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src;..\..\..\addons\ofxLayerMask\src;..\..\..\addons\ofxLayerMask\src\shader</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -133,7 +133,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Math;src\Utils;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxCameraSaveLoad\src;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxSvg\libs;..\..\..\addons\ofxSvg\libs\svgTiny;..\..\..\addons\ofxSvg\libs\svgTiny\src;..\..\..\addons\ofxSvg\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVoronoi\libs;..\..\..\addons\ofxVoronoi\libs\Voronoi;..\..\..\addons\ofxVoronoi\libs\Voronoi\lib;..\..\..\addons\ofxVoronoi\libs\Voronoi\src;..\..\..\addons\ofxVoronoi\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Math;src\Utils;..\..\..\addons\ofx2DCam\src;..\..\..\addons\ofxAssimpModelLoader\libs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\assimp\Compiler;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\emscripten;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\Win32;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;..\..\..\addons\ofxAssimpModelLoader\libs\assimp\license;..\..\..\addons\ofxAssimpModelLoader\src;..\..\..\addons\ofxCameraSaveLoad\src;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxMSAInteractiveObject\src;..\..\..\addons\ofxMtlMapping2D\src;..\..\..\addons\ofxMtlMapping2D\src\controls;..\..\..\addons\ofxMtlMapping2D\src\settings;..\..\..\addons\ofxMtlMapping2D\src\shapes;..\..\..\addons\ofxMtlMapping2D\src\utils;..\..\..\addons\ofxMtlMapping2D\src\utils\homography;..\..\..\addons\ofxSunCalc\src;..\..\..\addons\ofxSvg\libs;..\..\..\addons\ofxSvg\libs\svgTiny;..\..\..\addons\ofxSvg\libs\svgTiny\src;..\..\..\addons\ofxSvg\src;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxVoronoi\libs;..\..\..\addons\ofxVoronoi\libs\Voronoi;..\..\..\addons\ofxVoronoi\libs\Voronoi\lib;..\..\..\addons\ofxVoronoi\libs\Voronoi\src;..\..\..\addons\ofxVoronoi\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxYahooWeather\src;..\..\..\addons\ofxLayerMask\src;..\..\..\addons\ofxLayerMask\src\shader</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -171,12 +171,16 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.cpp" />
+    <ClCompile Include="src\distort.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ambientColor.cpp" />
+    <ClCompile Include="src\particleShader.cpp" />
     <ClCompile Include="src\ParticleSystemSpawnTexture.cpp" />
     <ClCompile Include="src\particleVoronoi.cpp" />
     <ClCompile Include="src\shaderShape.cpp" />
+    <ClCompile Include="src\shadow.cpp" />
     <ClCompile Include="src\superLight.cpp" />
     <ClCompile Include="src\svgDraw.cpp" />
     <ClCompile Include="src\Utils\FboPingPong.cpp" />
@@ -279,12 +283,16 @@
     <ClCompile Include="..\..\..\addons\ofxYahooWeather\src\ofxYahooWeather.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.h" />
+    <ClInclude Include="src\distort.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ambientColor.h" />
     <ClInclude Include="src\Math\MathUtils.h" />
+    <ClInclude Include="src\particleShader.h" />
     <ClInclude Include="src\ParticleSystemSpawnTexture.h" />
     <ClInclude Include="src\particleVoronoi.h" />
     <ClInclude Include="src\shaderShape.h" />
+    <ClInclude Include="src\shadow.h" />
     <ClInclude Include="src\superLight.h" />
     <ClInclude Include="src\svgDraw.h" />
     <ClInclude Include="src\Utils\DrawingHelpers.h" />

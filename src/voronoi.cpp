@@ -184,18 +184,18 @@ void voronoi::audioReceived(float* input, int bufferSize, int nChannels) {
 //------------------------------------------------------------------
 void voronoi::draw(){
 
-	ofSetColor(255, 0, 0);
+	//ofSetColor(255, 0, 0);
 	//svg.draw();
-	ofSetColor(255);
+	//ofSetColor(255);
 	ofNoFill();
 	ofRect(bounds);
 
 
 	// draw the raw points
-	for (int i = 0; i<pts.size(); i++) {
-		ofSetColor(255);
+	//for (int i = 0; i<pts.size(); i++) {
+	//	ofSetColor(255);
 		//ofCircle(pts[i], 2);
-	}
+	//}
 
 	int indexV = 0;
 	for (int i = 0;i < voro.cells.size();i++) {

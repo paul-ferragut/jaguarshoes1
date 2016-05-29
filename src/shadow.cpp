@@ -1,11 +1,13 @@
 #include "shadow.h"
 
 //--------------------------------------------------------------
-void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
+void shadow::setup(ofxSVG *svgShadowTopIn, ofxSVG *svgShadowBackIn){
 	//svg.load("illu2.svg");
-
+ 
 	svgShadowBack = svgShadowBackIn;
-	svgShadowTop = svgShadowTopIn;
+	svgShadowTop = svgShadowTopIn; //NOT WORKING
+
+//	svgShadowBack.load("illu2.svg");
 	//shader.load("shaders/blur");
 	//cam.disableMouseInput();
 
@@ -21,8 +23,8 @@ void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
 	vector<vector<ofPath>>pathsShader;
 
 
-	for (int i = 0; i < svgShadowTop.getNumPath(); i++) {
-		ofPath p = svgShadowTop.getPathAt(i);
+	for (int i = 0; i < svgShadowTop->getNumPath(); i++) {
+		ofPath p = svgShadowTop->getPathAt(i);
 		p.setPolyWindingMode(OF_POLY_WINDING_ODD);
 		ofColor colToDepth = p.getFillColor();
 
@@ -40,7 +42,7 @@ void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
 				
 				float zPos = ofMap(colToDepth.getBrightness(), 0, 255, 200, 0.0);
 				zPosition.push_back(zPos);
-				
+			cout << "zPos Top" << zPos << endl;
 				groupByCol.push_back(colToDepth);
 
 				//cout << "color" << colToDepth << endl;
@@ -73,9 +75,9 @@ void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
 	pathsShader.assign(groupByCol.size(), tempP);
 	//cout << groupByCol.size() << "group" << endl;
 
-	for (int i = 0; i < svgShadowTop.getNumPath(); i++) {
+	for (int i = 0; i < svgShadowTop->getNumPath(); i++) {
 
-		ofPath p = svgShadowTop.getPathAt(i);
+		ofPath p = svgShadowTop->getPathAt(i);
 		p.setPolyWindingMode(OF_POLY_WINDING_ODD);
 		ofColor colToDepth = p.getFillColor();
 
@@ -100,7 +102,7 @@ void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
 		for (int j = 0; j < pathsShaderTopS[i].size();j++) {
 			//ofPushMatrix();
 			//ofTranslate(0, 0, zPosition[1]);//
-			pathsShaderTopS[i][j].simplify(1.5);
+			pathsShaderTopS[i][j].simplify(3.0);
 			//pathsShaderS[i][j].draw();
 			//ofPopMatrix();
 		}
@@ -123,8 +125,9 @@ void shadow::setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn){
 
 
 
-	for (int i = 0; i < svgShadowBack.getNumPath(); i++) {
-		ofPath p = svgShadowBack.getPathAt(i);
+	for (int i = 0; i < svgShadowBack->getNumPath(); i++) {
+		ofPath p = svgShadowBack->getPathAt(i);
+		cout << " back" << p.getFillColor() << endl;
 		p.setPolyWindingMode(OF_POLY_WINDING_ODD);
 		p.simplify(1.0);
 		p.setColor(ofColor(0, 0, 0));
@@ -168,12 +171,12 @@ void shadow::update(){
 }
 */
 //--------------------------------------------------------------
-void shadow::draw(ofVec2f posLight, float shadowSpread){
+void shadow::drawBackShadow(ofVec2f posLight, float shadowSpread){
 
 	pos.set(posLight);
 
-	ofClear(255);
-	ofBackgroundGradient(ofColor(255, 0, 0), ofColor(0, 0, 255), OF_GRADIENT_LINEAR);
+	//ofClear(255);
+	//ofBackgroundGradient(ofColor(255, 0, 0), ofColor(0, 0, 255), OF_GRADIENT_LINEAR);
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
 
@@ -185,8 +188,10 @@ void shadow::draw(ofVec2f posLight, float shadowSpread){
 
 	
 	fbo.begin();
+	ofClear(255);
+	//ofClear(255);
 	ofBackground(255, 255, 255);
-	cam2.begin();
+	//cam2.begin();
 	
 	
 
@@ -205,7 +210,7 @@ void shadow::draw(ofVec2f posLight, float shadowSpread){
 			ofVec2f pushFromOrigin = pos - pathCenter ;
 			pushFromOrigin.normalize();
 			pushFromOrigin.scale(-1);
-			pushFromOrigin.scale(ofMap(distanceToLight, 0, 1400,0 ,40 , true));
+			pushFromOrigin.scale(ofMap(distanceToLight, 0, 1400,0 , shadowSpread, true));
 			//pushFromOrigin.x = ofMap(distanceToLight, -1.0, 1.0, 100, 0, true);
 			//pushFromOrigin.y = ofMap(distanceToLight, -1.0, 1.0, 100, 0, true);
 
@@ -229,24 +234,21 @@ void shadow::draw(ofVec2f posLight, float shadowSpread){
 	//shader.end();
 
 
-	cam2.end();
+	//cam2.end();
 	fbo.end();
 
 	ofSetColor(255, 255, 255);
 
 	fbo.begin();
+	
 	blurHShader.begin();
 	blurHShader.setUniformTexture("blurSampler", fbo.getTextureReference(0),0);
 	blurHShader.setUniform1f("sigma",blurFactor);
 	blurHShader.setUniform1f("blurSize", texelSize);
 	blurHShader.setUniform2f("posLight", pos.x, pos.y);//ofMap(pos.y, 0, ofGetHeight(), ofGetHeight(), 0));//;
 	blurHShader.setUniform2f("resolution", ofGetWidth(),ofGetHeight());
-	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-	
+	//ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 	fbo.draw(0, 0);
-
-
-
 	blurHShader.end();
 	fbo.end();
 
@@ -288,14 +290,14 @@ void shadow::draw(ofVec2f posLight, float shadowSpread){
 	gui.draw();
 }
 
-void shadow::drawTopShadow(ofVec2f posLight, float shadowSpread)
+void shadow::drawShadowFront(ofVec2f posLight, float shadowSpread)
 {	
 	ofSetColor(255, 255, 255, 255);
 	fbo2.begin();
 	ofBackground(255, 255, 255);
-	cam2.begin();
-	drawShadowShape();
-	cam2.end();
+	//cam2.begin();
+	drawShadowShape(3, shadowSpread);
+	//cam2.end();
 	fbo2.end();
 	//
 	fbo2.begin();
@@ -314,6 +316,7 @@ void shadow::drawTopShadow(ofVec2f posLight, float shadowSpread)
 	blurHShader.end();
 	fbo2.end();
 
+	
 	blurVShader.begin();
 	blurVShader.setUniformTexture("blurSampler", fbo2.getTextureReference(0), 0);
 	blurVShader.setUniform1f("sigma", blurFactor);
@@ -324,6 +327,17 @@ void shadow::drawTopShadow(ofVec2f posLight, float shadowSpread)
 
 	fbo2.draw(0, 0);
 	blurVShader.end();
+	
+
+
+	/*
+	for (int i = 0; i < pathsShaderTopS.size();i++) {
+		for (int j = 0; j < pathsShaderTopS[i].size();j++) {
+			pathsShaderTopS[i][j].draw();
+		}
+
+	}
+	*/
 }
 
 void shadow::exit()
@@ -370,9 +384,9 @@ void shadow::drawShadow(float exentricity, ofColor color, int index)
 
 }
 
-void shadow::drawShadowShape()
+void shadow::drawShadowShape(int levels,float spread)
 {
-
+	cout << "draw on top" << endl;
 
 	for (int i = 0;i <pathsShaderTopS.size() - 1;i++) {
 
@@ -381,16 +395,17 @@ void shadow::drawShadowShape()
 		for (int j = 0;j < pathsShaderTopS.size();j++) {
 
 			//
-			if (j> index && j <index + 4) {
+			if (j> index && j <index + levels) {
 				masker.beginLayer(maskLayer);
 				{
-					ofClear(0, 0, 0, 255);
+					//if (i == 0) 
+						ofClear(0, 0, 0, 255); 
 					//ofClear(255, 255, 255, 255);
 					ofBackground(255, 255, 255, 0);
 					ofSetColor(255, 255, 255);
 			
 
-					drawShadow(5 + (j * 3), ofColor(0, 0, 0, 255 - (10 * i)), index);
+					drawShadow(spread + (j * 2), ofColor(0, 0, 0, 255 - (10 * i)), index);
 
 				}
 				masker.endLayer(maskLayer);
@@ -408,8 +423,8 @@ void shadow::drawShadowShape()
 							pathsShaderTopS[j + 1][k].draw();
 						}
 					}
-					masker.endMask(maskLayer);
-				}
+					
+				}masker.endMask(maskLayer);
 				masker.draw();
 			}
 		}

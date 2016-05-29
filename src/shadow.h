@@ -10,17 +10,17 @@
 class shadow{
 
 	public:
-		shadow() {};
+		shadow(){};
 		~shadow() {};
 
-		void setup(ofxSVG &svgShadowTopIn, ofxSVG &svgShadowBackIn);
+		void setup(ofxSVG *svgShadowTopIn, ofxSVG *svgShadowBackIn);
 		//void update();
-		void draw(ofVec2f posLight,float shadowSpread);
-		void drawTopShadow(ofVec2f posLight,float shadowSpread);
+		void drawBackShadow(ofVec2f posLight,float shadowSpread);
+		void drawShadowFront(ofVec2f posLight,float shadowSpread);
 		void exit();
 
 		void drawShadow(float exentricity=40.0f, ofColor color=ofColor(0,0,0), int index=0);
-		void drawShadowShape();
+		void drawShadowShape(int levels, float spread);
 
 		//ofxAutoReloadedShader shader;
 		ofShader blurVShader;
@@ -36,8 +36,8 @@ class shadow{
 
 		ofx2DCam cam2;
 
-		ofxSVG svgShadowTop;
-		ofxSVG svgShadowBack;		//ofEasyCam cam;
+		ofxSVG *svgShadowTop;
+		ofxSVG *svgShadowBack;		//ofEasyCam cam;
 
 		vector<ofPath>paths;
 		//vector<vector<ofPath>>pathsShader;

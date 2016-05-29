@@ -1,4 +1,13 @@
 #version 120
+
+//#define USE_MIPMAP
+
+// The Golden Angle is (3.-sqrt(5.0))*PI radians, which doesn't precompiled for some reason.
+// The compiler is a dunce I tells-ya!!
+#define GOLDEN_ANGLE 2.39996323
+
+#define ITERATIONS 140
+
 #extension GL_ARB_texture_rectangle : enable
 
 uniform sampler2DRect u_tex_unit0;
@@ -9,14 +18,21 @@ uniform float val1;
 uniform float val2;
 uniform float val3;
 uniform float val4;
-uniform float val5;
+uniform float val5;//range mouse
 uniform float val6;
 uniform float val7;
 uniform float val8;
 uniform float val9;
 uniform float val10;
 
-uniform vec2 pos;
+//uniform vec2 pos;
+
+#define MAX_ITEMS 10
+uniform vec2 posP[MAX_ITEMS];
+uniform float radiusP[MAX_ITEMS];
+
+mat2 rot = mat2(cos(GOLDEN_ANGLE), sin(GOLDEN_ANGLE), -sin(GOLDEN_ANGLE), cos(GOLDEN_ANGLE));
+
 vec2 distortUV(vec2 uv, vec2 nUV)
 {
     float intensity = 0.01;
@@ -109,6 +125,33 @@ float staticV(vec2 uv) {
 	return (1.0-step(snoise(vec2(5.0*pow(elapsedTime,2.0)+pow(uv.x*7.0,1.2),pow((mod(elapsedTime,100.0)+100.0)*uv.y*0.3+3.0,staticHeight))),staticAmount))*staticStrength;
 }
 
+vec3 Bokeh(sampler2DRect tex, vec2 uv, float radius, float amount)
+{
+  vec3 acc = vec3(0.0);
+  vec3 div = vec3(0.0);
+    vec2 pixel = 1.0 / resolution.xy;
+    float r = 1.0;
+    vec2 vangle = vec2(0.0,radius); // Start angle
+    amount += radius*500.0;
+    
+  for (int j = 0; j < ITERATIONS; j++)
+    {  
+        r += 1. / r;
+      vangle = rot * vangle;
+        // (r-1.0) here is the equivalent to sqrt(0, 1, 2, 3...)
+        #ifdef USE_MIPMAP
+        vec3 col = texture2DRect(tex, uv + pixel * (r-1.) * vangle).xyz;//, radius*1.25
+        #else
+        vec3 col = texture2DRect(tex, uv + pixel * (r-1.) * vangle).xyz;
+        #endif
+        col = col * col * 1.5; // ...contrast it for better highlights - leave this out elsewhere.
+    vec3 bokeh = pow(col, vec3(9.0)) * amount+.4;
+    acc += col * bokeh;
+    div += bokeh;
+  }
+  return acc / div;
+}
+
 
 void main( void )
 {
@@ -124,15 +167,32 @@ float rgbOffsetOpt = 2.0*val2;
 float horzFuzzOpt = 10.0*(val1*2.0);
 
 
-vec2 normalisedPos=pos/resolution;
-float range=0.4;
-float distortion=val1*(smoothstep(normalisedPos.x-range,normalisedPos.x,gl_FragCoord.x/resolution.x)*(1.0-smoothstep(normalisedPos.x,normalisedPos.x+range,gl_FragCoord.x/resolution.x)))
-*(smoothstep(-normalisedPos.y-range,normalisedPos.y,gl_FragCoord.y/resolution.y)*(1.0-smoothstep(-normalisedPos.y,-normalisedPos.y+range,gl_FragCoord.y/resolution.y)))
-;
+float distortion=0.0;  
+
+
+
+for(int i=0;i<10;i++){
+
+vec2 nPosP=posP[i];
+//nPosP.y-=1.0; 
+//nPosP.y*=-1.0; 
+//nPosP.y/=-1.0;
+float range=radiusP[i]*(val3*10.0);
+float rangeY=radiusP[i]*(resolution.x/resolution.y);
+  vec2 normalisedPos=nPosP/resolution;//;pos/resolution;//
+
+  distortion+=(val1*0.25)
+  *(smoothstep(normalisedPos.x-range,normalisedPos.x,gl_FragCoord.x/resolution.x)*1.0-smoothstep(normalisedPos.x,normalisedPos.x+range,gl_FragCoord.x/resolution.x))
+
+  *(smoothstep(normalisedPos.y,normalisedPos.y-rangeY,gl_FragCoord.y/resolution.y)*1.0-smoothstep(normalisedPos.y+rangeY,normalisedPos.y,gl_FragCoord.y/resolution.y));
+
+};
+
+distortion=clamp(-distortion,0.0,val1);
 
 horzFuzzOpt = 10.0*distortion*2.0;
-
-float vertzFuzzOpt = 10.0*(val3*2.0);
+rgbOffsetOpt = 2.0*val2*distortion;;//
+float vertzFuzzOpt = 10.0*(distortion*2.0);
 
 	vec2 uv = gl_TexCoord[0].st/resolution.xy;//;//gl_FragCoord.xy/resolution.xy;//*resolution.xy;
 	
@@ -172,18 +232,22 @@ float vertzFuzzOpt = 10.0*(val3*2.0);
 	//vec2 texCoordGreen 	= gl_TexCoord[0].g;
 	//vec2 texCoordBlue 	= gl_TexCoord[0].b;
 
-float red = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,uv.y+yOffset) *resolution.xy).r+staticVal;
+  float red = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,uv.y+yOffset) *resolution.xy).r+staticVal;
   float green = texture2DRect(u_tex_unit0, vec2(uv.x + xOffset,uv.y+yOffset)*resolution.xy).g;//+staticVal //add some noise
   float blue = texture2DRect(u_tex_unit0, vec2(uv.x+ xOffset +0.01*rgbOffsetOpt,uv.y+yOffset)*resolution.xy).b+staticVal;   
 
 
   vec3 color = vec3(red,green,blue);
-  float scanline = sin(uv.y*resolution.y*500.0)*0.04*scalinesOpt;
-  scanline = 0.0;//sin
+ // float scanline = sin(uv.y*resolution.y*500.0)*0.04*scalinesOpt;
+  //scanline = 0.0;//sin
 
-  color -= scanline;
+  //color -= scanline;
 	
 	gl_FragColor = vec4(color,1.0);
 
-	gl_FragColor.a=alpha;
+	gl_FragColor.a=1.0;
+
+
+
+
 }

@@ -11,6 +11,9 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 	speedPosition= speedPos;
 	speedLookAt= speedLookat;
 
+	//bool shadowIsInitiated;
+	 useShadow=false;
+	 useShadowTop=false;
 
 	//frequencyPosition=freqPos;
 	//frequencyLookAt=freqLookAt;
@@ -26,9 +29,9 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 	light.setSpecularColor(ofColor(255.f, 255.f, 255.f));
 	light.setPointLight();
 
-	material.setShininess(120);
+	//material.setShininess(120);
 	// the light highlight of the material //
-	material.setSpecularColor(ofColor(255, 255, 255, 255));
+	//material.setSpecularColor(ofColor(255, 255, 255, 255));
 
 
 }
@@ -42,7 +45,7 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			float xFactor = positionBounds.width;
 			float yFactor = positionBounds.height;
 //*frequencyPosition.x*frequencyPosition.y
-			position.z = zLightPos;
+		//	position.z = zLightPos;
 
 		   position.x= positionBounds.x+ ofNoise(((ofGetElapsedTimef()*speedPosition.x)+uniqueStartPos.x))*xFactor;
 		   position.y= positionBounds.y+ ofNoise(((ofGetElapsedTimef()*speedPosition.y)+uniqueStartPos.y))*yFactor;
@@ -62,33 +65,46 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 		}
 
 		void superLight::setPosition(ofPoint pos) {
-
+			position = pos;
 		}
 		void superLight::setLookAt(ofPoint pos) {
 
 		}
 
-		void superLight::begin(bool useMaterial) {
-			useMaterialB = useMaterial;
 
-			if (useMaterialB) {
-				material.begin();
-			}
+		void superLight::setZ(float posZ) {
+			position.z = posZ;
+		}
+		/*
+		void superLight::setMaterial(int shine) {
+			useMaterialB = true;
+			material.setShininess(shine);
+		}
+		*/
+		void superLight::begin() {
+			
+
+			//if (useMaterialB) {
+			//	material.begin();
+			//}
 			
 			light.enable();
+		
 			
 		}
 		void superLight::end() {
 			light.disable();
 
+			/*
 			if (useMaterialB) {
 				material.end();
 			}
+			useMaterialB = false;*/
 		}
 
 		void superLight::drawDebug() {
 
-			ofEnableDepthTest();
+		//	ofEnableDepthTest();
 			ofSetColor(255, 255, 255);
 			light.draw();
 			ofSetColor(255, 0, 0);
@@ -99,14 +115,16 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			ofLine(position, lookAt);
 			ofSetColor(255, 255, 255);
 
-			ofSphere(getShadowOffset(), 6);
-			ofSetColor(255, 0, 255);
-			ofSphere(getShadowOffsetMapped(0.5), 7);
+		//	ofSphere(getShadowOffset(), 6);
+		//	ofSetColor(255, 0, 255);
+		//	ofSphere(getShadowOffsetMapped(0.5), 7);
 
-			ofDisableDepthTest();
+		//	ofDisableDepthTest();
 
 		}
 
+
+		
 		ofVec2f superLight::getShadowOffset() {
 
 			return lookAt - position;
@@ -128,3 +146,65 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			n *= scaleRatio;
 			return n;
 		}
+
+		void superLight::setLightType(int lightType) {
+		
+			switch(lightType){
+
+			case LIGHT_TYPE_POINT:
+
+				// Point lights emit light in all directions //
+				light.setPointLight();
+			break;
+
+			case LIGHT_TYPE_SPOT:
+				// turn the light into spotLight, emit a cone of light //
+				light.setSpotlight();
+
+				// size of the cone of emitted light, angle between light axis and side of cone //
+				// angle range between 0 - 90 in degrees //
+				light.setSpotlightCutOff(50);
+
+				// rate of falloff, illumitation decreases as the angle from the cone axis increases //
+				// range 0 - 128, zero is even illumination, 128 is max falloff //
+				light.setSpotConcentration(45);
+			break;
+
+			case LIGHT_TYPE_DIRECTIONAL:
+				// Directional Lights emit light based on their orientation, regardless of their position //
+				light.setDirectional();
+			break;
+			
+			}
+			
+		
+		}
+
+
+		void superLight::setColor(ofColor specular, ofColor diffuse) {
+
+			// set the diffuse color, color reflected from the light source // ofColor materialCol,
+			light.setDiffuseColor(diffuse);
+
+			// specular color, the highlight/shininess color //
+			light.setSpecularColor(specular);
+
+
+			// shininess is a value between 0 - 128, 128 being the most shiny //
+		//	material.setShininess(shininess);
+			// the light highlight of the material //
+			//material.setSpecularColor(materialCol);, int shininess
+
+		}
+
+
+		void superLight::drawShadowBack(float spread) {
+			//cout << position << endl;
+			lightShadow.drawBackShadow(ofVec2f(position.x, position.y), spread);
+		}
+		void superLight::drawShadowFront(float spread) {
+		
+			lightShadow.drawShadowFront(ofVec2f(position.x, position.y), spread);
+		}
+
+		

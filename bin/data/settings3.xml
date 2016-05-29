@@ -5,3 +5,118 @@
     <XPosition>1287.000000000</XPosition>
     <YPosition>0.000000000</YPosition>
 </Canvas>
+<Widget>
+    <Kind>4</Kind>
+    <Name>zExtrusionShapes</Name>
+    <Value>0.382512301</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shininess</Name>
+    <Value>0.615760684</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useMaterial</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use light0</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>light type 0</Name>
+    <Value>1.049261093</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread0</Name>
+    <Value>23.251230240</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ0</Name>
+    <Value>-12.807882309</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use light1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>light type 1</Name>
+    <Value>1.773398995</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread1</Name>
+    <Value>25.172414780</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ1</Name>
+    <Value>-18.719207764</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use light2</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>light type 2</Name>
+    <Value>1.108374357</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread2</Name>
+    <Value>57.832511902</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ2</Name>
+    <Value>200.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use light3</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>light type 3</Name>
+    <Value>1.581280708</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread3</Name>
+    <Value>102.980293274</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ3</Name>
+    <Value>200.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>use light4</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>light type 4</Name>
+    <Value>1.876847267</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread4</Name>
+    <Value>15.295566559</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ4</Name>
+    <Value>140.886688232</Value>
+</Widget>

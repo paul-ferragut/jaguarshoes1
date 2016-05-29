@@ -325,6 +325,18 @@
     <ClCompile Include="src\shaderShape.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\shadow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.cpp">
+      <Filter>addons\ofxLayerMask\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particleShader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\distort.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -464,6 +476,12 @@
     </Filter>
     <Filter Include="addons\ofxYahooWeather\src">
       <UniqueIdentifier>{4216F2B4-533F-5EE1-7DB7-213C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxLayerMask">
+      <UniqueIdentifier>{01ed660e-99a1-49bc-bfc1-96979019aca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxLayerMask\src">
+      <UniqueIdentifier>{a08fc785-7b25-465e-90f2-24f4f3b6c07a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -939,6 +957,18 @@
       <Filter>addons\ofxYahooWeather\src</Filter>
     </ClInclude>
     <ClInclude Include="src\shaderShape.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shadow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.h">
+      <Filter>addons\ofxLayerMask\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\distort.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particleShader.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

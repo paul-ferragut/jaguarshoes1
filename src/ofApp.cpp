@@ -18,7 +18,7 @@ void ofApp::setup(){
 
 
 
-
+		/*
 		Poco::LocalDateTime now;
 
 		date_str = Poco::DateTimeFormatter::format(now, "%Y-%m-%d %H:%M:%S");
@@ -70,6 +70,7 @@ void ofApp::setup(){
 			timelines[i].allocate(ofGetWidth() - 20 - 110, 32);
 			ofxSunCalc::drawSimpleDayInfoTimeline(timelines[i], sun_infos[i]);
 		}
+		*/
 
 		//image.load("2.png");
 
@@ -79,7 +80,7 @@ void ofApp::setup(){
 		//cout << "HOW MANY VERT" << modelStructure.getMesh(0).getNumVertices() << endl;
 		//vboParticles = new ofxVboParticles(modelStructure.getMesh(0).getNumVertices(), 3000);
 		
-	
+		cout << "img load" << endl;
 
 		roomImage.load("map-transparent.png");
 		roomImageDebug.load("debug.png");
@@ -116,6 +117,7 @@ void ofApp::setup(){
 		*/
 
 
+		/*
 		soundStream.printDeviceList();
 		int bufferSize = 256;
 		left.assign(bufferSize, 0.0);
@@ -126,6 +128,9 @@ void ofApp::setup(){
 		smoothedVol = 0.0;
 		scaledVol = 0.0;
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+
+		*/
+
 		ofBackground(0, 0, 0);
 
 		//cam.setLookAt(ofx2DCam::OFX2DCAM_TOP_INVERT);
@@ -176,14 +181,13 @@ void ofApp::setup(){
 		light.setup(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 100 );
 		//ofVec2f(50.0, 50.0), ofVec2f(40.0, 40.0)
 		*/
-		ofBackground(50);
 
 		// ----
 		_mapping = new ofxMtlMapping2D();
 		_mapping->init(ofGetWidth(), ofGetHeight(), "mapping/xml/shapes.xml", "mapping/controls/mapping.xml");
 
 		setGUI();
-
+		cout << "after gui" << endl;
 		color.setup();
 		voro.setup();
 		pSystemLeft[0].init("3d/newcGardenDoor.obj", "settingsUI/particles1.xml", "3d/gardenDoor0", "3d/gardenDoor1", 150000);
@@ -201,7 +205,39 @@ void ofApp::setup(){
 
 		//pSystem1[0].visibleGuiB = true;
 		svgDrawing.setup("illu2.svg");
-		light.setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0,0, ofGetWidth(), ofGetHeight()),ofVec2f(0.02,0.02),ofVec2f(0.01, 0.01),200);
+
+
+		shadowBack = new ofxSVG;
+		shadowBack->load("shadowBack.svg");
+		//shadowBack2.load("illu2.svg");
+		cout << "svg1" << endl;
+		shadowFront = new ofxSVG;
+		shadowFront->load("shadowFront.svg");
+		cout << "svg2" << endl;
+
+		//*/
+		
+		//shadowBack.load("illuShadowBack.svg");
+		
+		//shadowFront.load("illuShadowTop.svg");
+		//cout << "svg3" << endl;
+
+		light[0].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0,0, ofGetWidth(), ofGetHeight()),ofVec2f(0.02,0.02),ofVec2f(0.01, 0.01),200);
+		light[0].lightShadow.setup(shadowFront, shadowBack);
+		light[0].useShadow = true;
+		light[0].useShadowTop = true;
+		light[1].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 200);
+		light[1].lightShadow.setup(shadowFront, shadowBack);
+		light[1].useShadow=true;
+		light[1].useShadowTop = true;
+		light[2].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 200);
+		light[3].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 200);
+		light[4].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()), ofVec2f(0.02, 0.02), ofVec2f(0.01, 0.01), 200);
+
+		cout << "light" << endl;
+		distortI.setup(ofRectangle(ofGetWidth() / 2, 0, ofGetWidth() / 2, ofGetHeight()), ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+
+		cout << "distort" << endl;
 		cam.disableMouseInput();
 }
 
@@ -209,6 +245,12 @@ void ofApp::setup(){
 void ofApp::update(){
 
 	color.update();
+
+	if (usePostShaderB){
+		cout << "update1" << endl;
+	distortI.update(postIntensity, postRadius);
+	cout << "update2" << endl;
+	}
 
 	if (drawStructureB) {
 
@@ -259,7 +301,14 @@ void ofApp::update(){
 	//camTest.setLensOffset(ofVec2f(0, 0));
 	//camTest.setupOffAxisViewPortal(ofVec3f(0, 0, 0), ofVec3f(0, ofGetHeight(), 0), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
 
-	light.update();
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i]) {
+	
+		light[i].update();
+			
+		}
+	}
+	
 	/**/
 	//if (structureToDustB) {
 	//	vboParticles->update();
@@ -273,15 +322,17 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackground(0);
+	//ofBackground(0);
 	if (useMappingB) {
 	_mapping->bind();
 	}
 
 	ofClear(255);
-	
+
+
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
+	ofSetGlobalAmbientColor(colorP[0]);
 
 //	if (usePostFlatShaderB == false) {
 
@@ -295,40 +346,136 @@ void ofApp::draw(){
 	//}//POST FLAT
 	
 
-
-
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	if (usePostShaderB) {
+		distortI.begin();
+	
+	}
+ofEnableDepthTest();
 	if (drawBackgroundB) {
 		drawBackground();
+	}	
+	
+
+
+	if (drawStructureB) {
+		pSystemRight[currentPSystemRight].draw();
+		pSystemLeft[currentPSystemLeft].draw();
 	}
 
-	ofEnableDepthTest();
+	
+
 
 	if (drawVoroB) {
+		ofSetColor(colorP[4]);
 		voro.draw();
 	}
 	
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i] && light[i].useShadow) {
+
+			light[i].drawShadowBack(shadowSpread[i]);
+		}
+	}
+
 	if (use2DCamB) {
 		cam.begin();
+		if (usePostShaderB) {
+			
+			//cam.setOrientation(ofVec3f(x, y, z));
+		}
+		else {
+			//cam.setOrientation(ofVec3f(0, 0, 0));
+		}
 	}
 	else {
 		easyCam.begin();
 	}
-
-	if (useLightB) {
-		ofEnableLighting();
-		light.begin(true);
+	if (usePostShaderB) {
+		ofPushMatrix();
+		ofScale(x,y,z);
+		ofTranslate(0, -ofGetHeight());
 	}
+
+	//if (useLightB) {
+		
+	//	light.begin(true);
+	//}
+//	ofDisableBlendMode();
+	
+	ofSetColor(255, 255, 255, 255);
+
+	bool lightIsUsed = false;
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i]) {
+			lightIsUsed = true;
+		}
+	}
+	if (lightIsUsed) {
+		
+		ofEnableLighting();
+	//cout << "enable light" << endl;
+	}
+	if (useMaterialB) {
+		material.begin();
+		material.setShininess(shininess);
+		material.setSpecularColor(colorP[2]);
+	}
+	
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i]) {
+			light[i].setLightType((int)lightType[i]);
+			light[i].setZ(lightZ[i]);
+			light[i].setColor(colorP[2], colorP[3]);
+			light[i].begin();
+		}
+	}
+
+
 
 	if (drawIllustrationB) {
 		vector<ofFloatColor>colPass=color.getFloatColors();
 		//cout << "color1" << colPass[0] << endl;
 		//cout << "color2" << colPass[1] << endl;
-		svgDrawing.draw(color.getFloatColors());
+
+		svgDrawing.draw(color.getFloatColors(),zExtrusionShapes);
+	//	ofDisableDepthTest();
 	}
 
-	if (useLightB) {
-		ofDisableLighting();
-		light.end();
+
+
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i]) {
+			
+			light[i].end();
+		}
+	}
+
+
+	if (useMaterialB) {
+		material.end();
+	}
+
+
+	if (lightIsUsed) { ofDisableLighting(); }
+
+
+
+	ofDisableDepthTest();
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i] && light[i].useShadowTop) {
+			//cout << "shadow Top" << endl;
+			light[i].drawShadowFront(shadowSpread[i]);
+		}
+	}
+	//shadowBack->draw();
+	//shadowBack2.draw();
+	//light[0].lightShadow.svgShadowBack->draw();
+	//light[0].lightShadow.svgShadowTop->draw();
+	
+	
+	if (usePostShaderB) {
+		ofPopMatrix();
 	}
 
 	if (use2DCamB) {
@@ -337,26 +484,16 @@ void ofApp::draw(){
 	else {
 		easyCam.end();
 	}
+		//ofEnableDepthTest();
 
-	if (drawStructureB) {
-		//ofPushView();
-		//ofPushMatrix();
-		//ofTranslate(pSystem1X, 0, 0);
-		//pSystem1.translateX = pSystem1X;
-		//ofVec3f posCam = pSystem1.camera.getGlobalPosition();
-		//ofVec3f posCam2(posCam.x + pSystem1X, posCam.y, posCam.z);
-		//pSystem1.camera.setLensOffset(ofVec2f(pSystem1X, 0));
-		//if (tLensoffset) {
-		//pSystem1[currentPSystem].camera.setLensOffset(ofVec2f(pSystem1X,0));
-	//	}
-		pSystemRight[currentPSystemRight].draw();
-		pSystemLeft[currentPSystemLeft].draw();
-		//pSystem1.camera.setPosition(posCam);
-		//ofPopMatrix();
-		//ofPopView();
+
+	for (int i = 0;i < LIGHT_NUM;i++) {
+		if (useLightB[i]) {
+			
+			light[i].drawDebug();
+		}
 	}
 
-	light.drawDebug();
 
 	ofDisableDepthTest();
 	//POST 3D
@@ -419,8 +556,15 @@ void ofApp::draw(){
 	//	if (usePost3dShaderB) { drawPost3dEnd(); }
 	//}//POST FLAT
 
-
+	//shadowBack->draw();
+	//shadowFront->draw();
 	
+	if (usePostShaderB) {
+	distortI.end();
+	distortI.draw();
+	distortI.drawDebug();
+	}
+
 	ofSetColor(255, 255, 255, 255);
 	if (drawRoomB) {
 		roomImage.draw(0, 0);
@@ -884,10 +1028,10 @@ void ofApp::setGUI() {
 	//gui1->addSlider("drawingScale", 0.1, 3.0, &drawingScale);
 
 
-	gui1->addToggle("usePostShaderB", &usePostShaderB);
+
 	gui1->addToggle("useMappingB", &useMappingB);
 	gui1->addToggle("use2DCamB", &use2DCamB);
-	gui1->addToggle("useLightB", &useLightB);
+	//gui1->addToggle("useLightB", &useLightB);
 	gui1->addToggle("drawDebugGridB", &drawDebugGridB);
 	gui1->addToggle("drawRoomB", &drawRoomB);
 	gui1->addToggle("drawRoomDebugB", &drawRoomDebugB);
@@ -901,7 +1045,17 @@ void ofApp::setGUI() {
 	gui1->addToggle("useSoundB", &useSoundB);
 	gui1->addToggle("drawIllustrationB", &drawIllustrationB);
 	gui1->addToggle("drawWeatherDebugB", &drawWeatherDebugB);
+	gui1->addToggle("usePostShaderB", &usePostShaderB);
+	gui1->addSlider("postRadius", 0.0, 1.0, &postRadius);
+	gui1->addSlider("postIntensity", 0.0, 1.0, &postIntensity);
 
+	gui1->addSlider("x", -1, 1, &x);
+	gui1->addSlider("y", -1, 1, &y);
+	gui1->addSlider("z", -1, 1, &z);
+
+	
+	//float postRadius;
+	//float postIntensity;
 
 
 	gui1->addSpacer();
@@ -972,21 +1126,24 @@ void ofApp::setGUI() {
 	//
 	gui3 = new ofxUISuperCanvas("LIGHT");
 	gui3->addSpacer();
+	gui3->addSlider("zExtrusionShapes" , 0.01, 2.0, &zExtrusionShapes);
+	gui3->addSlider("shininess", -125, 125, &shininess);
+	gui3->addToggle("useMaterial" , &useMaterialB);
+
+	gui3->addSpacer();
 	//gui2->addLabel("'h' to Hide GUI", OFX_UI_FONT_SMALL);
-	for (int i = 0;i <NUM_LIGHT;i++) {
-		/*
-		gui3->addToggle("use light" + ofToString(i), &lights[i].useLight);
+	for (int i = 0;i <LIGHT_NUM;i++) {
+		
+		gui3->addToggle("use light" + ofToString(i), &useLightB[i]);
+		//gui3->addToggle("use light" + ofToString(i), &useLightB[i]);
+		gui3->addSlider("light type " + ofToString(i), 0, 3.0, &lightType[i]);
+		gui3->addSlider("shadow spread" + ofToString(i), 5.0, 200.0, &shadowSpread[i]);
+		gui3->addSlider("lightZ" + ofToString(i), -200.0, 200.0, &lightZ[i]);
+
 		gui3->addSpacer();
-		gui3->addSlider("light pos"+ofToString(i)+" x", -2000, 2000, &lights[i].position.x);
-		gui3->addSlider("light pos"+ofToString(i)+" y", -2000, 2000, &lights[i].position.y);
-		gui3->addSlider("light pos"+ofToString(i)+" z", -2000, 2000, &lights[i].position.z);
-		gui3->addSpacer();
-		gui3->addSlider("light rot" + ofToString(i) + " x", -180, 180, &lights[i].orientation.x);
-		gui3->addSlider("light rot" + ofToString(i) + " y", -180, 180, &lights[i].orientation.y);
-		gui3->addSlider("light rot" + ofToString(i) + " z", -180, 180, &lights[i].orientation.z);
-		gui3->addSpacer();
-		*/
+
 	}
+
 
 	//gui3->addToggle("drawLightDebugB", &drawLightDebugB);
 	gui3->autoSizeToFitWidgets();

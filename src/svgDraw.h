@@ -14,7 +14,7 @@ public:
 	~svgDraw();
     void setup(string svgString);
     void update();
-    void draw(vector<ofFloatColor>colorsInput);
+    void draw(vector<ofFloatColor>colorsInput, float zExtrustion);
 
     
 private:

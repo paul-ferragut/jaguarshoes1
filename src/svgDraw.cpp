@@ -125,10 +125,10 @@ void svgDraw::setup(string svgString) {
 
 		//paths[i].setPolyWindingMode(OF_POLY_WINDING_ODD);
 		//cout << paths[i].getFillColor() << endl;
-		paths[i].setColor(ofColor(255,0,255));
-		paths[i].setFillColor(ofColor(0, 0, 255));
+		paths[i].setColor(ofColor(0,0,0));
+	//	paths[i].setFillColor(ofColor(0, 0, 255));
 		paths[i].setPolyWindingMode(OF_POLY_WINDING_ODD);
-		paths[i].setUseShapeColor(false);
+		//paths[i].setUseShapeColor(false);
 		//paths[i].set
 		//cout <<"after"<< paths[i].getFillColor() << endl;
 		
@@ -163,13 +163,13 @@ void svgDraw::update(){
 }
 
 //--------------------------------------------------------------
-void svgDraw::draw(vector<ofFloatColor>colorsInput){
+void svgDraw::draw(vector<ofFloatColor>colorsInput,float zExtrustion){
     
 	ofSetColor(255, 255, 255);
 	//ofPushMatrix();
 	for (int i = 0; i < paths.size();i++) {
 		ofPushMatrix();
-		ofTranslate(0, 0, zPosition[i]);
+		ofTranslate(0, 0, zPosition[i]* zExtrustion);
 		//ofSetColor(255, 255, 255);
 		//paths[i].setPolyWindingMode(OF_POLY_WINDING_ODD);
 		paths[i].draw();
@@ -189,13 +189,12 @@ void svgDraw::draw(vector<ofFloatColor>colorsInput){
 		shaderShapes[i].draw(true, colorsInput);
 	}
 
-
+/*
 	ofDisableDepthTest();
 	for (int i = 0;i < shaderShapes.size();i++) {
-		//shaderShapes[0].setup("shaders/noise", "settingsShaders/settings" + ofToString(i) + ".xml", pathsShader[i]);
 		shaderShapes[i].gui.draw();//(false, colorsInput);
 	}
 	ofEnableDepthTest();
-	//ofPopMatrix();
+	*/
 
 }
