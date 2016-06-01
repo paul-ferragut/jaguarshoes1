@@ -10,53 +10,94 @@ void ambientColor::setup() {
 	colorPalette newPalette;
 
 	// we start in the night
+	//colour 8
 	rgb.clear();
-	
-	rgb.push_back(ofColor( 68,69 ,69 ));
-	rgb.push_back(ofColor(181 ,255 ,233 ));
-	rgb.push_back(ofColor(197,224 ,216 ));
-	rgb.push_back(ofColor(201,201 ,201 ));
-	rgb.push_back(ofColor(206,171 ,177 ));
+	rgb.push_back(ofColor(87, 55, 110));
+	rgb.push_back(ofColor(39, 41, 103));
+	rgb.push_back(ofColor(89, 181, 230));
+	rgb.push_back(ofColor(195, 75, 110));
+	rgb.push_back(ofColor(14, 22, 49));
 	newPalette.setColors(rgb);
 	newPalette.setTimeCode("00:00:00");
 	colors.push_back(newPalette);
-	//
+	//colour 1
 	rgb.clear();
-	rgb.push_back(ofColor(13,31 ,45 ));
-	rgb.push_back(ofColor(84,106 ,123 ));
-	rgb.push_back(ofColor(158,163 ,176 ));
-	rgb.push_back(ofColor(250,225 ,223 ));
-	rgb.push_back(ofColor(228, 195,173 ));
+	rgb.push_back(ofColor(234, 235, 218));
+	rgb.push_back(ofColor(229, 201, 194));
+	rgb.push_back(ofColor(248, 239, 229));
+	rgb.push_back(ofColor(175, 116, 104));
+	rgb.push_back(ofColor(80, 73, 79));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("10:00:00");
+	colors.push_back(newPalette);
+	//colour 2
+	rgb.clear();
+	rgb.push_back(ofColor(167, 214, 201));
+	rgb.push_back(ofColor(191, 185, 215));
+	rgb.push_back(ofColor(239, 238, 247));
+	rgb.push_back(ofColor(142, 53, 128));
+	rgb.push_back(ofColor(108, 129, 151));
 	newPalette.setColors(rgb);
 	newPalette.setTimeCode("12:00:00");
 	colors.push_back(newPalette);
-	//
+	//colour 3
 	rgb.clear();
-	rgb.push_back(ofColor(229,217 ,242 ));
-	rgb.push_back(ofColor(245, 239,255 ));
-	rgb.push_back(ofColor(205,193 , 255));
-	rgb.push_back(ofColor(165,148 ,249 ));
-	rgb.push_back(ofColor(115,113 ,252 ));
+	rgb.push_back(ofColor(196, 209, 65));
+	rgb.push_back(ofColor(227, 193, 210));
+	rgb.push_back(ofColor(210, 220, 216));
+	rgb.push_back(ofColor(210, 81, 152));
+	rgb.push_back(ofColor(51, 52, 42));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("19:00:00");
+	newPalette.setTimeCode("14:00:00");
 	colors.push_back(newPalette);
-	//
+	//colour 4
 	rgb.clear();
-	rgb.push_back(ofColor(56, 63,81 ));
-	rgb.push_back(ofColor(221,219 ,241 ));
-	rgb.push_back(ofColor(60,79 , 118));
-	rgb.push_back(ofColor(209,190 ,176 ));
-	rgb.push_back(ofColor(171,159 ,157 ));
+	rgb.push_back(ofColor(242, 231, 137));
+	rgb.push_back(ofColor(74, 148, 125));
+	rgb.push_back(ofColor(226, 210, 221));
+	rgb.push_back(ofColor(178, 191, 53));
+	rgb.push_back(ofColor(8, 42, 53));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("23:50:00");
+	newPalette.setTimeCode("16:00:00");
 	colors.push_back(newPalette);
+	//colour 5
+	rgb.clear();
+	rgb.push_back(ofColor(249, 184, 39));
+	rgb.push_back(ofColor(68, 105, 115));
+	rgb.push_back(ofColor(248, 222, 190));
+	rgb.push_back(ofColor(217, 87, 75));
+	rgb.push_back(ofColor(60, 47, 83));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("18:00:00");
+	colors.push_back(newPalette);
+	//colour 6
+	rgb.clear();
+	rgb.push_back(ofColor(119, 16, 43));
+	rgb.push_back(ofColor(1, 37, 63));
+	rgb.push_back(ofColor(207, 235, 238));
+	rgb.push_back(ofColor(28, 66, 47));
+	rgb.push_back(ofColor(91, 77, 78));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("20:00:00");
+	colors.push_back(newPalette);
+	//colour 7
+	rgb.clear();
+	rgb.push_back(ofColor(61, 29, 62));
+	rgb.push_back(ofColor(12, 46, 48));
+	rgb.push_back(ofColor(108, 199, 182));
+	rgb.push_back(ofColor(117, 192, 82));
+	rgb.push_back(ofColor(48, 33, 46));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("22:00:00");
+	colors.push_back(newPalette);
+
 
 
 
 	startDay = ofGetDay();
 }
 
-void ambientColor::update() {
+void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 
 
 	//FINDING THE RANGE ACCORDING TO THE TIME
@@ -69,6 +110,9 @@ void ambientColor::update() {
 		//cout << "time convert" << convertTime(colors[i].getHour(), colors[i].getMinute(), colors[i].getSeconds()) << endl;
 	}
 	int currentTime = convertTime(ofGetHours(), ofGetMinutes(), ofGetSeconds());
+	
+	if (useSimulateTime)currentTime = simulatedTime;
+	
 	int closestIndex = searchArray(valuesColorTime, currentTime);
 	//cout << "currentTime" << currentTime<<endl;
 	//cout << "closestIndex" << closestIndex << endl;
@@ -118,7 +162,9 @@ void ambientColor::update() {
 	}
 
 }
-
+void ambientColor::setColor(ofColor colIn,int colIndex) {
+	colors[colIndex].setCol(colIn, colIndex);
+}
 
 
 ofColor ambientColor::getColor(int indx) {

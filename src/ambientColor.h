@@ -105,12 +105,12 @@ class ambientColor{
 	
 		
 		void setup();
-		void update();
+		void update(float simulatedTime,bool useSimulateTime);
 	
 		ofColor getColor(int indx);
 		vector<ofColor> getColors();
 		vector<ofFloatColor> getFloatColors();
-
+		void setColor(ofColor colIn, int colIndex);
 		int convertTime(int h, int m, int s);
 		int searchArray(vector<int>a, int b);
 		int startDay;

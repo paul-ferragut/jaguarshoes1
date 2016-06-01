@@ -39,7 +39,18 @@ void shaderShape::setup(string shaderString,string settingsVars, vector<ofPath>p
 //--------------------------------------------------------------
 void shaderShape::draw(bool differentTime, vector<ofFloatColor>floatColors){
 	
-
+	ofFile fragFile("shaders/noise.frag"), vertFile("shaders/noise.vert");
+	std::filesystem::last_write_time(fragFile);
+	Poco::Timestamp fragTimestamp = std::filesystem::last_write_time(fragFile); //fragFile.getPocoFile().getLastModified();
+	Poco::Timestamp vertTimestamp = std::filesystem::last_write_time(vertFile);//vertFile.getPocoFile().getLastModified();
+	if (fragTimestamp != lastFragTimestampPost || vertTimestamp != lastVertTimestampPost) {
+		bool validShader = shader.load("shaders/noise");
+		if (validShader == false) { cout << "invalid shader: " << "POST" << endl; }
+		//setb("validShader", validShader);
+	}
+	lastFragTimestampPost = fragTimestamp;
+	lastVertTimestampPost = vertTimestamp;
+	
 	if (saveGuiB) {
 		saveGui();
 		saveGuiB = false;
@@ -53,16 +64,18 @@ void shaderShape::draw(bool differentTime, vector<ofFloatColor>floatColors){
 
 	//floatColors.push_back(ofFloatColor())
 	for (int i = 0;i < floatColors.size();i++) {
-		redF[i]=    floatColors[i].r;
-		greenF[i] = floatColors[i].g;
-		blueF[i] =  floatColors[i].b;
+		redF[i]=floatColors[i].r;
+		greenF[i]=floatColors[i].g;
+		blueF[i]=floatColors[i].b;
 
 		//cout << "color" << i << " " << floatColors[i] << endl;
 	}
-	
-	redF[6] = redF[0];
-	greenF[6] = greenF[0];
-	blueF[6] = blueF[0];
+	//cout <<  endl;
+	//cout << endl;
+
+	redF[5] = redF[0];
+	greenF[5] = greenF[0];
+	blueF[5] = blueF[0];
 
 
 	/*

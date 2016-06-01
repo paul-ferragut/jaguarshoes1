@@ -2,7 +2,9 @@
 
 #include "ofMain.h"
 //#include "ofxShadowSimple.h"
-
+#include "Poco/DateTimeFormatter.h"
+#include "Poco/LocalDateTime.h"
+#include "Poco/Timespan.h"
 //#include "ofxSvg.h"
 #include "ofxGui.h"
 #define SHADER_PARAM_NUM 10
@@ -18,7 +20,7 @@ public:
 	bool showGui;
 	void saveGui();
 	ofxPanel gui;
-	
+	Poco::Timestamp lastFragTimestampPost, lastVertTimestampPost;
     
 private:
 	//ofxSVG svg;

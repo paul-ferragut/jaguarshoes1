@@ -24,8 +24,9 @@
 //#define VAR_SHADER 6
 #define COLOR_IN_PALETTE 5
 #define NUM_LIGHT 2
-#define NUM_SCREEN 1
+#define NUM_SCREEN 4
 #define LIGHT_NUM 5
+#define USE_STRUCT
 //local change
 
 
@@ -60,6 +61,12 @@ class ofApp : public ofBaseApp{
 		vector <float> right;
 		vector <float> volHistory;
 		ofSoundStream soundStream;
+
+		float soundAverage;
+		float averageDuration;
+		bool peak;
+		//int 	bufferCounter;
+		//int 	drawCounter;
 		//AUDIO -->
 
 		//<--  WEATHER
@@ -190,6 +197,9 @@ class ofApp : public ofBaseApp{
 		float shadowSpread[LIGHT_NUM];
 		float lightZ[LIGHT_NUM];
 		bool useLightB[LIGHT_NUM];
+		bool useTopShadowB[LIGHT_NUM];
+		float topShadowResolution[LIGHT_NUM];
+
 		bool useMaterialB;
 		float shininess;
 		ofMaterial material;
@@ -209,6 +219,8 @@ class ofApp : public ofBaseApp{
 		float postIntensity;
 		distort distortI;
 
+		bool flipYB;
+
 
 		bool useMappingB;
 		bool use2DCamB;
@@ -221,13 +233,18 @@ class ofApp : public ofBaseApp{
 		bool drawVoroB;
 		bool useSoundB;
 		bool drawIllustrationB;
-		bool useTimeColorB;
+		
 		bool showGuiPSystemLeftB;
 		bool showGuiPSystemRightB;
+		
+		bool useTimeColorB;
+		bool useSimulatedTimeColorB;
+		float simulatedTime;
 		ofColor colorP[COLOR_IN_PALETTE];
 		float rC[COLOR_IN_PALETTE];
 		float gC[COLOR_IN_PALETTE];
 		float bC[COLOR_IN_PALETTE];
+		ofRectangle colDebugRect;
 
 		float zExtrusionShapes;
 
@@ -235,9 +252,9 @@ class ofApp : public ofBaseApp{
 		ofxSVG * shadowBack;
 		ofxSVG * shadowFront;
 
-		float x;
-		float y;
-		float z;
+		//float x;
+		//float y;
+		//float z;
 
 		bool tLensoffset;
 		   private:

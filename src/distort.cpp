@@ -16,11 +16,21 @@ void distort::setup(ofRectangle distortRect1, ofRectangle distortRect2) {
 	//image.load("title.png");
 
 	shaderPost.load("shaders/POST");
-	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+	
+	ofFbo::Settings settings;
+	settings.internalformat = GL_RGB;
+	//settings.numSamples = 4;
+	//settings.useDepth = false;
 
+	settings.width = ofGetWidth();
+	settings.height = ofGetHeight();
+
+fbo.allocate(settings);
+//fbo.setUseTexture(true);
+//fbo.getTextureReference().getTextureData().bFlipTexture = true;
 	//fbo.allocate()
-	ofEnableAntiAliasing();
-	ofEnableSmoothing();
+	//ofEnableAntiAliasing();
+	//ofEnableSmoothing();
 
 
 	int num = arrayLength;
@@ -83,7 +93,25 @@ void distort::update(float intensity,float radiusEffect) {
 	lastFragTimestampPost = fragTimestamp;
 	lastVertTimestampPost = vertTimestamp;
 	*/
-	shaderPost.begin();
+
+
+	//shaderPost.end();
+}
+
+//--------------------------------------------------------------
+void distort::draw() {
+
+
+
+
+
+	//ofSetColor(255, 255, 255, 255);
+	//image.draw(0, 0, ofGetWidth(), ofGetWidth());
+
+	
+
+
+	shaderPost.begin();	//shaderPost.begin();
 	//ofSetColor(255, 255, 255);
 
 	shaderPost.setUniform1f("elapsedTime", ofGetElapsedTimeMillis()*0.00003);
@@ -101,24 +129,6 @@ void distort::update(float intensity,float radiusEffect) {
 		shaderPost.setUniform1f("val" + ofToString(i + 1), (float)val[i]);
 	}
 	shaderPost.setUniformTexture("fboTexture", fbo.getTextureReference(0), 0);
-
-	shaderPost.end();
-}
-
-//--------------------------------------------------------------
-void distort::draw() {
-
-
-
-
-
-	//ofSetColor(255, 255, 255, 255);
-	//image.draw(0, 0, ofGetWidth(), ofGetWidth());
-
-	
-
-
-	shaderPost.begin();
 	ofSetColor(255, 255, 255);
 	ofDisableAlphaBlending();
 	fbo.draw(0, 0);

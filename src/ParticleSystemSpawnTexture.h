@@ -39,7 +39,7 @@ class ParticleSystemSpawnTexture
 		bool update();
 
 		void drawMesh();
-		void draw(  );
+		void draw(ofColor col1,ofColor col2);
 		
 		void saveCamera(string saveString);
 		void loadCamera(string camera1, string camera2, float durationMotion);

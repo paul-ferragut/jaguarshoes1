@@ -536,10 +536,11 @@ void ParticleSystemSpawnTexture::updateTime( float _time, float _timeStep )
 
 //-----------------------------------------------------------------------------------------
 //
-void ParticleSystemSpawnTexture::draw(  )//ofCamera* _camera
+void ParticleSystemSpawnTexture::draw(ofColor col1, ofColor col2)//ofCamera* _camera
 {	
 	//fbo.begin();
-
+	startColor=col1;
+	endColor=col2;
 	//ofSetGlobalAmbientColor(globalAmbient);
 	light[0].setAmbientColor( light1Ambient.get() ); // If you're having trouble passing an 'ofParameter<Class>' into something that expects a 'Class' use .get()
 	light[0].setDiffuseColor( light1Diffuse.get() );
@@ -760,11 +761,11 @@ void ParticleSystemSpawnTexture::drawParticles( ofShader* _shader )//, ofCamera*
 		_shader->setUniform4fv("u_particleEndColor", particleEndCol.v );
 
 		// Calling begin() on the material sets the OpenGL state that we then read in the shader
-		particleMaterial.begin();
+	//	particleMaterial.begin();
 	
 			singleParticleMesh.drawInstanced( OF_MESH_FILL, numParticles );
 
-		particleMaterial.end();
+	//	particleMaterial.end();
 	
 	_shader->end();
 

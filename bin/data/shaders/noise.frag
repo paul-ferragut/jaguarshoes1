@@ -184,32 +184,38 @@ void main() {
     
     vec4 c =vec4(color,  color, color,1.0);
     
-    c *= 3.5;
-    
-    float gray = c.r + c.g + c.b;
+    c *= 3.5; //MORE CONTRAST
+    float gray = c.b;
+   // float gray = c.b + c.g + c.b; //MORE POSTERIZED
+
+gray=clamp(gray,0.0,1.0);
 
     int indexCol=colorNumber;
-    float steps= 1.0/float(indexCol+1);
+    float steps= 1.0/float(indexCol+2);//
     
 
   //  colR[indexCol+1]=colR[0];
   //  colG[indexCol+1]=colG[0];
   //  colB[indexCol+1]=colB[0];
 
-    
-    
-    for (int i=0; i<indexCol+1; i++) {
-        
-        
-        
-        float lowerRange=step((float(i)+1.0)*steps,color);
-        float higherRange=step((float(i))*steps,color);
-        float process = higherRange-lowerRange;
-        if(process==1.0){
+    //gl_FragColor = vec4(gray,gray,gray,1.0);
+    //return;
 
-            float colorScaled=smoothstep(float(i)*steps,(float(i)+1.0)*steps,color);
+
+    for (int i=0; i<(indexCol+2); i++) {
+
+        float lowerRange=(float(i))*steps;//step((float(i)+1.0)*steps,gray);
+        float higherRange=(float(i+1))*steps;//step((float(i))*steps,gray);
+       // float process = higherRange-lowerRange;
+       // if(process==1.0){
+
+if(gray>=lowerRange && gray<=higherRange){
+            float colorScaled=smoothstep(float(i)*steps,(float(i)+1.0)*steps,gray);
 
             gl_FragColor=vec4( vec3(mix(vec3(colR[i],colG[i],colB[i]),vec3(colR[i+1],colG[i+1],colB[i+1]),vec3(colorScaled,colorScaled,colorScaled))),1.0);
+
+//gl_FragColor=vec4( vec3(mix(vec3(colR[i],colG[i],colB[i]),vec3(colR[i+1],colG[i+1],colB[i+1]),vec3(1.0,1.0,1.0))),1.0);
+//gl_FragColor=vec4(colR[i+1],colG[i+1],colB[i+1],1.0);
 
             return;
         }
@@ -218,5 +224,7 @@ void main() {
     
     gl_FragColor = vec4( vec3(colR[0],colG[0],colB[0]), 1.0 );
     
+
+
     //gl_FragColor = c;
 }

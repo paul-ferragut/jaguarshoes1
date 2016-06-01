@@ -19,9 +19,9 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 	//frequencyLookAt=freqLookAt;
 	
 	zLightPos = zLight;
-	uniqueStartPos.set(ofRandom(0.0f, 1000.0f), ofRandom(0.0f, 1000.0f));
-	uniqueStartLookAt.set(ofRandom(0.0f, 1000.0f), ofRandom(0.0f, 1000.0f));
-
+	uniqueStartPos.set(ofRandom(0.0f, ofGetWidth()), ofRandom(0.0f, ofGetHeight()));
+	uniqueStartLookAt.set(ofRandom(0.0f,ofGetWidth()), ofRandom(0.0f, ofGetHeight()));
+	lookAt = uniqueStartLookAt;
 
 	light.setDiffuseColor(ofColor(0.0f, 0.0f, 255.f));
 
@@ -54,12 +54,40 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 		}
 		void superLight::updateLookAt() {
 
+
+
+			ofPoint attractPt = position;
+			ofPoint frc = attractPt - lookAt; // we get the attraction force/vector by looking at the mouse pos relative to our pos
+			//frc.normalize(); 
+			//by normalizing we disregard how close the particle is to the attraction point 
+			//ofPoint copyLookAt = lookAt;
+
 			float xFactor = lookAtBounds.width;
 			float yFactor = lookAtBounds.height;
 //*frequencyLookAt.x*frequencyLookAt.y
-			lookAt.x = lookAtBounds.x + ofNoise(((ofGetElapsedTimef()*speedLookAt.x) + uniqueStartLookAt.x))*xFactor;
-			lookAt.y = lookAtBounds.y + ofNoise(((ofGetElapsedTimef()*speedLookAt.y) + uniqueStartLookAt.y))*yFactor;
+			//lookAt.x = lookAtBounds.x + ofNoise(((ofGetElapsedTimef()*speedLookAt.x) + uniqueStartLookAt.x))*xFactor;//*(frc.x * 0.6);
+			//lookAt.y = lookAtBounds.y + ofNoise(((ofGetElapsedTimef()*speedLookAt.y) + uniqueStartLookAt.y))*yFactor;//*(frc.y * 0.6);
+			//lookAtBounds.x +lookAtBounds.y +
 			
+			ofPoint vel;
+			vel.x =  ofSignedNoise(((ofGetElapsedTimef()*speedLookAt.x) + uniqueStartLookAt.x));//*(frc.x * 0.6);*xFactor
+			vel.y =  ofSignedNoise(((ofGetElapsedTimef()*speedLookAt.y) + uniqueStartLookAt.y));//*(frc.y * 0.6);*yFactor
+			vel *= 6.0;
+			
+
+			vel *= 0.97; //apply drag
+			vel += frc * 0.01; //apply force
+
+			//vel *= (frc*50.0);
+			//ofPoint vel = lookAt;
+			lookAt += vel;
+
+			//lookAt+=(copyLookAt - lookAt)*frc;
+
+
+			//vel *= 0.4; //apply drag
+			//lookAt *= (frc * 0.6); //apply force
+
 
 			light.lookAt(lookAt);
 		}
@@ -200,11 +228,11 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 
 		void superLight::drawShadowBack(float spread) {
 			//cout << position << endl;
-			lightShadow.drawBackShadow(ofVec2f(position.x, position.y), spread);
+			lightShadow.drawBackShadow(ofVec2f(lookAt.x, lookAt.y), spread);
 		}
-		void superLight::drawShadowFront(float spread) {
+		void superLight::drawShadowTop(float spread, int levels) {
 		
-			lightShadow.drawShadowFront(ofVec2f(position.x, position.y), spread);
+			lightShadow.drawShadowTop(ofVec2f(lookAt.x, lookAt.y), spread,levels);
 		}
 
 		

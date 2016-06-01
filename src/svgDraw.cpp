@@ -83,6 +83,12 @@ void svgDraw::setup(string svgString) {
 				//ofPath pp
 				//tP.push_back(pp);
 				//pathsShader.push_back(tP);
+				vector<int>randomShuffleT;
+				for (int i = 0;i < 5; i++) {
+					randomShuffleT.push_back(i);
+				}
+				random_shuffle(randomShuffleT.begin(), randomShuffleT.end());
+				randomShuffle.push_back(randomShuffleT);
 			}
 		}
 	}
@@ -114,7 +120,7 @@ void svgDraw::setup(string svgString) {
 		}
 
 	}
-	cout << "shader shapes" << pathsShader.size() << endl;
+	//cout << "shader shapes" << pathsShader.size() << endl;
 	for (int i = 0;i < pathsShader.size();i++) {
 		shaderShapes[i].setup("shaders/noise", "settingsShaders/settings"+ofToString(i)+".xml", pathsShader[i]);
 	}
@@ -133,6 +139,8 @@ void svgDraw::setup(string svgString) {
 		//cout <<"after"<< paths[i].getFillColor() << endl;
 		
 	}
+
+
 
 
 
@@ -183,10 +191,50 @@ void svgDraw::draw(vector<ofFloatColor>colorsInput,float zExtrustion){
 		}
 	}
 	*/
-
-	for (int i = 0;i < shaderShapes.size();i++) {
+	
+	//cout << colorsInputT.size() << endl;
+	//	cout <<"shaderShapes"<< shaderShapes.size() << endl;
+	//for (int i = 0;i < shaderShapes.size();i++) {
 		//shaderShapes[0].setup("shaders/noise", "settingsShaders/settings" + ofToString(i) + ".xml", pathsShader[i]);
-		shaderShapes[i].draw(true, colorsInput);
+		//shaderShapes[i].draw(true, colorsInput);
+		//shaderShapes[i].draw(true, colorsInput);
+	//}
+	//vector<ofFloatColor>colorsInputT = colorsInput;
+	/*
+	
+	colorsInputT[0] = colorsInput[3];
+	colorsInputT[1] = colorsInput[2];
+	shaderShapes[0].draw(true, colorsInputT);
+	
+	colorsInputT[0] = colorsInput[3];
+	colorsInputT[1] = colorsInput[4];
+	shaderShapes[1].draw(true, colorsInputT);
+
+
+	colorsInputT[0] = colorsInput[0];
+	colorsInputT[1] = colorsInput[4];
+	shaderShapes[2].draw(true, colorsInputT);
+
+	colorsInputT[0] = colorsInput[1];
+	colorsInputT[1] = colorsInput[4];
+	shaderShapes[3].draw(true, colorsInputT);*/
+
+
+	//colorsInputT[0] = colorsInput[2];
+	//colorsInputT[1] = colorsInput[3];
+	//shaderShapes[4].draw(true, colorsInputT);
+
+	for (int i = 0;i < randomShuffle.size();i++) {
+		//random_shuffle(colorsInput.begin(), colorsInput.end());
+		vector<ofFloatColor>colorsInputT = colorsInput;
+		for (int j = 0;j < colorsInputT.size();j++) {
+			colorsInputT[j] = colorsInput[randomShuffle[i][j]];
+			//cout << "j" << j << " randomShuffle[i][j]" << randomShuffle[i][j] << endl;
+		}
+
+		//shaderShapes[0].setup("shaders/noise", "settingsShaders/settings" + ofToString(i) + ".xml", pathsShader[i]);
+		shaderShapes[i].draw(true, colorsInputT);
+		//shaderShapes[i].draw(true, colorsInput);
 	}
 
 /*

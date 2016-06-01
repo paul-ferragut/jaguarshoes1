@@ -30,7 +30,7 @@ public:
 	void end();
 
 	void drawShadowBack(float spread);
-	void drawShadowFront(float spread);
+	void drawShadowTop(float spread,int levels);
 
 	void drawDebug();
 

@@ -116,7 +116,7 @@ void particleShader::update(){
 		
 		frc.x = fakeWindX * 0.25 + ofSignedNoise(uniqueVal, pos.y * 0.04) * 0.6;
 		frc.y = ofSignedNoise(uniqueVal, pos.x * 0.006, ofGetElapsedTimef()*0.2) * 0.09 + 0.18;
-
+	
 		vel *= drag; 
 		vel += frc * 0.4;
 		

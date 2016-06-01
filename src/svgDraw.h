@@ -27,5 +27,6 @@ private:
 	bool isGray(ofColor cGray);
 
 	vector<ofColor>colors;
+	vector<vector<int>>randomShuffle;
 	vector<shaderShape>shaderShapes;
 };

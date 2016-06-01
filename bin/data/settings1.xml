@@ -6,6 +6,26 @@
     <YPosition>0.000000000</YPosition>
 </Canvas>
 <Widget>
+    <Kind>4</Kind>
+    <Name>smoothedVol</Name>
+    <Value>0.020481301</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>scaledVol</Name>
+    <Value>0.154358760</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>averageDuration</Name>
+    <Value>93.103446960</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>peak</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>useMappingB</Name>
     <Value>0</Value>
@@ -14,6 +34,11 @@
     <Kind>2</Kind>
     <Name>use2DCamB</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>flipYB</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -43,12 +68,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>showGuiPSystemLeftB</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>showGuiPSystemRightB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -58,7 +83,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>useSoundB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -73,30 +98,15 @@
 <Widget>
     <Kind>2</Kind>
     <Name>usePostShaderB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>postRadius</Name>
-    <Value>0.172413796</Value>
+    <Value>0.033207916</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>postIntensity</Name>
-    <Value>0.201970443</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>x</Name>
-    <Value>1.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>y</Name>
-    <Value>-1.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>z</Name>
-    <Value>0.950738907</Value>
+    <Value>0.166039571</Value>
 </Widget>
