@@ -18,6 +18,9 @@
 #include "distort.h"
 
 
+#include "glow.h"
+#include "branches.h"
+#include "svgDrawSimple.h"
 
 //test
 //test
@@ -255,6 +258,10 @@ class ofApp : public ofBaseApp{
 		//float x;
 		//float y;
 		//float z;
+
+		branches branchesFlower[4];
+		glow glowingShapes;
+		svgDrawSimple svgShapeSimple;
 
 		bool tLensoffset;
 		   private:

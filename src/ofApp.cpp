@@ -189,6 +189,19 @@ void ofApp::setup(){
 
 		cout << "distort" << endl;
 		cam.disableMouseInput();
+
+		cout << "glow" << endl;
+		glowingShapes.setup("glowShapes.svg");
+		
+		cout << "flat" << endl;
+		svgShapeSimple.setup("flatShapes.svg");
+
+
+		branchesFlower[0].setup(ofVec2f(437,328),100*1.75);
+		branchesFlower[1].setup(ofVec2f(740, 155), 70 * 1.75);
+		branchesFlower[2].setup(ofVec2f(4, 455), 110 * 1.75);
+		branchesFlower[3].setup(ofVec2f(22, 562), 70 * 1.75);
+
 }
 
 //--------------------------------------------------------------
@@ -310,6 +323,11 @@ distortI.update(postIntensity, postRadius);
 	//bool ;
 
 
+	for (int i = 0;i < 4;i++) {
+		branchesFlower[i].update();
+	}
+
+	glowingShapes.update(light[0].getLookAt());
 
 	ofSetWindowTitle("fps:"+ofToString(ofGetFrameRate()));
 }
@@ -366,7 +384,7 @@ void ofApp::draw(){
 		voro.draw();
 	}	
 
-
+	svgShapeSimple.draw(colorP[0], colorP[1]);
 
 	ofEnableDepthTest();
 
@@ -431,6 +449,7 @@ void ofApp::draw(){
 
 
 
+
 	for (int i = 0;i < LIGHT_NUM;i++) {
 		if (useLightB[i]) {
 			
@@ -439,10 +458,15 @@ void ofApp::draw(){
 	}
 
 
+
+
 	if (useMaterialB) {
 		material.end();
 	}
 
+	for (int i = 0;i < 4;i++) {
+		branchesFlower[i].draw(colorP[2], colorP[0]);
+	}
 
 	if (lightIsUsed) { ofDisableLighting(); }
 
@@ -456,6 +480,7 @@ void ofApp::draw(){
 	//light[0].lightShadow.svgShadowTop->draw();
 	
 	//ofDisableDepthTest();
+
 
 
 	if (use2DCamB) {
@@ -474,6 +499,7 @@ void ofApp::draw(){
 	}
 	//ofDisableBlendMode();
 
+	glowingShapes.draw(peak, colorP[2]);
 
 
 

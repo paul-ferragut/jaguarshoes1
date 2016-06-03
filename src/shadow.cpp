@@ -389,6 +389,15 @@ void shadow::drawShadow(float exentricity,float exentricity2, ofColor color, int
 			}
 			pathCenter.x = pathCenter.x / poly.size();
 			pathCenter.y = pathCenter.y / poly.size();
+			/*
+			
+			
+			
+			TO DO CENTROID IN SHADOW;
+			
+			
+			
+			*/
 
 
 			float distanceToLight = ofDist(pos.x, pos.y, pathCenter.x, pathCenter.y);

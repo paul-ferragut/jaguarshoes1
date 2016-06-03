@@ -235,4 +235,6 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			lightShadow.drawShadowTop(ofVec2f(lookAt.x, lookAt.y), spread,levels);
 		}
 
-		
+		ofVec2f superLight::getLookAt() {
+			return lookAt;
+		}

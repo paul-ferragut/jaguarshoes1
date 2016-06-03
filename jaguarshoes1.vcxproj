@@ -172,10 +172,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.cpp" />
+    <ClCompile Include="src\branches.cpp" />
     <ClCompile Include="src\distort.cpp" />
+    <ClCompile Include="src\glow.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ambientColor.cpp" />
+    <ClCompile Include="src\particleFlower.cpp" />
     <ClCompile Include="src\particleShader.cpp" />
     <ClCompile Include="src\ParticleSystemSpawnTexture.cpp" />
     <ClCompile Include="src\particleVoronoi.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="src\shadow.cpp" />
     <ClCompile Include="src\superLight.cpp" />
     <ClCompile Include="src\svgDraw.cpp" />
+    <ClCompile Include="src\svgDrawSimple.cpp" />
     <ClCompile Include="src\Utils\FboPingPong.cpp" />
     <ClCompile Include="src\Utils\ofEasyCamExt.cpp" />
     <ClCompile Include="src\voronoi.cpp" />
@@ -284,10 +288,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\addons\ofxLayerMask\src\ofxLayerMask.h" />
+    <ClInclude Include="src\branches.h" />
     <ClInclude Include="src\distort.h" />
+    <ClInclude Include="src\glow.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ambientColor.h" />
     <ClInclude Include="src\Math\MathUtils.h" />
+    <ClInclude Include="src\particleFlower.h" />
     <ClInclude Include="src\particleShader.h" />
     <ClInclude Include="src\ParticleSystemSpawnTexture.h" />
     <ClInclude Include="src\particleVoronoi.h" />
@@ -295,6 +302,7 @@
     <ClInclude Include="src\shadow.h" />
     <ClInclude Include="src\superLight.h" />
     <ClInclude Include="src\svgDraw.h" />
+    <ClInclude Include="src\svgDrawSimple.h" />
     <ClInclude Include="src\Utils\DrawingHelpers.h" />
     <ClInclude Include="src\Utils\FboPingPong.h" />
     <ClInclude Include="src\Utils\FileUtils.h" />

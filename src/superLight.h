@@ -34,6 +34,8 @@ public:
 
 	void drawDebug();
 
+	ofVec2f getLookAt();
+
 	shadow lightShadow;
 
 	//bool shadowIsInitiated;

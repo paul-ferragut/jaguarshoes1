@@ -337,6 +337,18 @@
     <ClCompile Include="src\distort.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\particleFlower.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\branches.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\svgDrawSimple.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -969,6 +981,18 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\particleShader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\glow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\branches.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particleFlower.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\svgDrawSimple.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
