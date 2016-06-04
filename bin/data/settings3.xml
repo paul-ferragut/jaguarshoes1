@@ -8,12 +8,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>zExtrusionShapes</Name>
-    <Value>0.833448291</Value>
+    <Value>1.117733955</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>shininess</Name>
-    <Value>-8.004925728</Value>
+    <Value>-3.325121164</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -22,7 +22,27 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>use light0</Name>
+    <Name>useLightB0</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>cutoff0</Name>
+    <Value>52.315269470</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>concentration0</Name>
+    <Value>63.054187775</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ0</Name>
+    <Value>172.413803101</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useShadowB0</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
@@ -32,27 +52,32 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>topShadowResolution0</Name>
-    <Value>1.083743811</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>light type 0</Name>
-    <Value>1.389162540</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
     <Name>shadow spread0</Name>
     <Value>14.605911255</Value>
 </Widget>
 <Widget>
+    <Kind>2</Kind>
+    <Name>useLightB1</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
     <Kind>4</Kind>
-    <Name>lightZ0</Name>
-    <Value>140.886688232</Value>
+    <Name>cutoff1</Name>
+    <Value>53.645317078</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>concentration1</Name>
+    <Value>52.965518951</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ1</Name>
+    <Value>-62.068962097</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>use light1</Name>
+    <Name>useShadowB1</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
@@ -62,48 +87,23 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>topShadowResolution1</Name>
-    <Value>1.133004904</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>light type 1</Name>
-    <Value>1.300492644</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
     <Name>shadow spread1</Name>
     <Value>16.527093887</Value>
 </Widget>
 <Widget>
-    <Kind>4</Kind>
-    <Name>lightZ1</Name>
-    <Value>-62.068962097</Value>
-</Widget>
-<Widget>
     <Kind>2</Kind>
-    <Name>use light2</Name>
+    <Name>useLightB2</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
-    <Kind>2</Kind>
-    <Name>useTopShadowB2</Name>
-    <Value>0</Value>
+    <Kind>4</Kind>
+    <Name>cutoff2</Name>
+    <Value>50.098518372</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>topShadowResolution2</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>light type 2</Name>
-    <Value>1.226601005</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>shadow spread2</Name>
-    <Value>57.832511902</Value>
+    <Name>concentration2</Name>
+    <Value>63.684730530</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -112,28 +112,33 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>use light3</Name>
-    <Value>1</Value>
+    <Name>useShadowB2</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>useTopShadowB3</Name>
+    <Name>useTopShadowB2</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>topShadowResolution3</Name>
-    <Value>0.000000000</Value>
+    <Name>shadow spread2</Name>
+    <Value>57.832511902</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useLightB3</Name>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>light type 3</Name>
-    <Value>1.344827652</Value>
+    <Name>cutoff3</Name>
+    <Value>49.211826324</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>shadow spread3</Name>
-    <Value>102.980293274</Value>
+    <Name>concentration3</Name>
+    <Value>64.315269470</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -142,8 +147,43 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>use light4</Name>
+    <Name>useShadowB3</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useTopShadowB3</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>shadow spread3</Name>
+    <Value>102.980293274</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useLightB4</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>cutoff4</Name>
+    <Value>53.201969147</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>concentration4</Name>
+    <Value>57.379310608</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lightZ4</Name>
+    <Value>140.886688232</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>useShadowB4</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -152,21 +192,6 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>topShadowResolution4</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>light type 4</Name>
-    <Value>1.256157637</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
     <Name>shadow spread4</Name>
     <Value>15.295566559</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>lightZ4</Name>
-    <Value>140.886688232</Value>
 </Widget>

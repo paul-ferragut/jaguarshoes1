@@ -29,6 +29,7 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 	light.setSpecularColor(ofColor(255.f, 255.f, 255.f));
 	light.setPointLight();
 
+	setLightType(LIGHT_TYPE_SPOT);
 	//material.setShininess(120);
 	// the light highlight of the material //
 	//material.setSpecularColor(ofColor(255, 255, 255, 255));
@@ -209,7 +210,7 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 		}
 
 
-		void superLight::setColor(ofColor specular, ofColor diffuse) {
+		void superLight::setColor(ofColor specular, ofColor diffuse,float concentration, float cutoff) {
 
 			// set the diffuse color, color reflected from the light source // ofColor materialCol,
 			light.setDiffuseColor(diffuse);
@@ -217,7 +218,13 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			// specular color, the highlight/shininess color //
 			light.setSpecularColor(specular);
 
+			// size of the cone of emitted light, angle between light axis and side of cone //
+			// angle range between 0 - 90 in degrees //
+			light.setSpotlightCutOff(cutoff);
 
+			// rate of falloff, illumitation decreases as the angle from the cone axis increases //
+			// range 0 - 128, zero is even illumination, 128 is max falloff //
+			light.setSpotConcentration(concentration);
 			// shininess is a value between 0 - 128, 128 being the most shiny //
 		//	material.setShininess(shininess);
 			// the light highlight of the material //
@@ -230,9 +237,9 @@ void superLight::setup(ofRectangle posBnds, ofRectangle lookAtBnds, ofVec2f spee
 			//cout << position << endl;
 			lightShadow.drawBackShadow(ofVec2f(lookAt.x, lookAt.y), spread);
 		}
-		void superLight::drawShadowTop(float spread, int levels) {
+		void superLight::drawShadowTop(float spread) {//, int levels
 		
-			lightShadow.drawShadowTop(ofVec2f(lookAt.x, lookAt.y), spread,levels);
+			lightShadow.drawShadowTop(ofVec2f(lookAt.x, lookAt.y), spread);//,levels
 		}
 
 		ofVec2f superLight::getLookAt() {

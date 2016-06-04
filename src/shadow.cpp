@@ -298,7 +298,7 @@ void shadow::drawBackShadow(ofVec2f posLight, float shadowSpread){
 	gui.draw();
 }
 
-void shadow::drawShadowTop(ofVec2f posLight, float shadowSpread,float levelsShadow)
+void shadow::drawShadowTop(ofVec2f posLight, float shadowSpread)//,float levelsShadow
 {	
 
 	ofEnableAlphaBlending();
@@ -308,12 +308,12 @@ void shadow::drawShadowTop(ofVec2f posLight, float shadowSpread,float levelsShad
 	fbo2.begin();
 		//ofClear(255, 255,255, 0);
 	ofFill();	
-		ofSetColor(255, 255, 255, levelsShadow);
+	ofSetColor(255, 255, 255,1);//, levelsShadow
 	ofDrawRectangle(0, 0, ofGetWidth() , ofGetHeight()); // 2/ 2
 	//ofBackground(255, 255, 255);
 	//cam2.begin();
 	
-	drawShadowShape(levelsShadow, shadowSpread*0.08);
+	drawShadowShape( shadowSpread*0.08);//levelsShadow,
 	/*
 	ofSetColor(0, 0, 0, 255);
 	ofDrawCircle(ofPoint((cos(ofGetElapsedTimeMillis()*0.001) * 400) + 2400, (sin(ofGetElapsedTimeMillis()*0.001) * 400) + 400), 150);
@@ -425,7 +425,7 @@ void shadow::drawShadow(float exentricity,float exentricity2, ofColor color, int
 
 }
 
-void shadow::drawShadowShape(int levels,float spread)
+void shadow::drawShadowShape(float spread)//int levels,
 {
 	//cout << "draw on top" << endl;-1
 	fadeIndex++;

@@ -117,7 +117,7 @@ int particleFlower::update(){
 	//2 - UPDATE OUR POSITION
 	
 	pos += vel;
-        if((duration % 31 == 30) || durationEnd==duration+1){
+        if((duration % 201 == 200) || durationEnd==duration+1){
         trail.push_back(pos);
         }
         

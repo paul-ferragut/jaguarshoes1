@@ -569,9 +569,9 @@ void ParticleSystemSpawnTexture::draw(ofColor col1, ofColor col2)//ofCamera* _ca
 			ofDisableLighting();
 		}
 
-		ofSetColor(light[0].getDiffuseColor());
-		ofDrawSphere(light[0].getGlobalPosition(), 0.01);
-		ofDrawAxis(2);
+		//ofSetColor(light[0].getDiffuseColor());
+		//ofDrawSphere(light[0].getGlobalPosition(), 0.01);
+		//ofDrawAxis(2);
 
 		ofSetColor(ofColor::white);
 		//particleMaterial.begin();

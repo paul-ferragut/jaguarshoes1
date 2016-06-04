@@ -1,14 +1,25 @@
 #pragma once
 
+
+
+#define COLOR_IN_PALETTE 5
+#define NUM_LIGHT 2
+#define NUM_SCREEN 4
+#define LIGHT_NUM 5
+#define USE_STRUCT
+#define USE_SAVESCREEN
+//#define USE_WEATHER
+
 #include "ofMain.h"
+
+#ifdef USE_WEATHER
 #include "ofxSunCalc.h"
 #include "ofxYahooWeather.h"
-//#include "ofxSunCalc.h"
+#endif
+
 #include "ofxAssimpModelLoader.h"
 #include "ofxUI.h"
 #include "ofx2DCam.h"
-//#include "ofxPostProcessing.h"
-//#include "ofxVboParticles.h"
 #include "ofxMtlMapping2D.h"
 #include "superLight.h"
 #include "ambientColor.h"
@@ -16,21 +27,9 @@
 #include "ParticleSystemSpawnTexture.h"
 #include "svgDraw.h"
 #include "distort.h"
-
-
 #include "glow.h"
 #include "branches.h"
 #include "svgDrawSimple.h"
-
-//test
-//test
-//#define VAR_SHADER 6
-#define COLOR_IN_PALETTE 5
-#define NUM_LIGHT 2
-#define NUM_SCREEN 4
-#define LIGHT_NUM 5
-#define USE_STRUCT
-//local change
 
 
 class ofApp : public ofBaseApp{
@@ -64,47 +63,33 @@ class ofApp : public ofBaseApp{
 		vector <float> right;
 		vector <float> volHistory;
 		ofSoundStream soundStream;
-
 		float soundAverage;
 		float averageDuration;
 		bool peak;
-		//int 	bufferCounter;
-		//int 	drawCounter;
 		//AUDIO -->
 
+
+		#ifdef USE_WEATHER
+		//<--  SUN
+		ofxSunCalc sun_calc;
+		SunCalcDayInfo todayInfo;
+		float lat;
+		float lon;
+		void setupWeather();
+		void drawWeatherDebug();
+		bool drawWeatherDebugB;
+		//SUN -->		
+		
 		//<--  WEATHER
 		ofxYahooWeather weather;
 		int londonWOEID;
 		// WEATHER -->
-
-		//<--  SUN
-		ofxSunCalc sun_calc;
-		SunCalcDayInfo todayInfo;
-		string min_info_str;
-		string max_info_str;
-		string pos_str;
-		string date_str;
-		string latlon_str;
-		vector<ofFbo> timelines;
-		vector<string> labels;
-		float lat;
-		float lon;
-		void drawWeatherDebug();
-		bool drawWeatherDebugB;
-		//SUN -->
-
-		//ofxAssimpModelLoader modelStructure;
-		//ofxAssimpModelLoader modelFoliage1;
-		//ofxAssimpModelLoader modelFoliage2;
+		#endif
 
 		//<-- CAM
 		ofx2DCam cam;
 		ofEasyCam easyCam;
 		bool bUseEasyCam;		
-		//ofVec3f positionCamera;
-		//ofVec3f rotationCamera;
-		//float modelFoliageScale;
-		//float cameraFov;
 		//CAM -->
 
 		//<-- GUI
@@ -115,131 +100,58 @@ class ofApp : public ofBaseApp{
 		ofxUISuperCanvas *gui3;
 		// GUI -->
 
-		//ofFbo fbo;
-
-
-		//float drawingScale;
-
-
-	//	void drawOverlayImage();
-	//	bool drawOverlayImageB;
-	//	ofImage image;
-
-
-	//	void drawLightBegin();
-	//	void drawLightEnd();
-	//	bool drawLightDebugB;
-		//lightStruct lights[NUM_LIGHT];
-	//	ofMaterial material;
-
-		//<-- LEAVES
-	//	void drawUnderneath();
-	//	bool drawUnderneathB;
-		//TEXTURES
-		/*
-		bool useTextureB;
-		ofShader shaderTexture;
-		Poco::Timestamp lastFragTimestampTexture, lastVertTimestampTexture;
-		int resolutionWidthTexture;
-		int resolutionHeightTexture;
-		float fluidity[3];
-		float timeMotion;
-		float scaleTexture;
-		//SHADOWS		
-		void drawUnderneathShadows();
-		bool drawUnderneathShadowsB;
-		//bool useDirectShadowB;
-		ofVec3f shadowOffset;
-		*/
-		//LEAVES -->
-
-		//<-- STRUCTURES
-		/*
-		void drawBackgroundStructure();
-		bool drawBackgroundStructureB;
-		bool structureToDustB;
-		ofxVboParticles *vboParticles;
-		ofMesh mesh;*/
-		//STRUCTURES -->
-
-		//<-- BG 
 		void drawBackground();
-		//BG -->
-
-		//<-- ROOM 
 
 		ofImage roomImage;
 		ofImage roomImageDebug;
-		//BG -->
 
-		//colorPalette colorP;
-
-		//<-- DISTORTIONS
-		/*
-		void drawPostFlatBegin();
-		void drawPostFlatEnd();
-		ofShader shaderPost;
-		Poco::Timestamp lastFragTimestampPost, lastVertTimestampPost;
-		float uniformFloatShader[VAR_SHADER];
-		float opacityShader;*/
-		
-		//bool usePostWithSoundB;
-		
-		// DISTORTIONS -->
-
-		//GODRAYS
-		//void drawPost3dBegin();
-		//void drawPost3dEnd();
-		//bool usePost3dShaderB;
-		//ofShader shaderGodrays;
-
-
-		//
+		//<-- LIGHTS 
 		superLight light[LIGHT_NUM];
-		float lightType[LIGHT_NUM];
-		float shadowSpread[LIGHT_NUM];
 		float lightZ[LIGHT_NUM];
 		bool useLightB[LIGHT_NUM];
+		bool useShadowB[LIGHT_NUM];
+		float shadowSpread[LIGHT_NUM];
 		bool useTopShadowB[LIGHT_NUM];
-		float topShadowResolution[LIGHT_NUM];
+		float cutoff[LIGHT_NUM];
+		float concentration[LIGHT_NUM];
+		int lightIndex1[LIGHT_NUM];
+		int lightIndex2[LIGHT_NUM];
 
 		bool useMaterialB;
 		float shininess;
 		ofMaterial material;
+		float zExtrusionShapes;
+		//LIGHTS -->
 
-		ambientColor color;
-		voronoi voro;
-		svgDraw svgDrawing;
-		ParticleSystemSpawnTexture pSystemLeft[3];
-		ParticleSystemSpawnTexture pSystemRight[2];
-		int currentPSystemLeft;
-		int currentPSystemRight;
+		bool useMappingB;
+		bool use2DCamB;
+		bool useSoundB;
+		bool drawRoomB;
+		bool drawRoomDebugB;
+		bool drawBackgroundB;
+		bool drawIllustrationB;
+		bool drawStructureB;
+		bool drawVoroB;
+		bool showGuiPSystemLeftB;
+		bool showGuiPSystemRightB;
+		bool drawFlatShapesB;
+		bool drawPulsingShapesB;
+		bool drawGenerativeFlowersB;
+		bool drawDebugB;
+		bool flipYB;
 
-
-		//MAPPING
 		bool usePostShaderB;
 		float postRadius;
 		float postIntensity;
 		distort distortI;
 
-		bool flipYB;
+		#ifdef USE_SAVESCREEN
+		bool saveScreenB;
+		bool saveScreenVideoB;
+		ofFbo saveFbo;
+		#endif
 
-
-		bool useMappingB;
-		bool use2DCamB;
-		//bool useLightB;
-		bool drawDebugGridB;
-		bool drawRoomB;
-		bool drawRoomDebugB;
-		bool drawBackgroundB;
-		bool drawStructureB;
-		bool drawVoroB;
-		bool useSoundB;
-		bool drawIllustrationB;
-		
-		bool showGuiPSystemLeftB;
-		bool showGuiPSystemRightB;
-		
+		//<-- COLORS
 		bool useTimeColorB;
 		bool useSimulatedTimeColorB;
 		float simulatedTime;
@@ -248,22 +160,25 @@ class ofApp : public ofBaseApp{
 		float gC[COLOR_IN_PALETTE];
 		float bC[COLOR_IN_PALETTE];
 		ofRectangle colDebugRect;
-
-		float zExtrusionShapes;
-
-
+		ambientColor color;
+		//COLORS -->
+		
 		ofxSVG * shadowBack;
 		ofxSVG * shadowFront;
-
-		//float x;
-		//float y;
-		//float z;
 
 		branches branchesFlower[4];
 		glow glowingShapes;
 		svgDrawSimple svgShapeSimple;
 
-		bool tLensoffset;
+		voronoi voro;
+		svgDraw svgDrawing;
+
+		ParticleSystemSpawnTexture pSystemLeft[3];
+		ParticleSystemSpawnTexture pSystemRight[2];
+		int currentPSystemLeft;
+		int currentPSystemRight;
+
+		//bool tLensoffsetB;
 		   private:
 			   ofxMtlMapping2D* _mapping;
 };

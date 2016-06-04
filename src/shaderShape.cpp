@@ -39,6 +39,7 @@ void shaderShape::setup(string shaderString,string settingsVars, vector<ofPath>p
 //--------------------------------------------------------------
 void shaderShape::draw(bool differentTime, vector<ofFloatColor>floatColors){
 	
+	/*
 	ofFile fragFile("shaders/noise.frag"), vertFile("shaders/noise.vert");
 	std::filesystem::last_write_time(fragFile);
 	Poco::Timestamp fragTimestamp = std::filesystem::last_write_time(fragFile); //fragFile.getPocoFile().getLastModified();
@@ -50,7 +51,8 @@ void shaderShape::draw(bool differentTime, vector<ofFloatColor>floatColors){
 	}
 	lastFragTimestampPost = fragTimestamp;
 	lastVertTimestampPost = vertTimestamp;
-	
+	*/
+
 	if (saveGuiB) {
 		saveGui();
 		saveGuiB = false;

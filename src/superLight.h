@@ -25,13 +25,13 @@ public:
 	//void setMaterial(int shine);
 	void setLookAt(ofPoint pos);
 	void setLightType(int lightType);
-	void setColor(ofColor specular,ofColor diffuse);
+	void setColor(ofColor specular,ofColor diffuse, float concentration=45, float cutoff=50);
 	void begin();//bool useMaterial ofColor materialCol,
 	void end();
 
 	void drawShadowBack(float spread);
-	void drawShadowTop(float spread,int levels);
-
+	void drawShadowTop(float spread);
+//,int levels
 	void drawDebug();
 
 	ofVec2f getLookAt();

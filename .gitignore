@@ -55,6 +55,7 @@ obj/Debug/vc140.pdb
 bin/jaguarshoes1_debug.exp
 *.ilk
 bin/jaguarshoes1_debug.pdb
+bin/data/screencapture
 *.log
 obj/Debug/icon.res
 *.exp

@@ -16,11 +16,11 @@ class shadow{
 		void setup(ofxSVG *svgShadowTopIn, ofxSVG *svgShadowBackIn);
 		//void update();
 		void drawBackShadow(ofVec2f posLight,float shadowSpread);
-		void drawShadowTop(ofVec2f posLight,float shadowSpread, float levelsShadow);
+		void drawShadowTop(ofVec2f posLight,float shadowSpread);//, float levelsShadow
 		void exit();
 
 		void drawShadow(float exentricity=40.0f, float exentricity2=0.0f, ofColor color=ofColor(0,0,0), int index=0);
-		void drawShadowShape(int levels, float spread);
+		void drawShadowShape( float spread);//int levels,
 
 		//ofxAutoReloadedShader shader;
 		ofShader blurVShader;
