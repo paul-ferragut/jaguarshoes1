@@ -6,6 +6,7 @@ uniform vec2 resolution;
 uniform vec3 color1;
 uniform vec3 color2;
 uniform float time;
+uniform float noiseLevel;
 
 float random(float x) {
  
@@ -71,7 +72,7 @@ void main()
     
     vec4    color=vec4(mix(color1, color2, n), 1.);
     
-     float strength = 16.0;
+     float strength = 10.0+(30.0*noiseLevel);
     
     float x = (uv.x + 4.0 ) * (uv.y + 4.0 ) * (time * 10.0);
     vec4 grain = vec4(mod((mod(x, 13.0) + 1.0) * (mod(x, 123.0) + 1.0), 0.01)-0.005) * strength;
@@ -80,7 +81,9 @@ void main()
     
    
         grain = 1.0 - grain;
-        gl_FragColor = color * grain;
+        vec4 colorT=color * grain;
+        colorT.a=0.75;
+        gl_FragColor = colorT;
 
     
     

@@ -69,3 +69,5 @@ jaguarshoes1.sdf
 *.bak
 *.db
 jaguarshoes1.VC.VC.opendb
+bin/data/mp3/interference.mp3
+bin/data/mp3/toodeep.mp3

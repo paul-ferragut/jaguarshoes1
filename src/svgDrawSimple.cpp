@@ -31,7 +31,7 @@ void svgDrawSimple::setup(string svgString) {
 
 
 //--------------------------------------------------------------
-void svgDrawSimple::draw(ofColor color1, ofColor color2){
+void svgDrawSimple::draw(ofColor color1, ofColor color2,float noiseLevel){
     
 	//ofSetColor(255, 255, 255);
 	//ofPushMatrix();
@@ -43,6 +43,8 @@ void svgDrawSimple::draw(ofColor color1, ofColor color2){
 		shader.setUniform3f("color1", fC1.r, fC1.g, fC1.b);
 		shader.setUniform3f("color2", fC2.r, fC2.g, fC2.b);
 		shader.setUniform1f("time", ofGetElapsedTimeMillis()*0.001+(i*1000));
+		shader.setUniform1f("noiseLevel", noiseLevel);
+
 		shader.setUniform2f("resolution",ofGetWidth(),ofGetHeight());
 		paths[i].draw();
 		shader.end();

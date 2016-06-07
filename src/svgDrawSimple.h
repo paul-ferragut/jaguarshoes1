@@ -10,7 +10,7 @@ public:
 	~svgDrawSimple();
     void setup(string svgString);
     //void update();
-    void draw(ofColor color1,ofColor color2);
+    void draw(ofColor color1,ofColor color2,float noiseLevel=0.3);
 
     
 private:

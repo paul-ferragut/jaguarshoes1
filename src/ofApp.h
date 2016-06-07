@@ -7,7 +7,7 @@
 #define NUM_SCREEN 4
 #define LIGHT_NUM 5
 #define USE_STRUCT
-#define USE_SAVESCREEN
+//#define USE_SAVESCREEN
 //#define USE_WEATHER
 
 #include "ofMain.h"
@@ -66,6 +66,7 @@ class ofApp : public ofBaseApp{
 		float soundAverage;
 		float averageDuration;
 		bool peak;
+		int peakCounter;
 		//AUDIO -->
 
 
@@ -149,6 +150,12 @@ class ofApp : public ofBaseApp{
 		bool saveScreenB;
 		bool saveScreenVideoB;
 		ofFbo saveFbo;
+		//
+		ofSoundPlayer player;
+		float 				* fftSmoothed;
+
+
+		int nBandsToGet;
 		#endif
 
 		//<-- COLORS
@@ -178,7 +185,9 @@ class ofApp : public ofBaseApp{
 		int currentPSystemLeft;
 		int currentPSystemRight;
 
-		//bool tLensoffsetB;
+
+		
+
 		   private:
 			   ofxMtlMapping2D* _mapping;
 };

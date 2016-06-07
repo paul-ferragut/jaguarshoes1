@@ -28,17 +28,34 @@ void ofApp::setup(){
 		drawCounter = 0;
 		smoothedVol = 0.0;
 		scaledVol = 0.0;
-		soundStream.setDeviceID(5);		
+
 		// 0 output channels, 
 		// 2 input channels
 		// 44100 samples per second
 		// 256 samples per buffer
 		// 4 num buffers (latency)
+#ifdef USE_SAVESCREEN
+		saveFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 8);
+		player.load("mp3/interference.mp3"); 
+		player.setLoop(true);
+		//player.play();
+
+		fftSmoothed = new float[8192];
+		for (int i = 0; i < 8192; i++) {
+			fftSmoothed[i] = 0;
+		}
+
+		nBandsToGet = 128;
+		//int sampleRate = 44100;//player.getSampleRate();
+		//ofSoundStreamSetup(1, 0, this, sampleRate, bufferSize, 4);
+#else  		
+		soundStream.setDeviceID(6);		
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+#endif  
+
 		cout << "sound set" << endl;
 
 		ofBackground(0, 0, 0);
-
 		// ----
 		_mapping = new ofxMtlMapping2D();
 		_mapping->init(ofGetWidth(), ofGetHeight(), "mapping/xml/shapes.xml", "mapping/controls/mapping.xml");
@@ -89,9 +106,7 @@ void ofApp::setup(){
 
 		
 
-		#ifdef USE_SAVESCREEN
-		saveFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 8);
-		#endif
+
 
 		//light[1].setup(ofRectangle(-400, -400, ofGetWidth() + 400, ofGetHeight() + 400), ofRectangle(-ofGetWidth() / 2, -ofGetHeight() / 2, ofGetWidth() * 2, ofGetHeight() * 2), ofVec2f(ofRandom(0.008, 0.022), ofRandom(0.008, 0.022)), ofVec2f(ofRandom(0.008, 0.022), ofRandom(0.008, 0.022)), ofRandom(150, 250),true);
 		//light[1].lightShadow.setup(shadowFront, shadowBack);
@@ -123,6 +138,89 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
+#ifdef USE_SAVESCREEN
+
+#else
+		scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
+#endif
+		//lets record the volume into an array
+		volHistory.push_back(scaledVol);
+
+		//if we are bigger the the size we want to record - lets drop the oldest value
+		if (volHistory.size() >= 400) {
+			volHistory.erase(volHistory.begin(), volHistory.begin() + 1);
+		}
+
+	if (useSoundB) {
+
+#ifdef USE_SAVESCREEN
+
+		ofSoundUpdate();
+		float * val = ofSoundGetSpectrum(nBandsToGet);		// request 128 values for fft
+		for (int i = 0;i < nBandsToGet; i++) {
+
+			// let the smoothed calue sink to zero:
+			fftSmoothed[i] *= 0.96f;
+
+			// take the max, either the smoothed or the incoming:
+			if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
+
+		}
+		scaledVol = 0;
+		for (int i = 0;i < nBandsToGet; i++) {
+			// (we use negative height here, because we want to flip them
+			// because the top corner is 0,0)
+			scaledVol +=(fftSmoothed[i] * 200);
+		}
+		scaledVol = scaledVol / nBandsToGet;
+		scaledVol = ofMap(scaledVol, 0, 50, 0.0, 1.0, true);
+		//cout << "scaled vol" << scaledVol<< endl;
+		if (scaledVol - soundAverage > 0.25) {
+			peak = true;
+		}
+		else {
+			peak = false;
+		}
+
+#else
+		soundAverage = 0;
+		if(volHistory.size()>averageDuration){
+			int average = averageDuration;
+		for (int i = volHistory.size()- (average);i < volHistory.size();i++) {
+			soundAverage += volHistory[i];
+		}
+			soundAverage = soundAverage / average;
+			//cout << "soundAverage" << soundAverage << " current" << scaledVol << endl;
+		}
+
+		if (scaledVol - soundAverage > 0.075) {
+			peak = true;
+		}
+		else {
+			peak = false;
+		}
+#endif
+	}
+	
+	if (peak == false) {
+		peakCounter = 0;
+	}
+		//peakCounter -=1;
+		//if (peakCounter < 0) { 
+		//	peakCounter = 0; 
+		//}
+	//}
+
+	if (peak==true) {
+		peakCounter++;
+	}
+		
+
+	if (peakCounter > 3) {
+		peak = false;
+	}
+	
 
 	color.update(simulatedTime,useSimulatedTimeColorB);
 
@@ -187,35 +285,6 @@ void ofApp::update(){
 
 	_mapping->update();
 
-	
-		scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
-
-		//lets record the volume into an array
-		volHistory.push_back(scaledVol);
-
-		//if we are bigger the the size we want to record - lets drop the oldest value
-		if (volHistory.size() >= 400) {
-			volHistory.erase(volHistory.begin(), volHistory.begin() + 1);
-		}
-
-	if (useSoundB) {
-		soundAverage = 0;
-		if(volHistory.size()>averageDuration){
-			int average = averageDuration;
-		for (int i = volHistory.size()- (average);i < volHistory.size();i++) {
-			soundAverage += volHistory[i];
-		}
-			soundAverage = soundAverage / average;
-			//cout << "soundAverage" << soundAverage << " current" << scaledVol << endl;
-		}
-
-		if (scaledVol - soundAverage > 0.075) {
-			peak = true;
-		}
-		else {
-			peak = false;
-		}
-	}
 
 
 	if (drawGenerativeFlowersB) {
@@ -243,9 +312,16 @@ void ofApp::draw(){
 	ofClear(255);
 
 #ifdef USE_SAVESCREEN
-	if (saveScreenB || saveScreenVideoB) {
+	if (saveScreenB) {
 		saveFbo.begin();
+	} //|| saveScreenVideoB
+	if (saveScreenVideoB) {
+		if (player.isPlaying() == false) {
+			player.play();
+		}
+		saveScreenVideoB = false;
 	}
+
 #endif
 
 
@@ -264,8 +340,8 @@ void ofApp::draw(){
 
 		if (drawStructureB) {
 #ifdef USE_STRUCT
-		pSystemRight[currentPSystemRight].draw(colorP[4], colorP[2]);
-		pSystemLeft[currentPSystemLeft].draw(colorP[4], colorP[2]);
+		pSystemRight[currentPSystemRight].draw(colorP[4], colorP[3]);
+		pSystemLeft[currentPSystemLeft].draw(colorP[4], colorP[3]);
 #endif //USE_STRUCT
 	}
 
@@ -283,7 +359,13 @@ void ofApp::draw(){
 	}	
 
 	if (drawFlatShapesB) {
-		svgShapeSimple.draw(colorP[0], colorP[1]);
+		if (useSoundB) {
+			svgShapeSimple.draw(colorP[0], colorP[1],scaledVol);
+		}
+		else {
+			svgShapeSimple.draw(colorP[0], colorP[1]);
+		}
+		
 	}
 
 	ofEnableDepthTest();
@@ -400,8 +482,8 @@ void ofApp::draw(){
 		}
 	#endif
 
-	if (gui2->isVisible()&& saveScreenB==false && saveScreenVideoB==false) {
-		ofFill();
+	if (gui2->isVisible()) {
+		ofFill(); //&& saveScreenVideoB==false&& saveScreenB==false
 		for (int i = 0;i < 5;i++) {
 			ofSetColor(colorP[i]);
 			ofDrawRectangle(colDebugRect.x, colDebugRect.y + (i*colDebugRect.height), colDebugRect.width, colDebugRect.height);
@@ -435,8 +517,8 @@ void ofApp::draw(){
 #endif //USE_STRUCT
 
 #ifdef USE_SAVESCREEN
-	if (saveScreenB||saveScreenVideoB) {
-		saveFbo.end();
+	if (saveScreenB) {
+		saveFbo.end();//||saveScreenVideoB
 	}
 	if (saveScreenB) {
 		ofPixels pixels;
@@ -450,6 +532,7 @@ void ofApp::draw(){
 	}
 
 	if (saveScreenVideoB) {
+		/*
 		ofPixels pixels;
 		saveFbo.readToPixels(pixels);
 		ofImage img;
@@ -457,6 +540,7 @@ void ofApp::draw(){
 		img.setFromPixels(pixels);
 		img.draw(0, 0);
 		img.saveImage("screencapture/video/" + ofToString(ofGetFrameNum()) + ".png");
+		*/
 	}
 #endif
 
@@ -658,6 +742,11 @@ void ofApp::audioIn(float * input, int bufferSize, int nChannels) {
 
 	// samples are "interleaved"
 	int numCounted = 0;
+
+	//for (int i = 0; i < bufferSize; i++) sampleBuffer[i] = input[i];
+	//sampleBuffer[i] = sample.update();
+	//player.update();
+	
 
 	//lets go through each sample and calculate the root mean square which is a rough way to calculate volume	
 	for (int i = 0; i < bufferSize; i++) {
