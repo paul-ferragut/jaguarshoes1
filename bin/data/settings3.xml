@@ -138,12 +138,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>concentration3</Name>
-    <Value>64.315269470</Value>
+    <Value>68.729064941</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>lightZ3</Name>
-    <Value>-48.275863647</Value>
+    <Value>200.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -173,12 +173,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>concentration4</Name>
-    <Value>57.379310608</Value>
+    <Value>80.078819275</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>lightZ4</Name>
-    <Value>140.886688232</Value>
+    <Value>200.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

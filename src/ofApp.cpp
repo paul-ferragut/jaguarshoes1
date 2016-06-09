@@ -89,13 +89,15 @@ void ofApp::setup(){
 		cout << "svg shadow back loaded" << endl;
 
 		shadowFront = new ofxSVG;
-		shadowFront->load("shadowFront.svg");
+		shadowFront->load("shadowTop.svg");
 		cout << "svg front shadow loaded" << endl;
 
 
 
 		for (int i = 0;i < LIGHT_NUM;i++) {
-			light[i].setup(ofRectangle(-ofGetWidth() / 2, -ofGetHeight() / 2, ofGetWidth() * 2, ofGetHeight() * 2), ofRectangle(-ofGetWidth()/2, -ofGetHeight() / 2, ofGetWidth()*2, ofGetHeight()*2), ofVec2f(ofRandom(0.008, 0.022), ofRandom(0.008, 0.022)), ofVec2f(ofRandom(0.008, 0.012), ofRandom(0.008, 0.012)),ofRandom(150,250));
+			int lGW = ofRandom(-ofGetWidth() / 4, ofGetWidth() / 4);
+			int lGH = ofRandom(-ofGetHeight() / 4, ofGetHeight() / 4);
+			light[i].setup(ofRectangle(-(ofGetWidth() / 2)+ lGW, -(ofGetHeight() / 2)+ lGH, (ofGetWidth() * 2) + lGW, (ofGetHeight() * 2) + lGH), ofRectangle(-(ofGetWidth()/2) + lGW, -(ofGetHeight() / 2) + lGH, (ofGetWidth()*2) + lGW, (ofGetHeight()*2) + lGH), ofVec2f(ofRandom(0.008, 0.022), ofRandom(0.008, 0.022)), ofVec2f(ofRandom(0.008, 0.012), ofRandom(0.008, 0.012)),ofRandom(150,250));
 			light[i].lightShadow.setup(shadowFront, shadowBack);
 			light[i].useShadow = true;//useShadowB;
 			light[i].useShadowTop = true;//useTopShadowB;

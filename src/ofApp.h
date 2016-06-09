@@ -3,7 +3,6 @@
 
 
 #define COLOR_IN_PALETTE 5
-#define NUM_LIGHT 2
 #define NUM_SCREEN 4
 #define LIGHT_NUM 5
 #define USE_STRUCT

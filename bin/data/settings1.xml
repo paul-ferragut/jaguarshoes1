@@ -63,12 +63,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>postRadius</Name>
-    <Value>0.016846580</Value>
+    <Value>0.011325734</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>postIntensity</Name>
-    <Value>0.084232904</Value>
+    <Value>0.056628667</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -93,7 +93,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>drawDebugB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -108,7 +108,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>scaledVol</Name>
-    <Value>0.084232904</Value>
+    <Value>0.056628667</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
