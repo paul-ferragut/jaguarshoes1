@@ -5,8 +5,8 @@
 	<Noise_Time_Scale>0.57709</Noise_Time_Scale>
 	<Noise_Persistence>0.55045</Noise_Persistence>
 	<Wind>0.142857, 0.0408163, -0.0204082</Wind>
-	<Start_Color>14, 22, 49, 255</Start_Color>
-	<End_Color>195, 75, 110, 255</End_Color>
+	<Start_Color>13, 21, 49, 255</Start_Color>
+	<End_Color>195, 74, 110, 255</End_Color>
 	<Twist_Noise_Time_Scale>0.0233333</Twist_Noise_Time_Scale>
 	<Twist_Noise_Pos_Scale>0.06</Twist_Noise_Pos_Scale>
 	<Twist_Min_Ang>-0.266667</Twist_Min_Ang>

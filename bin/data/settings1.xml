@@ -8,7 +8,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>useMappingB</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -63,12 +63,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>postRadius</Name>
-    <Value>0.011325734</Value>
+    <Value>0.007418863</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>postIntensity</Name>
-    <Value>0.056628667</Value>
+    <Value>0.037094314</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -93,7 +93,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>drawDebugB</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -103,12 +103,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>smoothedVol</Name>
-    <Value>0.009626874</Value>
+    <Value>0.004535433</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>scaledVol</Name>
-    <Value>0.056628667</Value>
+    <Value>0.037094314</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

@@ -49,7 +49,7 @@ void ofApp::setup(){
 		//int sampleRate = 44100;//player.getSampleRate();
 		//ofSoundStreamSetup(1, 0, this, sampleRate, bufferSize, 4);
 #else  		
-		soundStream.setDeviceID(6);		
+		soundStream.setDeviceID(4);		
 		soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
 #endif  
 
