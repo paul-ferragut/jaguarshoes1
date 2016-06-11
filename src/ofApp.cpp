@@ -136,6 +136,11 @@ void ofApp::setup(){
 		branchesFlower[2].setup(ofVec2f(4, 455), 110 * 1.75);
 		branchesFlower[3].setup(ofVec2f(22, 562), 70 * 1.75);
 		cout << "flowers set" << endl;
+
+		ofToggleFullscreen();
+		gui1->toggleVisible();
+		gui2->toggleVisible();
+		gui3->toggleVisible();
 }
 
 //--------------------------------------------------------------
