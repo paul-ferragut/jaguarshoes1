@@ -17,7 +17,7 @@ void branches::setup(ofVec2f pos, float w) {
 	vector<particleFlower>tPV;
 	wP = 1024;
 	hP = 768;
-	int branchNum = ofRandom(25, 15);
+	int branchNum = ofRandom(35, 25);
 
 	for (int i = 0;i < branchNum;i++) {
 		float angle = ofDegToRad(ofRandom(0, 360));

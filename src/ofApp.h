@@ -172,7 +172,7 @@ class ofApp : public ofBaseApp{
 		ofxSVG * shadowBack;
 		ofxSVG * shadowFront;
 
-		branches branchesFlower[4];
+		branches branchesFlower[3];
 		glow glowingShapes;
 		svgDrawSimple svgShapeSimple;
 

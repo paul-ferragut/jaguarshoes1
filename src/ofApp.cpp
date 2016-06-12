@@ -131,10 +131,9 @@ void ofApp::setup(){
 		svgShapeSimple.setup("flatShapes.svg");
 		cout << "flat set" << endl;
 
-		branchesFlower[0].setup(ofVec2f(437,328),100*1.75);
-		branchesFlower[1].setup(ofVec2f(740, 155), 70 * 1.75);
-		branchesFlower[2].setup(ofVec2f(4, 455), 110 * 1.75);
-		branchesFlower[3].setup(ofVec2f(22, 562), 70 * 1.75);
+		branchesFlower[0].setup(ofVec2f(415,341),100*1.75);
+		branchesFlower[1].setup(ofVec2f(721, 165), 70 * 1.75);
+		branchesFlower[2].setup(ofVec2f(0, 581), 110 * 1.75);
 		cout << "flowers set" << endl;
 
 		ofToggleFullscreen();
@@ -295,7 +294,7 @@ void ofApp::update(){
 
 
 	if (drawGenerativeFlowersB) {
-		for (int i = 0;i < 4;i++) {
+		for (int i = 0;i < 3;i++) {
 			branchesFlower[i].update();
 		}
 	}
@@ -425,7 +424,7 @@ void ofApp::draw(){
 	}
 
 	if (drawGenerativeFlowersB) {
-		for (int i = 0;i < 4;i++) {
+		for (int i = 0;i < 3;i++) {
 			branchesFlower[i].draw(colorP[2], colorP[0]);
 		}
 	}

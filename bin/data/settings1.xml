@@ -63,12 +63,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>postRadius</Name>
-    <Value>0.007418863</Value>
+    <Value>0.005335803</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>postIntensity</Name>
-    <Value>0.037094314</Value>
+    <Value>0.026679017</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -108,7 +108,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>scaledVol</Name>
-    <Value>0.037094314</Value>
+    <Value>0.026679017</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

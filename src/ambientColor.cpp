@@ -10,16 +10,78 @@ void ambientColor::setup() {
 	colorPalette newPalette;
 
 	// we start in the night
-	//colour 8
+	//colour 18
 	rgb.clear();
-	rgb.push_back(ofColor(87, 55, 110));
-	rgb.push_back(ofColor(39, 41, 103));
-	rgb.push_back(ofColor(89, 181, 230));
-	rgb.push_back(ofColor(195, 75, 110));
-	rgb.push_back(ofColor(14, 22, 49));
+	rgb.push_back(ofColor(84, 26, 66));
+	rgb.push_back(ofColor(57, 65, 69));
+	rgb.push_back(ofColor(189, 178, 163));
+	rgb.push_back(ofColor(185, 31, 101));
+	rgb.push_back(ofColor(28, 35, 55));
 	newPalette.setColors(rgb);
 	newPalette.setTimeCode("00:00:00");
 	colors.push_back(newPalette);
+	//colour 17
+	rgb.clear();
+	rgb.push_back(ofColor(33, 60, 112));
+	rgb.push_back(ofColor(52, 49, 73));
+	rgb.push_back(ofColor(183, 172, 212));
+	rgb.push_back(ofColor(237, 228, 63));
+	rgb.push_back(ofColor(31, 49, 69));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("00:15:00");
+	colors.push_back(newPalette);
+	//colour 16
+	rgb.clear();
+	rgb.push_back(ofColor(67, 67, 110));
+	rgb.push_back(ofColor(36, 39, 36));
+	rgb.push_back(ofColor(215, 222, 219));
+	rgb.push_back(ofColor(105, 38, 87));
+	rgb.push_back(ofColor(31, 44, 75));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("00:15:00");
+	colors.push_back(newPalette);
+	//colour 15
+	rgb.clear();
+	rgb.push_back(ofColor(74, 89, 108));
+	rgb.push_back(ofColor(71, 62, 71));
+	rgb.push_back(ofColor(201, 182, 209));
+	rgb.push_back(ofColor(217, 214, 97));
+	rgb.push_back(ofColor(65, 36, 38));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("00:45:00");
+	colors.push_back(newPalette);
+	//colour 14
+	rgb.clear();
+	rgb.push_back(ofColor(110, 89, 166));
+	rgb.push_back(ofColor(46, 50, 134));
+	rgb.push_back(ofColor(252, 229, 217));
+	rgb.push_back(ofColor(68, 115, 185));
+	rgb.push_back(ofColor(41, 42, 87));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("01:15:00");
+	colors.push_back(newPalette);
+	//colour 13
+	rgb.clear();
+	rgb.push_back(ofColor(18, 93, 137));
+	rgb.push_back(ofColor(46, 78, 91));
+	rgb.push_back(ofColor(216, 232, 240));
+	rgb.push_back(ofColor(38, 170, 204));
+	rgb.push_back(ofColor(71, 14, 62));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("02:00:00");
+	colors.push_back(newPalette);
+	//colour 12
+	rgb.clear();
+	rgb.push_back(ofColor(119, 23, 26));
+	rgb.push_back(ofColor(26, 68, 98));
+	rgb.push_back(ofColor(226, 205, 206));
+	rgb.push_back(ofColor(76, 148, 160));
+	rgb.push_back(ofColor(8, 42, 53));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("03:15:00");
+	colors.push_back(newPalette);
+
+
 	//colour 1
 	rgb.clear();
 	rgb.push_back(ofColor(234, 235, 218));
@@ -38,7 +100,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(142, 53, 128));
 	rgb.push_back(ofColor(108, 129, 151));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("12:00:00");
+	newPalette.setTimeCode("15:00:00");
 	colors.push_back(newPalette);
 	//colour 3
 	rgb.clear();
@@ -48,7 +110,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(210, 81, 152));
 	rgb.push_back(ofColor(51, 52, 42));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("14:00:00");
+	newPalette.setTimeCode("17:00:00");
 	colors.push_back(newPalette);
 	//colour 4
 	rgb.clear();
@@ -58,7 +120,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(178, 191, 53));
 	rgb.push_back(ofColor(8, 42, 53));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("16:00:00");
+	newPalette.setTimeCode("18:00:00");
 	colors.push_back(newPalette);
 	//colour 5
 	rgb.clear();
@@ -68,7 +130,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(217, 87, 75));
 	rgb.push_back(ofColor(60, 47, 83));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("18:00:00");
+	newPalette.setTimeCode("18:30:00");
 	colors.push_back(newPalette);
 	//colour 6
 	rgb.clear();
@@ -78,7 +140,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(28, 66, 47));
 	rgb.push_back(ofColor(91, 77, 78));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("20:00:00");
+	newPalette.setTimeCode("19:30:00");
 	colors.push_back(newPalette);
 	//colour 7
 	rgb.clear();
@@ -88,8 +150,120 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(117, 192, 82));
 	rgb.push_back(ofColor(48, 33, 46));
 	newPalette.setColors(rgb);
+	newPalette.setTimeCode("19:45:00");
+	colors.push_back(newPalette);
+	//colour 8
+	rgb.clear();
+	rgb.push_back(ofColor(87, 55, 110));
+	rgb.push_back(ofColor(39, 41, 103));
+	rgb.push_back(ofColor(89, 181, 230));
+	rgb.push_back(ofColor(195, 75, 110));
+	rgb.push_back(ofColor(14, 22, 49));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("20:00:00");
+	colors.push_back(newPalette);
+	//colour 9
+	rgb.clear();
+	rgb.push_back(ofColor(228, 231, 150));
+	rgb.push_back(ofColor(159, 167, 159));
+	rgb.push_back(ofColor(233, 178, 151));
+	rgb.push_back(ofColor(201, 102, 93));
+	rgb.push_back(ofColor(45, 47, 43));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("20:30:00");
+	colors.push_back(newPalette);
+	//colour 10
+	rgb.clear();
+	rgb.push_back(ofColor(153, 75, 85));
+	rgb.push_back(ofColor(22, 47, 48));
+	rgb.push_back(ofColor(254, 215, 174));
+	rgb.push_back(ofColor(219, 55, 57));
+	rgb.push_back(ofColor(45, 16, 18));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("20:45:00");
+	colors.push_back(newPalette);
+	//colour 11
+	rgb.clear();
+	rgb.push_back(ofColor(128, 77, 73));
+	rgb.push_back(ofColor(73, 80, 76));
+	rgb.push_back(ofColor(179, 187, 177));
+	rgb.push_back(ofColor(215, 129, 107));
+	rgb.push_back(ofColor(6, 35, 65));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("21:00:00");
+	colors.push_back(newPalette);
+	//colour 12
+	rgb.clear();
+	rgb.push_back(ofColor(119, 23, 26));
+	rgb.push_back(ofColor(26, 68, 98));
+	rgb.push_back(ofColor(226, 205, 206));
+	rgb.push_back(ofColor(76, 148, 160));
+	rgb.push_back(ofColor(8, 42, 53));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("21:15:00");
+	colors.push_back(newPalette);
+	//colour 13
+	rgb.clear();
+	rgb.push_back(ofColor(18, 93, 137));
+	rgb.push_back(ofColor(46, 78, 91));
+	rgb.push_back(ofColor(216, 232, 240));
+	rgb.push_back(ofColor(38, 170, 204));
+	rgb.push_back(ofColor(71, 14, 62));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("21:40:00");
+	colors.push_back(newPalette);
+	//colour 14
+	rgb.clear();
+	rgb.push_back(ofColor(110, 89, 166));
+	rgb.push_back(ofColor(46, 50, 134));
+	rgb.push_back(ofColor(252, 229, 217));
+	rgb.push_back(ofColor(68, 115, 185));
+	rgb.push_back(ofColor(41, 42, 87));
+	newPalette.setColors(rgb);
 	newPalette.setTimeCode("22:00:00");
 	colors.push_back(newPalette);
+	//colour 15
+	rgb.clear();
+	rgb.push_back(ofColor(74, 89, 108));
+	rgb.push_back(ofColor(71, 62, 71));
+	rgb.push_back(ofColor(201, 182, 209));
+	rgb.push_back(ofColor(217, 214, 97));
+	rgb.push_back(ofColor(65, 36, 38));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("22:30:00");
+	colors.push_back(newPalette);
+	//colour 16
+	rgb.clear();
+	rgb.push_back(ofColor(67, 67, 110));
+	rgb.push_back(ofColor(36, 39, 36));
+	rgb.push_back(ofColor(215, 222, 219));
+	rgb.push_back(ofColor(105, 38, 87));
+	rgb.push_back(ofColor(31, 44, 75));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("23:00:00");
+	colors.push_back(newPalette);
+	//colour 17
+	rgb.clear();
+	rgb.push_back(ofColor(33, 60, 112));
+	rgb.push_back(ofColor(52, 49, 73));
+	rgb.push_back(ofColor(183, 172, 212));
+	rgb.push_back(ofColor(237, 228, 63));
+	rgb.push_back(ofColor(31, 49, 69));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("23:30:00");
+	colors.push_back(newPalette);
+	//colour 18
+	rgb.clear();
+	rgb.push_back(ofColor(84, 26, 66));
+	rgb.push_back(ofColor(57, 65, 69));
+	rgb.push_back(ofColor(189, 178, 163));
+	rgb.push_back(ofColor(185, 31, 101));
+	rgb.push_back(ofColor(28, 35, 55));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("23:59:59");
+	colors.push_back(newPalette);
+
+
 
 
 
