@@ -63,7 +63,7 @@ void glow::setup(string svgString){
 
 	for (int i = 0;i < path.size();i++) {
 		path[i].size = ofMap(path[i].size, 0, largerPath, 0.0, 1.0, true);
-		cout << "size" << path[i].size << endl;
+		//cout << "size" << path[i].size << endl;
 	}
 
 }
@@ -89,7 +89,7 @@ void glow::draw(bool pulse,ofColor col){
 				path[i].iterationOpacity[0] = 255;
 			}
 		}
-		cout << "pulse" << endl;
+		//cout << "pulse" << endl;
 	}
 	int decrease=15;
 	for (int i = 0;i < path.size();i++) {

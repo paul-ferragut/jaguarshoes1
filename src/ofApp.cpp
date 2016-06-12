@@ -573,6 +573,11 @@ void ofApp::keyReleased(int key){
 		gui2->toggleVisible();
 		gui3->toggleVisible();
 	}
+
+
+	if (key == 'f') {
+		ofToggleFullscreen();
+	}
 }
 
 //--------------------------------------------------------------

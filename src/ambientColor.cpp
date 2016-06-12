@@ -288,7 +288,7 @@ void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 	if (useSimulateTime)currentTime = simulatedTime;
 	
 	int closestIndex = searchArray(valuesColorTime, currentTime);
-	//cout << "currentTime" << currentTime<<endl;
+	//cout << "currentTime converted" << currentTime<<endl;
 	//cout << "closestIndex" << closestIndex << endl;
 	if (valuesColorTime[closestIndex] > currentTime) {
 		iHigh = closestIndex;

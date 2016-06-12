@@ -30,7 +30,7 @@ void branches::setup(ofVec2f pos, float w) {
 
 		particleFlower tP;
 		tP.setup(ofVec2f(wP / 2, hP / 2), tB.directionPt, 0);
-		cout << ofVec2f(wP / 2, hP / 2) << endl;
+		//cout << ofVec2f(wP / 2, hP / 2) << endl;
 		tB.p.push_back(tP);
 		b.push_back(tB);
 
@@ -91,7 +91,7 @@ void branches::update(){
 
 			//b[i].p[0].setup(ofVec2f(wP / 2, hP / 2), b[i].directionPt, 0);
 
-			cout << "setup branch" << i << endl;
+			//cout << "setup branch" << i << endl;
 		}
 	}
 		
