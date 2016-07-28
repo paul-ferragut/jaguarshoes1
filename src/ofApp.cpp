@@ -338,7 +338,9 @@ void ofApp::draw(){
 		distortI.begin();
 	}
 
-	ofSetGlobalAmbientColor(colorP[2]);
+	ofColor bright = colorP[3];
+	bright.setBrightness(190);
+	ofSetGlobalAmbientColor(bright);
 
 	if (drawBackgroundB) {
 		drawBackground();

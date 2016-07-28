@@ -13,7 +13,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>useSimulatedTimeColorB</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -23,75 +23,75 @@
 <Widget>
     <Kind>4</Kind>
     <Name>red 0</Name>
-    <Value>84.000000000</Value>
+    <Value>88.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 0</Name>
-    <Value>26.000000000</Value>
+    <Value>89.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 0</Name>
-    <Value>66.000000000</Value>
+    <Value>130.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 1</Name>
-    <Value>57.000000000</Value>
+    <Value>61.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 1</Name>
-    <Value>65.000000000</Value>
+    <Value>57.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 1</Name>
-    <Value>69.000000000</Value>
+    <Value>95.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 2</Name>
-    <Value>189.000000000</Value>
+    <Value>221.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 2</Name>
-    <Value>178.000000000</Value>
+    <Value>200.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 2</Name>
-    <Value>163.000000000</Value>
+    <Value>212.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 3</Name>
-    <Value>185.000000000</Value>
+    <Value>158.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 3</Name>
-    <Value>31.000000000</Value>
+    <Value>174.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 3</Name>
-    <Value>101.000000000</Value>
+    <Value>131.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>red 4</Name>
-    <Value>28.000000000</Value>
+    <Value>55.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>green 4</Name>
-    <Value>35.000000000</Value>
+    <Value>38.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>blue 4</Name>
-    <Value>55.000000000</Value>
+    <Value>57.000000000</Value>
 </Widget>

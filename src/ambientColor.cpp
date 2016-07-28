@@ -90,7 +90,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(175, 116, 104));
 	rgb.push_back(ofColor(80, 73, 79));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("10:00:00");
+	newPalette.setTimeCode("14:00:00");
 	colors.push_back(newPalette);
 	//colour 2
 	rgb.clear();
@@ -100,7 +100,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(142, 53, 128));
 	rgb.push_back(ofColor(108, 129, 151));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("15:00:00");
+	newPalette.setTimeCode("18:30:00");
 	colors.push_back(newPalette);
 	//colour 3
 	rgb.clear();
@@ -110,7 +110,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(210, 81, 152));
 	rgb.push_back(ofColor(51, 52, 42));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("17:00:00");
+	newPalette.setTimeCode("19:00:00");
 	colors.push_back(newPalette);
 	//colour 4
 	rgb.clear();
@@ -120,7 +120,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(178, 191, 53));
 	rgb.push_back(ofColor(8, 42, 53));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("18:00:00");
+	newPalette.setTimeCode("19:15:00");
 	colors.push_back(newPalette);
 	//colour 5
 	rgb.clear();
@@ -130,7 +130,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(217, 87, 75));
 	rgb.push_back(ofColor(60, 47, 83));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("18:30:00");
+	newPalette.setTimeCode("19:30:00");
 	colors.push_back(newPalette);
 	//colour 6
 	rgb.clear();
@@ -140,7 +140,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(28, 66, 47));
 	rgb.push_back(ofColor(91, 77, 78));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("19:30:00");
+	newPalette.setTimeCode("19:45:00");
 	colors.push_back(newPalette);
 	//colour 7
 	rgb.clear();
@@ -150,7 +150,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(117, 192, 82));
 	rgb.push_back(ofColor(48, 33, 46));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("19:45:00");
+	newPalette.setTimeCode("20:00:00");
 	colors.push_back(newPalette);
 	//colour 8
 	rgb.clear();
@@ -160,7 +160,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(195, 75, 110));
 	rgb.push_back(ofColor(14, 22, 49));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("20:00:00");
+	newPalette.setTimeCode("20:15:00");
 	colors.push_back(newPalette);
 	//colour 9
 	rgb.clear();
@@ -210,7 +210,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(38, 170, 204));
 	rgb.push_back(ofColor(71, 14, 62));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("21:40:00");
+	newPalette.setTimeCode("21:30:00");
 	colors.push_back(newPalette);
 	//colour 14
 	rgb.clear();
@@ -220,7 +220,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(68, 115, 185));
 	rgb.push_back(ofColor(41, 42, 87));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("22:00:00");
+	newPalette.setTimeCode("21:45:00");
 	colors.push_back(newPalette);
 	//colour 15
 	rgb.clear();
@@ -230,7 +230,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(217, 214, 97));
 	rgb.push_back(ofColor(65, 36, 38));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("22:30:00");
+	newPalette.setTimeCode("22:00:00");
 	colors.push_back(newPalette);
 	//colour 16
 	rgb.clear();
@@ -240,7 +240,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(105, 38, 87));
 	rgb.push_back(ofColor(31, 44, 75));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("23:00:00");
+	newPalette.setTimeCode("22:15:00");
 	colors.push_back(newPalette);
 	//colour 17
 	rgb.clear();
@@ -250,9 +250,44 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(237, 228, 63));
 	rgb.push_back(ofColor(31, 49, 69));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("23:30:00");
+	newPalette.setTimeCode("22:30:00");
 	colors.push_back(newPalette);
 	//colour 18
+
+
+	//colour 16
+	rgb.clear();
+	rgb.push_back(ofColor(67, 67, 110));
+	rgb.push_back(ofColor(36, 39, 36));
+	rgb.push_back(ofColor(215, 222, 219));
+	rgb.push_back(ofColor(105, 38, 87));
+	rgb.push_back(ofColor(31, 44, 75));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("22:45:00");
+	colors.push_back(newPalette);
+	//colour 15
+	rgb.clear();
+	rgb.push_back(ofColor(74, 89, 108));
+	rgb.push_back(ofColor(71, 62, 71));
+	rgb.push_back(ofColor(201, 182, 209));
+	rgb.push_back(ofColor(217, 214, 97));
+	rgb.push_back(ofColor(65, 36, 38));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("23:00:00");
+	colors.push_back(newPalette);
+	//colour 14
+	rgb.clear();
+	rgb.push_back(ofColor(110, 89, 166));
+	rgb.push_back(ofColor(46, 50, 134));
+	rgb.push_back(ofColor(252, 229, 217));
+	rgb.push_back(ofColor(68, 115, 185));
+	rgb.push_back(ofColor(41, 42, 87));
+	newPalette.setColors(rgb);
+	newPalette.setTimeCode("23:15:00");
+	colors.push_back(newPalette);
+
+
+
 	rgb.clear();
 	rgb.push_back(ofColor(84, 26, 66));
 	rgb.push_back(ofColor(57, 65, 69));
@@ -260,7 +295,7 @@ void ambientColor::setup() {
 	rgb.push_back(ofColor(185, 31, 101));
 	rgb.push_back(ofColor(28, 35, 55));
 	newPalette.setColors(rgb);
-	newPalette.setTimeCode("23:59:59");
+	newPalette.setTimeCode("23:30:00");
 	colors.push_back(newPalette);
 
 
@@ -286,6 +321,7 @@ void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 	int currentTime = convertTime(ofGetHours(), ofGetMinutes(), ofGetSeconds());
 	
 	if (useSimulateTime)currentTime = simulatedTime;
+	//cout << "simulated time" << simulatedTime << endl;
 	
 	int closestIndex = searchArray(valuesColorTime, currentTime);
 	//cout << "currentTime converted" << currentTime<<endl;
@@ -305,6 +341,7 @@ void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 		iHigh = closestIndex + 1;
 		if (iHigh > colors.size() - 1) { 
 			iHigh = 0; 
+			
 			//valuesColorTime[iHigh] += valuesColorTime[iLow];
 		}
 	}
@@ -317,13 +354,15 @@ void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 	//cout << "iHigh" << iHigh << endl;
 
 	//cout << "val iLow" << valuesColorTime[iLow] << endl;
+	//cout << "val iLow" << valuesColorTime[iLow] << endl;
 	//cout << "val iHigh" << valuesColorTime[iHigh] << endl;
 	//previousColor= colors[iLow];
 	//nextColor = colors[iHigh];
 
-	float tNorm = ofMap(currentTime, valuesColorTime[iLow], valuesColorTime[iHigh], 0.0, 1.0);
+	float tNorm = ofMap(currentTime, valuesColorTime[iLow], valuesColorTime[iHigh], 0.0, 1.0,true);
 	if (valuesColorTime[iLow] > valuesColorTime[iHigh]) {
 		tNorm = ofMap(currentTime, valuesColorTime[iHigh], valuesColorTime[iLow], 0.0, 1.0);
+		//cout << "tnorm" << endl;
 	}
 
 	//cout << "tNorm" << tNorm;
@@ -331,7 +370,8 @@ void ambientColor::update(float simulatedTime, bool useSimulateTime) {
 		ofColor c1=colors[iLow].getCol(i);
 		ofColor c2 = colors[iHigh].getCol(i);;
 
-		//cout << "c1" << c1<<endl;;
+		//cout << "c1" << c1<<endl;
+		//cout << "c2" << c2<<endl;
 		currentColor.setCol(ofColor(ofLerp(c1.r, c2.r, tNorm), ofLerp(c1.g, c2.g, tNorm), ofLerp(c1.b, c2.b, tNorm)), i);
 	}
 
@@ -358,10 +398,15 @@ vector<ofFloatColor> ambientColor::getFloatColors() {
 int ambientColor::convertTime(int h, int m, int s) {
 
 	int hours=ofMap(h, 0, 24, 0, 100000);
-	int minutes = ofMap(m, 0, 60, 0, 1000);
-	int seconds = ofMap(s, 0, 60, 0, 100);
+	int rangeHours = 100000 / 24;//ofMap(1, 0, 24, 0, 100000);
+	int minutes = ofMap(m, 0, 60, 0, rangeHours);
+	int rangeSeconds = (100000 / 24) / 60;//ofMap(1, 0, 60, 0, rangeHours);
+	int seconds = ofMap(s, 0, 60, 0, rangeSeconds);
 
 	if (ofGetDay() != startDay)hours += 100000;//WARNING THIS WORK ONLY FOR ONE DAY ON
+
+	//cout << " h:" << h << " m:" << m << " s:" << s << endl;
+	//cout <<"converted time"<< hours + minutes + seconds<< endl;
 
 	return hours + minutes + seconds;
 

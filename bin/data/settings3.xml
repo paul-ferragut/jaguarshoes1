@@ -13,7 +13,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>shininess</Name>
-    <Value>-11.453202248</Value>
+    <Value>-44.704433441</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -28,17 +28,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>cutoff0</Name>
-    <Value>52.315269470</Value>
+    <Value>73.152709961</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>concentration0</Name>
-    <Value>63.054187775</Value>
+    <Value>38.463054657</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>lightZ0</Name>
-    <Value>172.413803101</Value>
+    <Value>200.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -63,12 +63,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>cutoff1</Name>
-    <Value>53.645317078</Value>
+    <Value>70.935958862</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>concentration1</Name>
-    <Value>52.965518951</Value>
+    <Value>34.679801941</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -98,12 +98,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>cutoff2</Name>
-    <Value>50.098518372</Value>
+    <Value>74.482757568</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>concentration2</Name>
-    <Value>63.684730530</Value>
+    <Value>44.768474579</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -113,12 +113,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>useShadowB2</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>useTopShadowB2</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -133,12 +133,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>cutoff3</Name>
-    <Value>49.211826324</Value>
+    <Value>70.935958862</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>concentration3</Name>
-    <Value>68.729064941</Value>
+    <Value>52.965518951</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -168,12 +168,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>cutoff4</Name>
-    <Value>53.201969147</Value>
+    <Value>58.078815460</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>concentration4</Name>
-    <Value>80.078819275</Value>
+    <Value>49.182266235</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
